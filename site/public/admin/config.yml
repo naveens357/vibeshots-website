@@ -1,0 +1,336 @@
+# Decap CMS — the web admin at /admin where the team edits content without code.
+# Setup steps: see site/README.md ("Editing content").
+
+backend:
+  name: github
+  repo: naveens357/vibeshots-website
+  branch: main
+  # On Netlify, GitHub sign-in works once you add a GitHub OAuth app under
+  # Site configuration → Access & security → OAuth.
+
+# Paths are relative to the git repo root (the folder above site/).
+# Lets you edit locally with `npm run cms` + `npm run dev`, then open http://localhost:4321/admin/index.html
+local_backend: true
+
+site_url: https://vibeshotsnepal.com
+display_url: https://vibeshotsnepal.com
+logo_url: /images/logo-dark.png
+media_folder: site/public/uploads
+public_folder: /uploads
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  # ---------------------------------------------------------------- Weddings
+  - name: stories
+    label: Wedding stories
+    label_singular: Wedding story
+    folder: site/src/content/stories
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} · {{venue}} · {{dateBS}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Couple names (e.g. Aashma & Rohan), name: title, widget: string }
+      - { label: Wedding date (AD), name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
+      - { label: Date in BS (e.g. Mangsir 2082), name: dateBS, widget: string, required: false }
+      - { label: Venue, name: venue, widget: string }
+      - { label: City, name: city, widget: string, required: false }
+      - { label: Community (e.g. Newari), name: community, widget: string, required: false }
+      - { label: Ceremonies covered, name: ceremonies, widget: list, allow_add: true, hint: "One per line: Haldi, Janti, Kanyadan…" }
+      - { label: Package, name: package, widget: string, required: false }
+      - { label: Team, name: team, widget: string, required: false }
+      - { label: Short summary (for cards and Google), name: excerpt, widget: text, required: false }
+      - { label: Cover photo, name: cover, widget: image, required: false, choose_url: false }
+      - { label: Cover alt text, name: coverAlt, widget: string, required: false }
+      - { label: Cover placeholder colour, name: coverTone, widget: select, default: bride, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
+      - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
+      - { label: Film link (YouTube or Vimeo), name: film, widget: string, required: false }
+      - { label: Film poster image, name: filmPoster, widget: image, required: false, choose_url: false }
+      - { label: Film length (e.g. 4:12), name: filmLength, widget: string, required: false }
+      - { label: Couple quote, name: quote, widget: text, required: false }
+      - &gallery
+        label: Gallery
+        name: gallery
+        widget: list
+        summary: "{{fields.layout}} · {{fields.label}}{{fields.alt}}"
+        hint: Add 40–80 photos for weddings. Full = one wide photo, Half = two side by side, Third = three in a row.
+        fields:
+          - { label: Photo, name: src, widget: image, required: false, choose_url: false }
+          - { label: Alt text (describe the photo for Google and screen readers), name: alt, widget: string, required: false }
+          - { label: Layout, name: layout, widget: select, options: [full, half, third], default: half }
+          - { label: Placeholder label (shown until a photo is added), name: label, widget: string, required: false }
+          - &tone
+            label: Placeholder colour (used only when there is no photo)
+            name: tone
+            widget: select
+            default: ivory
+            options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product]
+      - label: Vendor credits
+        name: vendors
+        widget: list
+        summary: "{{fields.role}}: {{fields.name}}"
+        fields:
+          - { label: Role (Venue, Makeup…), name: role, widget: string }
+          - { label: Name, name: name, widget: string }
+          - { label: Website or Instagram link, name: url, widget: string, required: false }
+      - { label: Feature on home page, name: featured, widget: boolean, default: false }
+      - { label: Sample content (untick when real), name: sample, widget: boolean, default: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Story text, name: body, widget: markdown }
+
+  - name: ceremonies
+    label: Ceremony pages
+    label_singular: Ceremony page
+    folder: site/src/content/ceremonies
+    create: true
+    slug: "{{slug}}"
+    summary: "{{order}}. {{title}}"
+    sortable_fields: [order, title]
+    fields:
+      - { label: Name, name: title, widget: string }
+      - { label: Name in Devanagari, name: deva, widget: string, required: false }
+      - { label: One-line tagline, name: tagline, widget: string }
+      - { label: Order, name: order, widget: number, value_type: int, default: 1 }
+      - { label: Cover photo, name: cover, widget: image, required: false, choose_url: false }
+      - { label: Cover alt text, name: coverAlt, widget: string, required: false }
+      - { label: Cover placeholder colour, name: coverTone, widget: select, default: ivory, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
+      - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Page text, name: body, widget: markdown }
+
+  # -------------------------------------------------------------- Commercial
+  - name: projects
+    label: Commercial projects
+    label_singular: Commercial project
+    folder: site/src/content/projects
+    create: true
+    slug: "{{slug}}"
+    summary: "{{client}} · {{title}}"
+    sortable_fields: [date, client]
+    fields:
+      - { label: Project title, name: title, widget: string }
+      - { label: Client, name: client, widget: string }
+      - { label: "Credit line (e.g. Dirt Temple × Vibeshots, season coverage)", name: credit, widget: string, required: false }
+      - { label: Sector, name: sector, widget: select, options: [{ label: Motorsport, value: moto }, { label: Automotive, value: auto }, { label: Travel & Hospitality, value: travel }, { label: Brands & Product, value: brand }, { label: Events, value: event }] }
+      - { label: Type, name: types, widget: select, multiple: true, min: 1, options: [{ label: Stills, value: stills }, { label: Motion / film, value: motion }] }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
+      - { label: Location, name: location, widget: string, required: false }
+      - { label: Deliverables, name: deliverables, widget: string, required: false }
+      - { label: Results (reach, views…), name: results, widget: string, required: false }
+      - { label: Cover photo, name: cover, widget: image, required: false, choose_url: false }
+      - { label: Cover alt text, name: coverAlt, widget: string, required: false }
+      - { label: Cover placeholder colour, name: coverTone, widget: select, default: moto, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
+      - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
+      - { label: Film link (YouTube or Vimeo), name: film, widget: string, required: false }
+      - *gallery
+      - { label: Feature on home page, name: featured, widget: boolean, default: false }
+      - { label: Sample content (untick when real), name: sample, widget: boolean, default: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Case study text, name: body, widget: markdown }
+
+  # ----------------------------------------------------------------- Journal
+  - name: journal
+    label: Journal
+    label_singular: Journal post
+    folder: site/src/content/journal
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} · {{date}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
+      - { label: Summary, name: excerpt, widget: text }
+      - { label: Cover photo, name: cover, widget: image, required: false, choose_url: false }
+      - { label: Cover alt text, name: coverAlt, widget: string, required: false }
+      - { label: Cover placeholder colour, name: coverTone, widget: select, default: ivory, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
+      - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
+      - { label: Draft (hide from site), name: draft, widget: boolean, default: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Post, name: body, widget: markdown }
+
+  # ---------------------------------------------------------------- Settings
+  - name: settings
+    label: Site settings
+    editor: { preview: false }
+    files:
+      - name: site
+        label: Contact, stats & reviews
+        file: site/src/data/site.json
+        fields:
+          - { label: Studio name, name: name, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Description (Google + footer), name: description, widget: text }
+          - { label: Address, name: address, widget: string }
+          - { label: Google Maps share link, name: mapUrl, widget: string, hint: "From Google Maps → Share → Copy link" }
+          - { label: Map pin latitude, name: mapLat, widget: number, value_type: float, hint: "In Google Maps, right-click the pin and copy the first number" }
+          - { label: Map pin longitude, name: mapLng, widget: number, value_type: float, hint: "The second number" }
+          - { label: Map zoom (14 = area, 17 = street), name: mapZoom, widget: number, value_type: int, default: 16 }
+          - { label: Opening hours, name: hours, widget: string }
+          - { label: Main phone (no +977), name: phonePrimary, widget: string }
+          - { label: Second phone (no +977), name: phoneSecondary, widget: string }
+          - { label: WhatsApp for weddings (with 977, digits only), name: whatsapp, widget: string }
+          - { label: WhatsApp for commercial (with 977, digits only), name: whatsappCommercial, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Instagram (weddings) handle, name: instagramWeddings, widget: string }
+          - { label: Instagram (commercial) handle, name: instagramCommercial, widget: string }
+          - { label: Facebook link, name: facebook, widget: string, required: false }
+          - { label: TikTok link, name: tiktok, widget: string, required: false }
+          - { label: YouTube link, name: youtube, widget: string, required: false }
+          - { label: Call booking link (Cal.com / Calendly), name: callBookingUrl, widget: string, required: false }
+          - { label: Reply promise, name: replyPromise, widget: string }
+          - { label: Home hero — wedding video (MP4/WebM), name: heroWeddingVideo, widget: file, required: false, choose_url: false }
+          - { label: Home hero — wedding poster image, name: heroWeddingPoster, widget: image, required: false, choose_url: false }
+          - { label: Home hero — commercial video, name: heroCommercialVideo, widget: file, required: false, choose_url: false }
+          - { label: Home hero — commercial poster image, name: heroCommercialPoster, widget: image, required: false, choose_url: false }
+          - { label: Commercial showreel link (YouTube or Vimeo), name: showreelUrl, widget: string, required: false }
+          - { label: "Commercial trust line (e.g. Official media partner · Dirt Temple)", name: officialLine, widget: string, required: false }
+          - label: Stats bar
+            name: stats
+            widget: list
+            summary: "{{fields.value}} {{fields.label}}"
+            fields:
+              - { label: Number, name: value, widget: string }
+              - { label: Label, name: label, widget: string }
+          - { label: Google reviews link, name: googleReviewsUrl, widget: string, required: false }
+          - { label: Google reviews button text, name: googleReviewsLabel, widget: string }
+          - label: Testimonials
+            name: testimonials
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: Quote, name: quote, widget: text }
+              - { label: Name, name: name, widget: string }
+              - { label: Detail (venue, year), name: detail, widget: string, required: false }
+              - { label: Photo, name: image, widget: image, required: false, choose_url: false }
+              - *tone
+          - { label: Client names (logo wall + marquee), name: clients, widget: list }
+
+      - name: packages
+        label: Packages & prices
+        file: site/src/data/packages.json
+        fields:
+          - label: Early-bird offer
+            name: earlyBird
+            widget: object
+            fields:
+              - { label: Discount %, name: percent, widget: number, value_type: int }
+              - { label: Days ahead to qualify, name: daysAhead, widget: number, value_type: int }
+              - { label: Banner end date (AD), name: deadline, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
+              - { label: Banner text, name: deadlineLabel, widget: string }
+          - label: Package tiers
+            name: tiers
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: ID (lowercase, no spaces), name: id, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: Name in Devanagari, name: deva, widget: string }
+              - { label: Label (Essential, Signature…), name: label, widget: string }
+              - { label: Most popular badge, name: popular, widget: boolean, default: false }
+              - { label: Events included (one line), name: events, widget: string }
+              - { label: Bride side, name: bride, widget: object, fields: [{ label: Sum of single events, name: sum, widget: number, value_type: int }, { label: Package price, name: price, widget: number, value_type: int }] }
+              - { label: Groom side, name: groom, widget: object, fields: [{ label: Sum of single events, name: sum, widget: number, value_type: int }, { label: Package price, name: price, widget: number, value_type: int }] }
+              - { label: What's included, name: includes, widget: list }
+          - label: Sampurna (both families)
+            name: sampurna
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Name in Devanagari, name: deva, widget: string }
+              - { label: Label, name: label, widget: string }
+              - { label: Sum of single events, name: sum, widget: number, value_type: int }
+              - { label: Package price, name: price, widget: number, value_type: int }
+              - { label: What's included, name: includes, widget: list }
+          - label: Heritage tier
+            name: heritage
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Price from, name: fromPrice, widget: number, value_type: int }
+              - { label: Note, name: note, widget: string }
+              - { label: Intro, name: intro, widget: text }
+              - { label: What's included, name: includes, widget: list }
+          - label: Single events
+            name: singles
+            widget: list
+            summary: "{{fields.name}} · {{fields.price}}"
+            fields:
+              - { label: Event, name: name, widget: string }
+              - { label: Detail, name: detail, widget: string }
+              - { label: Hours, name: hours, widget: string }
+              - { label: Price (NPR), name: price, widget: number, value_type: int }
+          - { label: Note under single events, name: singlesNote, widget: text }
+          - label: Add-ons
+            name: addons
+            widget: list
+            summary: "{{fields.name}} · {{fields.price}}"
+            fields:
+              - { label: Add-on, name: name, widget: string }
+              - { label: Price (NPR), name: price, widget: number, value_type: int }
+          - label: Travel zones
+            name: zones
+            widget: list
+            summary: "{{fields.code}} · {{fields.name}}"
+            fields:
+              - { label: Code, name: code, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: Example places, name: places, widget: string }
+              - { label: Coverage price change, name: coverage, widget: string }
+              - { label: Travel / stay / meals, name: travel, widget: text }
+          - { label: Travel example line, name: zoneExample, widget: string }
+          - label: Payment & delivery terms
+            name: terms
+            widget: list
+            summary: "{{fields.big}}"
+            fields:
+              - { label: Big figure, name: big, widget: string }
+              - { label: Text, name: text, widget: text }
+          - { label: Payment methods line, name: paymentMethods, widget: string }
+          - label: FAQ
+            name: faq
+            widget: list
+            summary: "{{fields.q}}"
+            fields:
+              - { label: Question, name: q, widget: string }
+              - { label: Answer, name: a, widget: text }
+
+      - name: about
+        label: About page
+        file: site/src/data/about.json
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - { label: Founder note, name: founderNote, widget: text }
+          - { label: Founder name, name: founderName, widget: string }
+          - { label: Founder role, name: founderRole, widget: string }
+          - { label: Founder photo, name: founderImage, widget: image, required: false, choose_url: false }
+          - label: Values
+            name: values
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Text, name: text, widget: text }
+          - { label: Team section heading, name: teamHeading, widget: string }
+          - { label: Team section intro, name: teamIntro, widget: text, required: false }
+          - label: Team (shown on the home and About pages; four works best)
+            name: team
+            widget: list
+            summary: "{{fields.name}} · {{fields.role}} · {{fields.experience}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string, hint: "e.g. Founder & Lead Photographer" }
+              - { label: Experience, name: experience, widget: string, hint: "Number first, e.g. 8 years. Shown in the round badge." }
+              - { label: Track record, name: weddings, widget: string, required: false, hint: "e.g. 200+ weddings" }
+              - { label: Specialties, name: specialties, widget: list, required: false, hint: "Up to 3, e.g. Drone, Haldi & Mehendi" }
+              - { label: Short bio (2 lines, About page only), name: bio, widget: text, required: false }
+              - { label: Portrait photo (4:5, at least 1200 px wide), name: image, widget: image, required: false, choose_url: false }
+              - { label: Instagram handle, name: instagram, widget: string, required: false }
+              - *tone
+          - { label: Studio photo, name: studioImage, widget: image, required: false, choose_url: false }
+          - { label: Gear & approach, name: gear, widget: text }
