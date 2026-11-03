@@ -1,0 +1,33 @@
+---
+import packages from '../data/packages.json';
+import { np, earlyBird, waPackage } from '../lib/format';
+interface Props { full?: boolean }
+const { full = false } = Astro.props;
+const sides = ['bride', 'groom'] as const;
+---
+<div class="tiers" data-side-scope data-side="bride">
+  {packages.tiers.map((t) => (
+    <article class:list={['tier rv', { pop: t.popular }]}>
+      {t.popular && <span class="badge">Most popular</span>}
+      <div>
+        <span class="deva" lang="ne" style="font-size:18px;margin:0">{t.deva}</span>
+        <h3 class="nm">{t.name}</h3>
+        <p class="sub">{t.label}</p>
+      </div>
+      {sides.map((s) => (
+        <div class={`s-${s}`}>
+          <div class="price"><small>NPR</small>{np(t[s].price)}</div>
+          <p class="was">Sum of events <s>{np(t[s].sum)}</s> · you save {np(t[s].sum - t[s].price)}</p>
+          <p class="eb" style="margin-top:14px">Early bird: NPR {np(earlyBird(t[s].price))}</p>
+        </div>
+      ))}
+      <ul>{(full ? t.includes : t.includes.slice(0, 4)).map((i) => <li>{i}</li>)}</ul>
+      <div class="ctas">
+        <button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+        {sides.map((s) => (
+          <a class={`btn btn-wa s-${s}`} href={waPackage(`${t.name} (${s} side)`)} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a>
+        ))}
+      </div>
+    </article>
+  ))}
+</div>

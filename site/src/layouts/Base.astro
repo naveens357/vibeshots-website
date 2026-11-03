@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import Icons from '../components/Icons.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Overlays from '../components/Overlays.astro';
+import site from '../data/site.json';
+import packages from '../data/packages.json';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  dark?: boolean;
+  headerOver?: boolean;
+  noindex?: boolean;
+}
+const { title, description = site.description, image = '/images/logo-dark.png', dark = false, headerOver = false, noindex = false } = Astro.props;
+const fullTitle = title === site.name ? `${site.name} · Wedding & Commercial Photography, Bhaktapur` : `${title} · ${site.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const prices = packages.tiers.flatMap((t) => [t.bride.price, t.groom.price]).concat(packages.sampurna.price);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: site.name,
+  description: site.description,
+  url: Astro.site?.toString(),
+  image: ogImage.toString(),
+  telephone: `+977${site.phonePrimary}`,
+  email: site.email,
+  priceRange: `NPR ${Math.min(...prices).toLocaleString('en-IN')}–${Math.max(...prices).toLocaleString('en-IN')}`,
+  address: { '@type': 'PostalAddress', streetAddress: 'Sallaghari', addressLocality: 'Bhaktapur', addressCountry: 'NP' },
+  geo: { '@type': 'GeoCoordinates', latitude: site.mapLat, longitude: site.mapLng },
+  hasMap: site.mapUrl,
+  areaServed: ['Kathmandu Valley', 'Nepal'],
+  sameAs: [`https://www.instagram.com/${site.instagramWeddings}/`, `https://www.instagram.com/${site.instagramCommercial}/`],
+};
+---
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  {noindex && <meta name="robots" content="noindex">}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={fullTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:url" content={canonical}>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content={dark ? '#0A0A0B' : '#F6F0E6'}>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="sitemap" href="/sitemap-index.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Mukta:wght@400;500&family=Rozha+One&display=swap" rel="stylesheet">
+  <script is:inline>document.documentElement.classList.remove('no-js')</script>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</head>
+<body class:list={{ dark }}>
+  <Icons />
+  <Header over={headerOver} />
+  <main id="main"><slot /></main>
+  <Footer />
+  <Overlays />
+  <script>import '../scripts/main.ts';</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "heading": "Made in the lanes of Bhaktapur",
+  "intro": "Vibeshots started with one camera, a scooter and a lot of weddings in our own neighbourhood. Today we're a small team of photographers and filmmakers from Sallaghari, shooting weddings across the Kathmandu Valley and commercial work across Nepal.",
+  "founderNote": "Sample founder note: write about 150 words in your own voice. Why you started, what a 'vibe' means to you, and what families can expect from you on the day. Keep it personal and first-person.",
+  "founderName": "Founder name",
+  "founderRole": "Founder & lead photographer",
+  "founderImage": "",
+  "values": [
+    { "title": "Quiet on the day", "text": "We know the rituals and stay out of the way, so families can be themselves." },
+    { "title": "Honest edits", "text": "True reds, warm skin and no overdone filters. Photos that still look right in 20 years." },
+    { "title": "On time, every time", "text": "A sneak peek in 48 hours and delivery dates we put in writing." }
+  ],
+  "teamHeading": "The faces behind the lens",
+  "teamIntro": "Four people, one way of working: know the rituals, stay calm, and never miss the moment.",
+  "team": [
+    {
+      "name": "Team member",
+      "role": "Founder & Lead Photographer",
+      "experience": "8 years",
+      "weddings": "200+ weddings",
+      "specialties": ["Wedding portraits", "Direction", "Motorsport"],
+      "bio": "Sample bio: two lines about how they started and what they love shooting most. Replace in the content manager.",
+      "image": "",
+      "tone": "temple",
+      "instagram": ""
+    },
+    {
+      "name": "Team member",
+      "role": "Lead Cinematographer",
+      "experience": "6 years",
+      "weddings": "150+ films",
+      "specialties": ["Highlight films", "Drone", "Brand films"],
+      "bio": "Sample bio: two lines about their filmmaking style. Replace in the content manager.",
+      "image": "",
+      "tone": "night",
+      "instagram": ""
+    },
+    {
+      "name": "Team member",
+      "role": "Photographer",
+      "experience": "5 years",
+      "weddings": "120+ weddings",
+      "specialties": ["Candid moments", "Haldi & Mehendi", "Families"],
+      "bio": "Sample bio: two lines about what makes their photos different. Replace in the content manager.",
+      "image": "",
+      "tone": "bride",
+      "instagram": ""
+    },
+    {
+      "name": "Team member",
+      "role": "Editor & Colourist",
+      "experience": "5 years",
+      "weddings": "300+ galleries",
+      "specialties": ["Colour grading", "Albums", "Same-day reels"],
+      "bio": "Sample bio: two lines about how they keep every red saree true to life. Replace in the content manager.",
+      "image": "",
+      "tone": "gold",
+      "instagram": ""
+    }
+  ],
+  "studioImage": "",
+  "gear": "Full-frame mirrorless bodies, fast primes, 4K cinema cameras, gimbals and a licensed drone (where permitted)."
+}

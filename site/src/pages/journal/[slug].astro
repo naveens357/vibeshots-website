@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Media from '../../components/Media.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('journal', (p) => !p.data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const d = post.data;
+const { Content } = await render(post);
+const date = d.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title={d.seoTitle || d.title} description={d.seoDescription || d.excerpt} image={d.cover || undefined}>
+  <article>
+    <header class="phero">
+      <div class="wrap narrow">
+        <p class="eyebrow">Journal · {date}</p>
+        <h1 class="h-l" style="margin-top:16px">{d.title}</h1>
+        <p class="lead">{d.excerpt}</p>
+      </div>
+    </header>
+    <div class="wrap" style="max-width:1100px"><Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} ratio="219" eager /></div>
+    <section class="sec"><div class="wrap"><div class="prose"><Content /></div></div></section>
+  </article>
+  <section class="sec final">
+    <div class="wrap">
+      <h2 class="h-l">Planning your wedding? <span class="it">Let's talk.</span></h2>
+      <div class="row-btns">
+        <button class="btn btn-dot light" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+        <a class="btn btn-line light" href="/journal/"><span class="lbl">More from the journal</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

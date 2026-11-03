@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { waLink } from '../lib/format';
+---
+<Base title="Thank you" noindex>
+  <section class="phero" style="padding:140px 0">
+    <div class="wrap narrow">
+      <span class="deva" lang="ne">धन्यवाद</span>
+      <h1 class="h-l">Thank you. <span class="it">We've got your message.</span></h1>
+      <p class="lead">{site.replyPromise} If your date is close, message us on WhatsApp now and we'll hold it for you.</p>
+      <div class="row-btns" style="justify-content:center">
+        <a class="btn btn-wa" href={waLink("Namaste Vibeshots, I just sent an inquiry on your website.")} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Message us on WhatsApp</a>
+        <a class="btn btn-line" href="/weddings/"><span class="lbl">Browse weddings</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

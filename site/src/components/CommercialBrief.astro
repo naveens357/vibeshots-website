@@ -1,0 +1,32 @@
+---
+import site from '../data/site.json';
+import { waLink, igDm, sectors } from '../lib/format';
+---
+<section class="sec tight" id="brief">
+  <div class="wrap two">
+    <div>
+      <h2 class="comm-m">Start a <span class="accent">project</span></h2>
+      <p class="lead" style="margin-top:20px">Send a short brief. We reply within one working day with ideas and a quote.</p>
+      <div class="chan" style="margin-top:28px">
+        <a href={waLink('Hi Vibeshots, we have a commercial project.', site.whatsappCommercial)} target="_blank" rel="noopener"><span class="ic" style="background:var(--wa)"><svg width="22" height="22"><use href="#i-wa"/></svg></span><span><b>WhatsApp</b><small>{site.phoneSecondary}</small></span></a>
+        <a href={igDm(site.instagramCommercial)} target="_blank" rel="noopener"><span class="ic" style="background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)"><svg width="22" height="22"><use href="#i-ig"/></svg></span><span><b>Instagram</b><small>@{site.instagramCommercial}</small></span></a>
+        <a href={`mailto:${site.email}?subject=Commercial%20project`}><span class="ic" style="background:#333"><svg width="22" height="22"><use href="#i-mail"/></svg></span><span><b>Email</b><small>{site.email}</small></span></a>
+      </div>
+    </div>
+    <form class="form" name="commercial-brief" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="company-url">
+      <input type="hidden" name="form-name" value="commercial-brief">
+      <p class="hp"><label>Leave empty <input name="company-url"></label></p>
+      <div class="fld"><label for="c1">Name *</label><input id="c1" name="name" autocomplete="name" required></div>
+      <div class="fld"><label for="c2">Company</label><input id="c2" name="company" autocomplete="organization"></div>
+      <div class="fld"><label for="c3">Email *</label><input id="c3" name="email" type="email" autocomplete="email" required></div>
+      <div class="fld"><label for="c4">Phone</label><input id="c4" name="phone" type="tel" autocomplete="tel" placeholder="+977"></div>
+      <div class="fld"><label for="c5">Project type</label><select id="c5" name="type"><option>Stills</option><option>Film</option><option>Stills + Film</option></select></div>
+      <div class="fld"><label for="c6">Sector</label><select id="c6" name="sector">{Object.values(sectors).map((s) => <option>{s}</option>)}<option>Other</option></select></div>
+      <div class="fld"><label for="c7">Shoot dates</label><input id="c7" name="dates" placeholder="e.g. Poush 2083"></div>
+      <div class="fld"><label for="c8">Budget</label><select id="c8" name="budget"><option>Under 50k</option><option>50k–1.5 lakh</option><option>1.5–5 lakh</option><option>5 lakh+</option><option>Not sure yet</option></select></div>
+      <div class="fld full"><label for="c9">Usage</label><input id="c9" name="usage" placeholder="Social, web, print, TV…"></div>
+      <div class="fld full"><label for="c10">Brief / references</label><textarea id="c10" name="brief"></textarea></div>
+      <div class="full"><button class="btn btn-comm" type="submit"><span class="lbl">Send brief</span><span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></button></div>
+    </form>
+  </div>
+</section>

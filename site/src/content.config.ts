@@ -1,0 +1,99 @@
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
+
+// Placeholder tones used when no photo is uploaded yet (see .t-* in global.css).
+const tone = z.enum(['bride', 'sindoor', 'haldi', 'mehendi', 'ivory', 'night', 'gold', 'temple', 'moto', 'moto2', 'travel', 'product']).default('ivory');
+
+const galleryItem = z.object({
+  src: z.string().optional().default(''),
+  alt: z.string().optional().default(''),
+  tone,
+  label: z.string().optional().default(''),
+  layout: z.enum(['full', 'half', 'third']).default('half'),
+});
+
+const cover = {
+  cover: z.string().optional().default(''),
+  coverAlt: z.string().optional().default(''),
+  coverTone: tone,
+  coverLabel: z.string().optional().default(''),
+};
+
+const seo = {
+  seoTitle: z.string().optional(),
+  seoDescription: z.string().optional(),
+};
+
+const stories = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/stories' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    dateBS: z.string().optional().default(''),
+    venue: z.string(),
+    city: z.string().optional().default(''),
+    community: z.string().optional().default(''),
+    ceremonies: z.array(z.string()).default([]),
+    package: z.string().optional().default(''),
+    team: z.string().optional().default(''),
+    excerpt: z.string().optional().default(''),
+    ...cover,
+    film: z.string().optional().default(''),
+    filmPoster: z.string().optional().default(''),
+    filmLength: z.string().optional().default(''),
+    quote: z.string().optional().default(''),
+    gallery: z.array(galleryItem).default([]),
+    vendors: z.array(z.object({ role: z.string(), name: z.string(), url: z.string().optional().default('') })).default([]),
+    featured: z.boolean().default(false),
+    sample: z.boolean().default(false),
+    ...seo,
+  }),
+});
+
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  schema: z.object({
+    title: z.string(),
+    client: z.string(),
+    credit: z.string().optional().default(''),
+    sector: z.enum(['moto', 'auto', 'travel', 'brand', 'event']),
+    types: z.array(z.enum(['stills', 'motion'])).min(1),
+    date: z.coerce.date(),
+    location: z.string().optional().default(''),
+    deliverables: z.string().optional().default(''),
+    results: z.string().optional().default(''),
+    ...cover,
+    film: z.string().optional().default(''),
+    gallery: z.array(galleryItem).default([]),
+    featured: z.boolean().default(false),
+    sample: z.boolean().default(false),
+    ...seo,
+  }),
+});
+
+const ceremonies = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/ceremonies' }),
+  schema: z.object({
+    title: z.string(),
+    deva: z.string().optional().default(''),
+    tagline: z.string(),
+    order: z.number().default(0),
+    ...cover,
+    ...seo,
+  }),
+});
+
+const journal = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/journal' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    excerpt: z.string(),
+    ...cover,
+    draft: z.boolean().default(false),
+    ...seo,
+  }),
+});
+
+export const collections = { stories, projects, ceremonies, journal };

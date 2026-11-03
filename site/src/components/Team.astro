@@ -1,0 +1,40 @@
+---
+/** "Our team" section: four member cards with photo, role, experience and specialties. */
+import Media from './Media.astro';
+import a from '../data/about.json';
+import { igProfile } from '../lib/format';
+interface Props { link?: boolean; bio?: boolean }
+const { link = false, bio = true } = Astro.props;
+---
+<section class="sec team-sec" id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="deva" lang="ne">हाम्रो टोली</span>
+        <h2 class="h2">{a.teamHeading}</h2>
+        {a.teamIntro && <p class="muted" style="margin-top:10px;max-width:52ch">{a.teamIntro}</p>}
+      </div>
+      {link && <a class="btn btn-ghost" href="/about/#team">Meet the team <span class="arr">→</span></a>}
+    </div>
+    <div class="team4">
+      {a.team.map((m) => (
+        <article class="member rv">
+          <div class="member-photo">
+            <Media src={m.image} alt={`${m.name}, ${m.role} at Vibeshots Nepal`} tone={m.tone} label="Portrait 4:5" ratio="45" arch />
+            {m.experience && <span class="exp"><b>{m.experience.split(' ')[0]}</b>{m.experience.split(' ').slice(1).join(' ')}</span>}
+          </div>
+          <p class="eyebrow member-role">{m.role}</p>
+          <h3>{m.name}</h3>
+          {m.weddings && <p class="member-count">{m.weddings}</p>}
+          {bio && m.bio && <p class="member-bio">{m.bio}</p>}
+          {m.specialties?.length > 0 && <ul class="member-tags">{m.specialties.map((s) => <li>{s}</li>)}</ul>}
+          {m.instagram && (
+            <a class="member-ig" href={igProfile(m.instagram.replace(/^@/, ''))} target="_blank" rel="noopener" aria-label={`${m.name} on Instagram`}>
+              <svg width="16" height="16"><use href="#i-ig"/></svg>@{m.instagram.replace(/^@/, '')}
+            </a>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

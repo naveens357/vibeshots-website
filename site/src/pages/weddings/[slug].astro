@@ -1,0 +1,91 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Media from '../../components/Media.astro';
+
+export async function getStaticPaths() {
+  const stories = (await getCollection('stories')).sort((a, b) => +b.data.date - +a.data.date);
+  return stories.map((story, i) => ({
+    params: { slug: story.id },
+    props: { story, prev: stories[i - 1] ?? stories.at(-1), next: stories[i + 1] ?? stories[0] },
+  }));
+}
+const { story, prev, next } = Astro.props;
+const d = story.data;
+const { Content } = await render(story);
+const dateAD = d.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+---
+<Base title={d.seoTitle || `${d.title} · ${d.venue}`} description={d.seoDescription || d.excerpt} image={d.cover || undefined}>
+  <section class="shero">
+    <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager />
+    <div class="shade"></div>
+    <div class="wrap in">
+      <span class="deva gold" lang="ne">शुभ विवाह</span>
+      <h1 class="h-xl it">{d.title}</h1>
+      <p class="eyebrow" style="color:#eee;margin-top:14px">{d.venue} · {d.dateBS ? `${d.dateBS} (${dateAD})` : dateAD}{d.community && ` · ${d.community}`}</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="facts">
+      <div><small>Ceremonies</small><b>{d.ceremonies.join(', ') || '—'}</b></div>
+      <div><small>Venue</small><b>{d.venue}</b></div>
+      <div><small>Team</small><b>{d.team || '—'}</b></div>
+      <div><small>Package</small><b>{d.package || '—'}</b></div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="wrap"><div class="prose drop"><Content /></div></div>
+  </section>
+
+  <div class="wrap gal">
+    {d.gallery.map((g, i) => (
+      <>
+        <Media class={g.layout} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={g.layout === 'full' ? '219' : g.layout === 'half' ? '45' : '23'} />
+        {i === 2 && d.film && (
+          <div class="filmbox full">
+            <Media src={d.filmPoster || d.cover} tone="night" label="Highlight film" ratio="169" />
+            <button class="btn btn-shutter" type="button" data-film={d.film} aria-label="Play film"><svg><use href="#i-aperture"/></svg></button>
+          </div>
+        )}
+      </>
+    ))}
+  </div>
+
+  {d.quote && (
+    <section class="sec">
+      <div class="wrap narrow center">
+        <blockquote class="h2 it">“{d.quote}”</blockquote>
+        <p class="eyebrow" style="margin-top:20px">— {d.title}</p>
+      </div>
+    </section>
+  )}
+
+  {d.vendors.length > 0 && (
+    <section class="sec tight">
+      <div class="wrap">
+        <h2 class="h3" style="margin-bottom:20px">The dream team</h2>
+        <div class="vendors">
+          {d.vendors.map((v) => v.url
+            ? <a href={v.url} target="_blank" rel="noopener"><small>{v.role}</small>{v.name} →</a>
+            : <div><small>{v.role}</small>{v.name}</div>)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="sec tight center">
+    <div class="wrap">
+      <p class="lead" style="margin:0 auto 20px">Planning something like this?</p>
+      <div class="row-btns"><button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button><a class="btn btn-line" href="/packages/"><span class="lbl">See packages</span></a></div>
+    </div>
+  </section>
+
+  {prev && next && prev.id !== story.id && (
+    <nav class="nextst" aria-label="More stories">
+      <a href={`/weddings/${prev.id}/`}><Media src={prev.data.cover} tone={prev.data.coverTone} label="" /><span><small>← Previous</small>{prev.data.title}</span></a>
+      <a href={`/weddings/${next.id}/`}><Media src={next.data.cover} tone={next.data.coverTone} label="" /><span><small>Next →</small>{next.data.title}</span></a>
+    </nav>
+  )}
+</Base>

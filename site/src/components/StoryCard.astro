@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Media from './Media.astro';
+interface Props { story: CollectionEntry<'stories'>; ratio?: string; chips?: boolean }
+const { story, ratio = '32', chips = false } = Astro.props;
+const d = story.data;
+---
+<a class="story rv" href={`/weddings/${story.id}/`}>
+  <Media src={d.cover} alt={d.coverAlt || `${d.title} wedding`} tone={d.coverTone} label={d.coverLabel} ratio={ratio} />
+  <div class="cap">
+    <h3 class="h3">{d.title}</h3>
+    <p class="meta">{[d.venue, d.dateBS, d.community].filter(Boolean).join(' · ')}</p>
+    {chips && <div class="chips">{d.ceremonies.slice(0, 4).map((c) => <span class="chip">{c}</span>)}</div>}
+  </div>
+</a>
