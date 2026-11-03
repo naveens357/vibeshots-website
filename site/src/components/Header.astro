@@ -1,0 +1,50 @@
+---
+import { waLink, viberLink, igDm } from '../lib/format';
+import site from '../data/site.json';
+interface Props { over?: boolean }
+const { over = false } = Astro.props;
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/weddings/', label: 'Weddings' },
+  { href: '/commercial/', label: 'Commercial' },
+  { href: '/weddings/#films', label: 'Films' },
+  { href: '/packages/', label: 'Packages' },
+  { href: '/about/', label: 'About' },
+  { href: '/journal/', label: 'Journal' },
+];
+const isCurrent = (href: string) => !href.includes('#') && path.startsWith(href);
+---
+<a class="skip" href="#main">Skip to content</a>
+<header class:list={['top', { over }]} id="top">
+  <div class="wrap">
+    <a href="/" aria-label={`${site.name} home`}>
+      <img class="logo logo-d" src="/images/logo-dark.png" alt={site.name} width="106" height="30">
+      <img class="logo logo-l" src="/images/logo-light.png" alt="" width="106" height="30" aria-hidden="true">
+    </a>
+    <nav aria-label="Main">
+      {nav.map((n) => <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>)}
+    </nav>
+    <div class="acts">
+      <button class="btn btn-dot sm" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+      <a class="icon-btn" href={waLink()} target="_blank" rel="noopener" aria-label="WhatsApp us"><svg width="20" height="20"><use href="#i-wa"/></svg></a>
+      <button class="icon-btn burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav" data-menu><svg width="20" height="20"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mnav" id="mnav" aria-label="Menu">
+  <div class="row">
+    <img src="/images/logo-light.png" alt={site.name} width="106" height="30" style="height:30px;width:auto">
+    <button class="icon-btn" type="button" aria-label="Close menu" data-menu-close><svg width="20" height="20"><use href="#i-close"/></svg></button>
+  </div>
+  <ul>
+    <li><a href="/">Home</a></li>
+    {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <div class="bot">
+    <button class="btn btn-dot light block" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+    <a class="btn btn-wa block" href={waLink()} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+    <a class="btn btn-wa viber block" href={viberLink()}><svg><use href="#i-viber"/></svg>Viber</a>
+    <a class="btn btn-line light block" href={igDm()} target="_blank" rel="noopener"><span class="lbl">Instagram DM</span></a>
+  </div>
+</div>

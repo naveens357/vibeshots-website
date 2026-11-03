@@ -1,0 +1,36 @@
+---
+/**
+ * Photo or video. When `src` (or `video`) is empty it renders a labelled
+ * colour placeholder, so the site works before real media is uploaded.
+ */
+interface Props {
+  src?: string;
+  video?: string;
+  poster?: string;
+  alt?: string;
+  tone?: string;
+  label?: string;
+  ratio?: string;
+  arch?: boolean;
+  eager?: boolean;
+  class?: string;
+  style?: string;
+}
+const { src, video, poster, alt = '', tone = 'ivory', label = '', ratio = '', arch = false, eager = false, class: cls = '', style } = Astro.props;
+const classes = ['media', ratio && `r${ratio}`, arch && 'arch', cls];
+const hasMedia = Boolean(src || video);
+---
+{hasMedia ? (
+  <div class:list={classes} style={style}>
+    {video ? (
+      <video src={video} poster={poster || src} autoplay muted loop playsinline preload="metadata" aria-label={alt}></video>
+    ) : (
+      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : 'auto'} />
+    )}
+    <slot />
+  </div>
+) : (
+  <div class:list={[...classes, 'ph', `t-${tone}`]} data-label={label} role={alt ? 'img' : undefined} aria-label={alt || undefined} style={style}>
+    <slot />
+  </div>
+)}
