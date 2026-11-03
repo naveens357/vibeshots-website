@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+import Media from '../components/Media.astro';
+import PackageTiers from '../components/PackageTiers.astro';
+import SideToggle from '../components/SideToggle.astro';
+import p from '../data/packages.json';
+import { np, earlyBird, waPackage } from '../lib/format';
+const sam = p.sampurna;
+const eb = p.earlyBird;
+const showBanner = new Date(`${eb.deadline}T23:59:59+05:45`) > new Date();
+const zoneClass: Record<string, string> = { B: 'b', C: 'c', '✈': 'i' };
+---
+<Base title="Wedding Packages & Prices" description="Wedding photography and film packages in NPR for the Kathmandu Valley: Saath, Mangal, Shubha and Sampurna, plus single events, add-ons and outside-Valley travel pricing.">
+  <section class="phero">
+    <div class="wrap">
+      <span class="deva" lang="ne">प्याकेज र मूल्य</span>
+      <h1 class="h-l">Packages &amp; prices</h1>
+      <p class="lead">Every package is built from our single-event prices, bundled so the more of your wedding we cover, the more you save. All prices are in NPR for the Kathmandu Valley.</p>
+      <SideToggle />
+    </div>
+  </section>
+
+  <section style="padding-bottom:40px">
+    <div class="wrap">
+      <PackageTiers full />
+
+      <div class="wide-card rv">
+        <Media tone="gold" label="Both families together, wide group portrait" />
+        <div class="body">
+          <p class="eyebrow">{sam.label}</p>
+          <div><span class="deva" lang="ne">{sam.deva}</span><h2 class="h2">{sam.name}</h2></div>
+          <div>
+            <div class="price"><small>NPR</small>{np(sam.price)}</div>
+            <p class="was">Sum of events <s>NPR {np(sam.sum)}</s> · you save {np(sam.sum - sam.price)} · early bird <b>NPR {np(earlyBird(sam.price))}</b></p>
+          </div>
+          <ul>{sam.includes.map((i) => <li>{i}</li>)}</ul>
+          <div class="row-btns" style="margin-top:8px">
+            <button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+            <a class="btn btn-wa" href={waPackage(`${sam.name} (both families)`)} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      {showBanner && (
+        <div class="ebanner" data-ebanner>
+          <div>
+            <p class="eyebrow" style="color:#b9b0a4">Early bird</p>
+            <h2 class="h3">Save an extra {eb.percent}% when you lock your date {eb.daysAhead}+ days ahead.</h2>
+            <p style="color:#a9a196;font-size:14px;margin-top:6px">{eb.deadlineLabel}</p>
+          </div>
+          <div class="cd" data-countdown={eb.deadline} aria-label="Time left for the early-bird offer"><div><b>–</b><small>days</small></div><div><b>–</b><small>hrs</small></div><div><b>–</b><small>min</small></div></div>
+        </div>
+      )}
+
+      <div class="wide-card heritage rv">
+        <Media tone="temple" label="Fine-art portrait, Bhaktapur heritage location" />
+        <div class="body">
+          <p class="eyebrow" style="color:var(--marigold)">{p.heritage.note}</p>
+          <h2 class="h2">Vibeshots <span class="it">{p.heritage.name}</span></h2>
+          <p class="muted">{p.heritage.intro}</p>
+          <ul>{p.heritage.includes.map((i) => <li>{i}</li>)}</ul>
+          <div class="price" style="font-size:36px"><small>from NPR</small>{np(p.heritage.fromPrice)}</div>
+          <div><a class="btn btn-line light" href="/contact/?package=Heritage"><span class="lbl">Apply for Heritage</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:64px">
+    <div class="wrap two">
+      <div>
+        <span class="deva" lang="ne">एकल कार्यक्रम</span><h2 class="h2" style="margin-bottom:24px">Single events</h2>
+        <div class="tblwrap"><table class="tbl">
+          <thead><tr><th>Event</th><th>Coverage</th><th class="r">NPR</th></tr></thead>
+          <tbody>{p.singles.map((s) => <tr><td><b>{s.name}</b><br><span class="muted" style="font-size:13px">{s.detail}</span></td><td>{s.hours}</td><td class="r">{np(s.price)}</td></tr>)}</tbody>
+        </table></div>
+        <p class="muted" style="font-size:13px;margin-top:12px">{p.singlesNote}</p>
+      </div>
+      <div>
+        <span class="deva" lang="ne">थप सेवा</span><h2 class="h2" style="margin-bottom:24px">Add-ons</h2>
+        <div class="tblwrap"><table class="tbl">
+          <thead><tr><th>Add-on</th><th class="r">NPR</th></tr></thead>
+          <tbody>{p.addons.map((a) => <tr><td>{a.name}</td><td class="r">{np(a.price)}</td></tr>)}</tbody>
+        </table></div>
+        <p class="muted" style="font-size:13px;margin-top:12px">Add-ons can be added to any package or single event.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tight" id="travel">
+    <div class="wrap">
+      <span class="deva" lang="ne">उपत्यका बाहिर</span><h2 class="h2" style="margin-bottom:12px">Outside the Valley</h2>
+      <p class="lead" style="margin-bottom:32px">We love travelling for weddings. Outside the Kathmandu Valley the coverage price rises by a zone percentage, and the family covers our crew's travel, stay and meals.</p>
+      <div class="tblwrap"><table class="tbl">
+        <thead><tr><th>Zone</th><th>Examples</th><th>Coverage price</th><th>Travel · stay · meals</th></tr></thead>
+        <tbody>{p.zones.map((z) => <tr><td><span class:list={['z', zoneClass[z.code]]}>{z.code}</span><b>{z.name}</b></td><td>{z.places}</td><td>{z.coverage.startsWith('+') ? <b>{z.coverage}</b> : z.coverage}</td><td>{z.travel}</td></tr>)}</tbody>
+      </table></div>
+      <p class="muted small" style="margin-top:14px">{p.zoneExample}</p>
+    </div>
+  </section>
+
+  <section class="sec tight">
+    <div class="wrap">
+      <h2 class="h2" style="margin-bottom:28px">Payment &amp; delivery</h2>
+      <div class="terms">{p.terms.map((t) => <div class="term"><div class="big">{t.big}</div><p>{t.text}</p></div>)}</div>
+      <p class="muted small" style="margin-top:16px">{p.paymentMethods}</p>
+    </div>
+  </section>
+
+  <section class="sec tight">
+    <div class="wrap narrow">
+      <span class="deva" lang="ne">प्रश्नहरू</span><h2 class="h2" style="margin-bottom:16px">Questions families ask</h2>
+      {p.faq.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    </div>
+  </section>
+
+  <section class="sec final">
+    <div class="wrap">
+      <h2 class="h-l">Found your package? <span class="it">Let's check the date.</span></h2>
+      <div class="row-btns">
+        <button class="btn btn-dot light" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+        <a class="btn btn-line light" href="/contact/"><span class="lbl">Send an inquiry</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Media from '../../components/Media.astro';
+const posts = (await getCollection('journal', (p) => !p.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title="Journal" description="Wedding planning tips, pre-wedding locations, ceremony guides and behind-the-scenes from Vibeshots Nepal in Bhaktapur.">
+  <section class="phero">
+    <div class="wrap">
+      <span class="deva" lang="ne">लेखहरू</span>
+      <h1 class="h-l">Journal</h1>
+      <p class="lead">Planning guides, location ideas and stories from behind the camera.</p>
+    </div>
+  </section>
+  <section class="sec tight">
+    <div class="wrap posts">
+      {posts.map((p) => (
+        <a class="post rv" href={`/journal/${p.id}/`}>
+          <Media src={p.data.cover} alt={p.data.coverAlt} tone={p.data.coverTone} label={p.data.coverLabel} ratio="32" />
+          <p class="eyebrow">{fmt(p.data.date)}</p>
+          <h2 class="h3" style="font-weight:500;margin-top:8px">{p.data.title}</h2>
+          <p>{p.data.excerpt}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

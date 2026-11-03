@@ -1,0 +1,72 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Media from '../../components/Media.astro';
+import ProjectTile from '../../components/ProjectTile.astro';
+import { sectors } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects')).sort((a, b) => +b.data.date - +a.data.date);
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: { project, more: projects.filter((p) => p.id !== project.id).slice(0, 3) },
+  }));
+}
+const { project, more } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+const type = d.types.map((t) => (t === 'motion' ? 'Film' : 'Stills')).join(' + ');
+---
+<Base title={d.seoTitle || `${d.client} · ${d.title}`} description={d.seoDescription || d.credit || `${d.client}: ${d.title}. ${sectors[d.sector]} work by Vibeshots Nepal.`} image={d.cover || undefined} dark headerOver>
+  <div class="on-dark">
+    <section class="chero" style="min-height:min(78svh,720px)">
+      <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager />
+      <div class="shade"></div>
+      <div class="wrap in">
+        <p class="official"><i></i>{d.client} · {sectors[d.sector]}</p>
+        <h1 class="comm" style="font-size:clamp(40px,6.4vw,104px)">{d.title}</h1>
+        {d.credit && <p class="lead" style="margin-top:16px;color:#ccc">{d.credit}</p>}
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="facts">
+        <div><small>Client</small><b>{d.client}</b></div>
+        <div><small>Type</small><b>{type}</b></div>
+        <div><small>Location</small><b>{d.location || '—'}</b></div>
+        <div><small>Delivered</small><b>{d.deliverables || '—'}</b></div>
+      </div>
+    </div>
+
+    <section class="sec"><div class="wrap"><div class="prose"><Content /></div></div></section>
+
+    {d.film && (
+      <div class="wrap" style="margin-bottom:12px">
+        <div class="filmbox">
+          <Media tone="moto" label="Film" ratio="169" />
+          <button class="btn btn-shutter" type="button" data-film={d.film} aria-label="Play film"><svg><use href="#i-aperture"/></svg></button>
+        </div>
+      </div>
+    )}
+
+    <div class="wrap gal">
+      {d.gallery.map((g) => <Media class={g.layout} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={g.layout === 'full' ? '219' : g.layout === 'half' ? '45' : '23'} />)}
+    </div>
+
+    {d.results && (
+      <section class="sec tight" style="padding-top:72px">
+        <div class="wrap"><p class="eyebrow">Results</p><p class="comm-m" style="margin-top:12px">{d.results}</p></div>
+      </section>
+    )}
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="comm-m">More work</h2>
+          <a class="btn btn-comm" href="/commercial/#brief">Start a project<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></a>
+        </div>
+        <div class="cgrid">{more.map((p) => <ProjectTile project={p} />)}</div>
+      </div>
+    </section>
+  </div>
+</Base>

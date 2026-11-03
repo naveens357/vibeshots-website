@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Media from '../../components/Media.astro';
+import StoryCard from '../../components/StoryCard.astro';
+import PackageTiers from '../../components/PackageTiers.astro';
+import SideToggle from '../../components/SideToggle.astro';
+
+const stories = (await getCollection('stories')).sort((a, b) => +b.data.date - +a.data.date);
+const ceremonies = (await getCollection('ceremonies')).sort((a, b) => a.data.order - b.data.order);
+const films = stories.filter((s) => s.data.film);
+---
+<Base title="Wedding Photography & Films" description="Hindu and Newari wedding photography and cinematic films in Bhaktapur, Kathmandu and Lalitpur, from mehendi and haldi to sindoor, bidaai and reception.">
+  <section class="phero">
+    <div class="wrap">
+      <span class="deva" lang="ne">शुभ विवाह</span>
+      <h1 class="h-l">Weddings, <span class="it">as you'll remember them</span></h1>
+      <p class="lead">Documentary moments, honest portraits and cinematic films. We cover every ritual, from the first mehendi to the last bidaai, for families across the Kathmandu Valley and beyond.</p>
+      <div class="row-btns" style="justify-content:center">
+        <a class="btn btn-dot" href="/packages/"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">See packages</span></a>
+        <a class="btn btn-line" href="#films"><span class="lbl">Watch films</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tight" id="stories">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="deva" lang="ne">विवाह कथाहरू</span><h2 class="h2">Wedding stories</h2></div></div>
+      <div class="stories grid3">{stories.map((s) => <StoryCard story={s} ratio="45" chips />)}</div>
+    </div>
+  </section>
+
+  <div class="orn"><i></i></div>
+
+  <section class="sec" id="ceremonies">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="deva" lang="ne">संस्कार</span><h2 class="h2">Every ceremony, covered</h2></div></div>
+      <div class="cgrid-cer">
+        {ceremonies.map((c) => (
+          <a class="cer rv" href={`/weddings/ceremonies/${c.id}/`}>
+            <Media src={c.data.cover} alt={c.data.coverAlt} tone={c.data.coverTone} label={c.data.coverLabel} ratio="34" arch />
+            <span class="deva" lang="ne">{c.data.deva}</span>
+            <h3>{c.data.title}</h3>
+            <p>{c.data.tagline}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tight" id="films">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="eyebrow">Cinematic highlights</p><h2 class="h2">Wedding films</h2></div></div>
+      {films.length ? (
+        <div class="two">
+          {films.map((s) => (
+            <div class="filmbox">
+              <Media src={s.data.filmPoster || s.data.cover} tone={s.data.coverTone} label={`${s.data.title} film`} ratio="169" />
+              <button class="btn btn-shutter" type="button" data-film={s.data.film} aria-label={`Play ${s.data.title} film`}><svg><use href="#i-aperture"/></svg></button>
+              <p class="h3 it" style="margin-top:14px">{s.data.title}</p>
+              <p class="eyebrow">{s.data.venue}{s.data.filmLength && ` · ${s.data.filmLength}`}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="filmbox">
+          <Media tone="night" label="Add a film URL to any wedding story and it appears here" ratio="219" />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="deva" lang="ne">प्याकेजहरू</span><h2 class="h2">Packages</h2></div><SideToggle /></div>
+      <PackageTiers />
+      <div class="center" style="margin-top:40px"><a class="btn btn-line" href="/packages/"><span class="lbl">Full packages, add-ons &amp; travel</span></a></div>
+    </div>
+  </section>
+</Base>

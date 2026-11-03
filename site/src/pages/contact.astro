@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import MiniMap from '../components/MiniMap.astro';
+import site from '../data/site.json';
+import packages from '../data/packages.json';
+import { waLink, viberLink, igDm, tel, mapDirections } from '../lib/format';
+const events = ['Engagement', 'Haldi / Mehendi', 'Pre-wedding', 'Wedding', 'Reception'];
+const pkgNames = [...packages.tiers.map((t) => t.name), packages.sampurna.name, packages.heritage.name];
+const faq = packages.faq.slice(0, 4);
+---
+<Base title="Contact & Booking" description={`Check your wedding date with Vibeshots Nepal. WhatsApp, Viber, call or send an inquiry. ${site.replyPromise}`}>
+  <section class="phero" style="padding-bottom:24px">
+    <div class="wrap">
+      <span class="deva" lang="ne">सम्पर्क</span>
+      <h1 class="h-l">Tell us about <span class="it">your wedding</span></h1>
+      <p class="lead">Fill this in once and we'll get back to you on the channel you prefer. {site.replyPromise}</p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:24px">
+    <div class="wrap contact-grid">
+      <form class="form" name="wedding-inquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
+        <input type="hidden" name="form-name" value="wedding-inquiry">
+        <p class="hp"><label>Leave empty <input name="website"></label></p>
+        <div class="fld"><label for="f1">Your name *</label><input id="f1" name="name" autocomplete="name" required></div>
+        <div class="fld"><label for="f2">Partner's name</label><input id="f2" name="partner"></div>
+        <fieldset class="fld full" style="border:0"><legend class="lab">You are the… *</legend><div class="opts">
+          {['Bride', 'Groom', 'Family member', 'Planner'].map((v, i) => <label class="opt"><input type="radio" name="role" value={v} checked={i === 0}><span>{v}</span></label>)}
+        </div></fieldset>
+        <div class="fld"><label for="f3">Phone (WhatsApp / Viber) *</label><input id="f3" name="phone" type="tel" autocomplete="tel" placeholder="+977 98…" required></div>
+        <div class="fld"><label for="f4">Email</label><input id="f4" name="email" type="email" autocomplete="email"></div>
+        <fieldset class="fld full" style="border:0"><legend class="lab">Which side do we cover? *</legend><div class="opts">
+          {['Bride side', 'Groom side', 'Both'].map((v, i) => <label class="opt"><input type="radio" name="side" value={v} checked={i === 0}><span>{v}</span></label>)}
+        </div></fieldset>
+        <fieldset class="fld full" style="border:0"><legend class="lab">Events &amp; dates *</legend>
+          {events.map((ev) => {
+            const key = ev.toLowerCase().replace(/[^a-z]+/g, '-');
+            return (
+              <div class="evrow">
+                <label class="opt"><input type="checkbox" name="events" value={ev} checked={ev === 'Wedding'}><span>{ev}</span></label>
+                <input type="text" class="ev" name={`date-${key}`} placeholder="e.g. 12 Mangsir 2083" aria-label={`${ev} date`}>
+                <input type="hidden" class="ev-cal" name={`cal-${key}`} value="BS">
+                <span class="bsad" role="group" aria-label="Calendar"><button type="button" aria-pressed="true" data-cal="BS">BS</button><button type="button" aria-pressed="false" data-cal="AD">AD</button></span>
+              </div>
+            );
+          })}
+        </fieldset>
+        <div class="fld"><label for="f5">Venue / city *</label><input id="f5" name="venue" placeholder="e.g. Bhaktapur, family home" required></div>
+        <div class="fld"><label for="f6">Package of interest</label><select id="f6" name="package"><option>Not sure yet</option>{pkgNames.map((n) => <option>{n}</option>)}</select></div>
+        <div class="fld"><label for="f7">Budget</label><select id="f7" name="budget"><option>Under 75k</option><option>75k–1.25 lakh</option><option>1.25–1.75 lakh</option><option>1.75 lakh+</option></select></div>
+        <div class="fld"><label for="f8">How did you hear about us?</label><select id="f8" name="source"><option>Instagram</option><option>Facebook</option><option>TikTok</option><option>Google</option><option>Friend / family</option><option>Venue</option><option>Other</option></select></div>
+        <div class="fld full"><label for="f9">Anything else?</label><textarea id="f9" name="message" placeholder="Rituals, community (Newari, Brahmin…), guest count, dreams…"></textarea></div>
+        <fieldset class="fld full" style="border:0"><legend class="lab">Best way to reply *</legend><div class="opts">
+          {['WhatsApp', 'Viber', 'Call', 'Email'].map((v, i) => <label class="opt"><input type="radio" name="reply-via" value={v} checked={i === 0}><span>{v}</span></label>)}
+        </div></fieldset>
+        <div class="full row-btns">
+          <button class="btn btn-dot" type="submit"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Send inquiry</span></button>
+          <span class="muted" style="font-size:13px">We never share your number.</span>
+        </div>
+      </form>
+
+      <aside>
+        <div class="chan">
+          <a href={waLink()} target="_blank" rel="noopener"><span class="ic" style="background:var(--wa)"><svg width="22" height="22"><use href="#i-wa"/></svg></span><span><b>WhatsApp</b><small>{site.phonePrimary} · fastest reply</small></span></a>
+          <a href={viberLink()}><span class="ic" style="background:var(--viber)"><svg width="22" height="22"><use href="#i-viber"/></svg></span><span><b>Viber</b><small>{site.phonePrimary}</small></span></a>
+          <a href={igDm()} target="_blank" rel="noopener"><span class="ic" style="background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)"><svg width="22" height="22"><use href="#i-ig"/></svg></span><span><b>Instagram DM</b><small>@{site.instagramWeddings}</small></span></a>
+          {site.callBookingUrl
+            ? <a href={site.callBookingUrl} target="_blank" rel="noopener"><span class="ic" style="background:var(--ink)"><svg width="22" height="22"><use href="#i-cal"/></svg></span><span><b>Book a 20-min call</b><small>Studio or Google Meet</small></span></a>
+            : <a href={waLink("Namaste Vibeshots, we'd like to book a 20-minute consultation call.")} target="_blank" rel="noopener"><span class="ic" style="background:var(--ink)"><svg width="22" height="22"><use href="#i-cal"/></svg></span><span><b>Book a 20-min call</b><small>Studio or Google Meet</small></span></a>}
+          <a href={tel(site.phonePrimary)}><span class="ic" style="background:var(--sindoor)"><svg width="22" height="22"><use href="#i-phone"/></svg></span><span><b>Call</b><small>{site.phonePrimary} / {site.phoneSecondary}</small></span></a>
+          <a href={mapDirections()} target="_blank" rel="noopener"><span class="ic" style="background:var(--marigold)"><svg width="22" height="22"><use href="#i-pin"/></svg></span><span><b>Visit the studio</b><small>{site.address} · get directions</small></span></a>
+        </div>
+        <MiniMap class="rv" style="margin-top:16px" />
+        <p class="muted small" style="margin-top:12px">{site.hours}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec tight">
+    <div class="wrap narrow">
+      <span class="deva" lang="ne">प्रश्नहरू</span><h2 class="h2" style="margin-bottom:16px">Before you ask</h2>
+      {faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+      <p style="margin-top:24px"><a class="btn btn-ghost" href="/packages/">All packages and terms <span class="arr">→</span></a></p>
+    </div>
+  </section>
+</Base>

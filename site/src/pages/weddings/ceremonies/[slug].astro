@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Media from '../../../components/Media.astro';
+import StoryCard from '../../../components/StoryCard.astro';
+
+export async function getStaticPaths() {
+  const ceremonies = await getCollection('ceremonies');
+  return ceremonies.map((c) => ({ params: { slug: c.id }, props: { c } }));
+}
+const { c } = Astro.props;
+const d = c.data;
+const { Content } = await render(c);
+const key = d.title.split(/[ &]/)[0].toLowerCase();
+const related = (await getCollection('stories'))
+  .filter((s) => s.data.ceremonies.some((x) => x.toLowerCase().includes(key)) || s.data.community.toLowerCase().includes(key))
+  .slice(0, 3);
+---
+<Base title={d.seoTitle || `${d.title} photography`} description={d.seoDescription || d.tagline} image={d.cover || undefined}>
+  <section class="sec intro" style="padding-top:72px">
+      <div class="wrap">
+        <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} ratio="23" arch eager />
+        <div>
+          {d.deva && <span class="deva" lang="ne">{d.deva}</span>}
+          <p class="eyebrow">Ceremonies</p>
+          <h1 class="h-l">{d.title}</h1>
+          <p class="lead" style="margin:16px 0 28px">{d.tagline}</p>
+          <div class="prose" style="margin:0"><Content /></div>
+          <div class="row-btns" style="margin-top:32px">
+            <button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+            <a class="btn btn-line" href="/packages/"><span class="lbl">See packages</span></a>
+          </div>
+        </div>
+      </div>
+  </section>
+  {related.length > 0 && (
+    <section class="sec tight">
+      <div class="wrap">
+        <div class="sec-head"><h2 class="h2">Weddings with {d.title.toLowerCase()}</h2></div>
+        <div class="stories grid3">{related.map((s) => <StoryCard story={s} ratio="45" />)}</div>
+      </div>
+    </section>
+  )}
+</Base>

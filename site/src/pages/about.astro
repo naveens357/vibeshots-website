@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import Media from '../components/Media.astro';
+import Team from '../components/Team.astro';
+import MiniMap from '../components/MiniMap.astro';
+import a from '../data/about.json';
+import site from '../data/site.json';
+---
+<Base title="About Us" description={a.intro}>
+  <section class="phero">
+    <div class="wrap">
+      <span class="deva" lang="ne">हाम्रो कथा</span>
+      <h1 class="h-l">{a.heading}</h1>
+      <p class="lead">{a.intro}</p>
+    </div>
+  </section>
+
+  <section class="sec intro tight">
+    <div class="wrap">
+      <Media src={a.founderImage} alt={a.founderName} tone="temple" label="Founder portrait in arch" ratio="23" arch />
+      <div>
+        <p class="eyebrow">A note from the founder</p>
+        <p class="h3 it" style="margin:16px 0 20px;font-weight:500;font-size:clamp(24px,2.4vw,32px)">{a.founderNote}</p>
+        <p class="sig">— {a.founderName}</p>
+        <p class="eyebrow" style="margin-top:6px">{a.founderRole}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="orn"><i></i></div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="steps" style="grid-template-columns:repeat(3,1fr)">
+        {a.values.map((v, i) => <div class="step"><div class="n">{String(i + 1).padStart(2, '0')}</div><h3>{v.title}</h3><p>{v.text}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <Team />
+
+  <section class="sec tight">
+    <div class="wrap two">
+      <div>
+        <Media src={a.studioImage} alt="Vibeshots studio in Sallaghari" tone="ivory" label="Studio, Sallaghari" ratio="32" />
+        <p class="eyebrow" style="margin-top:32px">Visit the studio</p>
+        <h2 class="h2" style="margin:12px 0 16px">{site.address}</h2>
+        <p class="muted">{site.hours}</p>
+        <p class="muted" style="margin-top:16px">{a.gear}</p>
+        <div class="row-btns" style="margin-top:24px">
+          <a class="btn btn-line" href="/contact/"><span class="lbl">Contact us</span></a>
+        </div>
+      </div>
+      <MiniMap class="rv" />
+    </div>
+  </section>
+</Base>
