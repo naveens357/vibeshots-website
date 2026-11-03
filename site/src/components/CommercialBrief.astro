@@ -13,9 +13,10 @@ import { waLink, igDm, sectors } from '../lib/format';
         <a href={`mailto:${site.email}?subject=Commercial%20project`}><span class="ic" style="background:#333"><svg width="22" height="22"><use href="#i-mail"/></svg></span><span><b>Email</b><small>{site.email}</small></span></a>
       </div>
     </div>
-    <form class="form" name="commercial-brief" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="company-url">
-      <input type="hidden" name="form-name" value="commercial-brief">
-      <p class="hp"><label>Leave empty <input name="company-url"></label></p>
+    <form class="form" name="commercial-brief" method="POST" action="/thank-you/" data-form="Commercial brief" data-thanks="/thank-you/" data-endpoint={site.formEndpoint} data-wa={site.whatsappCommercial}>
+      <input type="hidden" name="subject" value="New commercial brief from the website">
+      {site.formAccessKey && <input type="hidden" name="access_key" value={site.formAccessKey}>}
+      <p class="hp"><label>Leave empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
       <div class="fld"><label for="c1">Name *</label><input id="c1" name="name" autocomplete="name" required></div>
       <div class="fld"><label for="c2">Company</label><input id="c2" name="company" autocomplete="organization"></div>
       <div class="fld"><label for="c3">Email *</label><input id="c3" name="email" type="email" autocomplete="email" required></div>

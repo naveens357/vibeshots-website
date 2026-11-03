@@ -17,7 +17,8 @@ The live site: Astro (static, fast), with a no-code content manager (Decap CMS) 
 | `src/styles/global.css` | Design tokens and styles (spec in `../docs/02-design-system.md`) |
 | `public/admin/` | The content manager |
 | `public/uploads/` | Photos and videos uploaded through the content manager |
-| `../netlify.toml` | Hosting build settings (at the repo root) |
+| `../.github/workflows/deploy.yml` | Builds and publishes the site to GitHub Pages on every push to `main` |
+| `../netlify.toml` | Optional Netlify build settings |
 
 Anything without a photo yet shows a **labelled colour placeholder**, so the site works before real media is added. Entries marked `sample: true` are sample text, so replace them.
 
@@ -52,7 +53,7 @@ npm run cms
 Then open http://localhost:4321/admin/index.html and click **Login** (no password locally). Changes save straight into the files in this folder.
 
 ### On the live site
-Open `https://yourdomain/admin/`, sign in with GitHub, edit, and click **Publish**. The site rebuilds itself in about a minute.
+Open `/admin/` on the live site, sign in with GitHub, edit, and click **Publish**. The site rebuilds itself in about a minute. This needs the OAuth helper described under "Hosting: GitHub Pages"; until then, edit on your computer.
 
 ### Common tasks
 - **Add a wedding:** Wedding stories → New. Fill in the couple names, date (AD + BS), venue and ceremonies. Upload a cover, add gallery photos (choose Full, Half or Third for each), paste the YouTube or Vimeo film link, add vendor credits, write the story, then tick "Feature on home page" for the best ones.
@@ -67,15 +68,38 @@ Open `https://yourdomain/admin/`, sign in with GitHub, edit, and click **Publish
 - Export at 2400 px on the long edge, JPG quality about 80, under 600 KB each.
 - Always fill in **alt text**, for example "Bride in red saree during sindoor ceremony at Bhaktapur". It helps Google and screen readers.
 
-## Going live (one-time setup)
+## Hosting: GitHub Pages
 
-1. **GitHub:** the whole project (docs, wireframe, site) is in the private repo `naveens357/vibeshots-website`. `main` is the live branch. Do new work on a branch and merge it into `main` through a pull request.
-2. **CMS repo setting:** `public/admin/config.yml` already points at that repo. Its content paths start with `site/` because the repo root is the folder above this one.
-3. **Netlify:** Add new site → Import from GitHub → pick the repo, with production branch `main`. The build settings come from `netlify.toml` at the repo root (base directory `site`).
-4. **Forms:** in Netlify → Forms, turn on form detection, then add an email notification for `wedding-inquiry` and `commercial-brief`.
-5. **CMS sign-in:** create a GitHub OAuth app (GitHub → Settings → Developer settings → OAuth Apps) with callback URL `https://api.netlify.com/auth/done`. Add its client ID and secret in Netlify → Site configuration → Access & security → OAuth → GitHub.
-6. **Domain:** add `vibeshotsnepal.com` (and `vibeshots.com.np` if you get it) in Netlify → Domain management. If the domain is different, update `site` in `astro.config.mjs`, `site_url` in `public/admin/config.yml` and the sitemap line in `public/robots.txt`.
-7. **Google:** submit `https://yourdomain/sitemap-index.xml` in Google Search Console, and add the site link to your Google Business Profile.
+**Live at https://naveens357.github.io/vibeshots-website/**
+
+- **Code:** the whole project (docs, wireframe, site) is in the private repo `naveens357/vibeshots-website`. Pages works on a private repo with GitHub Pro; the code stays private and only the built site is public.
+- **Deploys:** every push to `main` runs `.github/workflows/deploy.yml`, which builds `site/` and publishes it, in about 1–2 minutes. Do new work on a branch and merge it into `main` through a pull request. Progress shows on the repo's **Actions** tab.
+- **The `/vibeshots-website/` path:** the workflow sets `SITE_URL` and `SITE_BASE`. A small build step in `astro.config.mjs` adds the base path to every link, so pages and content keep plain `/path` links.
+
+### Forms
+With no setup, the wedding and commercial forms open WhatsApp with every answer filled in, and the visitor just taps send.
+
+To also receive them by email:
+1. Sign up free at web3forms.com with your studio email and copy the access key.
+2. In the content manager, go to Site settings → Contact, stats & reviews and fill in:
+   - **Form service endpoint:** `https://api.web3forms.com/submit`
+   - **Form service access key:** the key you copied
+
+### Editing content
+- **On your computer:** the local content manager (`npm run cms`) works as described above. Changes are saved to the files; commit and push them (or merge a PR) to publish.
+- **Online at `/admin`:** GitHub sign-in needs a small OAuth helper, because GitHub Pages can't run one itself. One option is the free Cloudflare Worker "decap-proxy". Until that exists, edit locally.
+
+### Custom domain (later)
+1. Add the domain under the repo's Settings → Pages → Custom domain.
+2. Point the DNS at GitHub.
+3. In `.github/workflows/deploy.yml`, change `SITE_URL` to `https://yourdomain` and `SITE_BASE` to `/`.
+4. Update `site_url` in `public/admin/config.yml`.
+
+### Google
+Submit `https://naveens357.github.io/vibeshots-website/sitemap-index.xml` in Google Search Console, and add the site link to your Google Business Profile.
+
+### Netlify (alternative)
+`netlify.toml` still works if you ever move to Netlify. Netlify brings built-in forms and the CMS sign-in.
 
 ## Before launch checklist
 - [ ] Replace the sample stories, projects, testimonial, team and founder note.

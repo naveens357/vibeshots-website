@@ -19,9 +19,10 @@ const faq = packages.faq.slice(0, 4);
 
   <section class="sec" style="padding-top:24px">
     <div class="wrap contact-grid">
-      <form class="form" name="wedding-inquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="website">
-        <input type="hidden" name="form-name" value="wedding-inquiry">
-        <p class="hp"><label>Leave empty <input name="website"></label></p>
+      <form class="form" name="wedding-inquiry" method="POST" action="/thank-you/" data-form="Wedding inquiry" data-thanks="/thank-you/" data-endpoint={site.formEndpoint} data-wa={site.whatsapp}>
+        <input type="hidden" name="subject" value="New wedding inquiry from the website">
+        {site.formAccessKey && <input type="hidden" name="access_key" value={site.formAccessKey}>}
+        <p class="hp"><label>Leave empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
         <div class="fld"><label for="f1">Your name *</label><input id="f1" name="name" autocomplete="name" required></div>
         <div class="fld"><label for="f2">Partner's name</label><input id="f2" name="partner"></div>
         <fieldset class="fld full" style="border:0"><legend class="lab">You are the… *</legend><div class="opts">
