@@ -1,0 +1,47 @@
+{
+  "name": "Vibeshots Nepal",
+  "tagline": "Every vibe, every vow.",
+  "description": "Wedding photography and cinematic films from Sallaghari, Bhaktapur, plus motorsport, travel and brand campaigns across Nepal.",
+  "address": "Sallaghari, Bhaktapur, Nepal",
+  "mapUrl": "https://maps.app.goo.gl/5zooQ5RVPAsHq8az8",
+  "mapLat": 27.6752629,
+  "mapLng": 85.4228385,
+  "mapZoom": 16,
+  "hours": "Sun–Fri 10am–6pm · Saturdays by appointment",
+  "phonePrimary": "9862185128",
+  "phoneSecondary": "9808807033",
+  "whatsapp": "9779862185128",
+  "whatsappCommercial": "9779808807033",
+  "email": "hello@vibeshotsnepal.com",
+  "instagramWeddings": "vibeshotsnepal",
+  "instagramCommercial": "vibeshots_nepal",
+  "facebook": "",
+  "tiktok": "",
+  "youtube": "",
+  "callBookingUrl": "",
+  "replyPromise": "We reply within 2 hours, 9am–8pm.",
+  "heroWeddingVideo": "",
+  "heroWeddingPoster": "",
+  "heroCommercialVideo": "",
+  "heroCommercialPoster": "",
+  "showreelUrl": "",
+  "officialLine": "Official media partner · Dirt Temple",
+  "stats": [
+    { "value": "200+", "label": "weddings filmed" },
+    { "value": "4.9★", "label": "on Google" },
+    { "value": "7", "label": "years" },
+    { "value": "40+", "label": "brands" }
+  ],
+  "googleReviewsUrl": "",
+  "googleReviewsLabel": "Read our reviews on Google",
+  "testimonials": [
+    {
+      "quote": "Sample review: they were everywhere and nowhere at once. Our parents still watch the film every Dashain.",
+      "name": "Sample couple",
+      "detail": "Placeholder — replace with a real Google review",
+      "image": "",
+      "tone": "bride"
+    }
+  ],
+  "clients": ["Dirt Temple", "Client", "Client", "Client", "Client", "Client", "Client", "Client", "Client", "Client", "Client", "Client"]
+}
