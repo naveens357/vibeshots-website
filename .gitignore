@@ -1,0 +1,20 @@
+# dependencies and build output
+node_modules/
+dist/
+.astro/
+
+# local npm cache (kept on F: instead of C:)
+.npm-cache/
+
+# local editor/agent settings and secrets
+.claude/
+.env
+.env.*
+
+# OS junk
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# raw photo drops before optimising (see site/README.md)
+media-inbox/
