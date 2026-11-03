@@ -153,9 +153,43 @@ if (wanted && pkgSelect) {
   if (opt) pkgSelect.value = opt.value;
 }
 
-/* ---- form submit state ---- */
-$$<HTMLFormElement>('form[data-netlify]').forEach((f) => f.addEventListener('submit', () => {
-  f.querySelector('[type=submit]')?.classList.add('loading');
+/* ---- inquiry forms ----
+   With a form service endpoint (e.g. Web3Forms) set in Site settings, the form
+   posts there. Without one, it opens WhatsApp with the details filled in. */
+const SKIP = new Set(['access_key', 'subject', 'website']);
+$$<HTMLFormElement>('form[data-form]').forEach((f) => f.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if ((f.elements.namedItem('website') as HTMLInputElement | null)?.value) return; // bot trap
+  const btn = f.querySelector('[type=submit]');
+  btn?.classList.add('loading');
+  const data = new FormData(f);
+  const thanks = f.dataset.thanks || '/thank-you/';
+  if (f.dataset.endpoint) {
+    try {
+      const res = await fetch(f.dataset.endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      if (res.ok) { location.href = thanks; return; }
+    } catch { /* fall through to WhatsApp */ }
+  }
+  const lines: string[] = [];
+  const grouped = new Map<string, string[]>();
+  data.forEach((v, k) => {
+    const val = String(v).trim();
+    if (!val || SKIP.has(k)) return;
+    grouped.set(k, [...(grouped.get(k) || []), val]);
+  });
+  grouped.forEach((vals, k) => {
+    if (k.startsWith('cal-')) return;
+    if (k.startsWith('date-')) {
+      const cal = grouped.get(`cal-${k.slice(5)}`)?.[0] || '';
+      lines.push(`${k.slice(5).replace(/-/g, ' ')}: ${vals[0]} ${cal}`.trim());
+      return;
+    }
+    lines.push(`${k.replace(/-/g, ' ')}: ${vals.join(', ')}`);
+  });
+  const text = `Namaste Vibeshots! ${f.dataset.form} from the website:\n\n${lines.join('\n')}`;
+  const waUrl = `https://wa.me/${f.dataset.wa}?text=${encodeURIComponent(text)}`;
+  const win = window.open(waUrl, '_blank');
+  if (win) { win.opener = null; location.href = thanks; } else { location.href = waUrl; }
 }));
 
 /* ---- reveal on scroll ---- */

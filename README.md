@@ -41,7 +41,7 @@ The coloured gradient blocks are photo and video placeholders. Each label says w
    - Zone C (far or by flight) is **+25%**.
    - In both zones the family also covers travel, stay and meals.
 5. **All four contact channels:** WhatsApp (with the package name pre-filled), Viber, the inquiry form, an Instagram DM link and a call booking. On mobile a sticky bottom bar shows WhatsApp, Call and Check date.
-6. **Platform: Astro + Decap CMS on Netlify.** Your team adds weddings through a web admin at `/admin` without code, and hosting starts on Netlify's free plan. This replaced the earlier Framer recommendation so the site could be built here. Client galleries go on Pic-Time or Pixieset, and films on Vimeo or YouTube.
+6. **Platform: Astro + Decap CMS, hosted on GitHub Pages** at https://naveens357.github.io/vibeshots-website/. It deploys automatically on every push to `main`. Your team adds weddings through a no-code admin. This replaced the earlier Framer recommendation so the site could be built here. Client galleries go on Pic-Time or Pixieset, and films on Vimeo or YouTube.
 
 ## Packages at a glance (NPR, Kathmandu Valley)
 
