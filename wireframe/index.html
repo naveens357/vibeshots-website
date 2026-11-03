@@ -1,0 +1,1317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibeshots Wireframe</title>
+<meta name="description" content="Hi-fi wireframe for the Vibeshots Nepal website: home, packages, wedding story, commercial, contact and design system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Mukta:wght@400;500&family=Rozha+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F6F0E6; --paper:#FBF8F2; --ink:#0B0B0C; --ink-soft:#4A4542; --sindoor:#7A1820;
+  --marigold:#C8962E; --orange:#F15A2B; --line:#E2D8C8;
+  --asphalt:#0A0A0B; --carbon:#17171A; --chalk:#F4F4F2; --steel:#8A8A90; --wa:#25D366;
+  --serif:"Cormorant Garamond", "Canela", Georgia, serif;
+  --sans:"Manrope", "Neue Montreal", system-ui, sans-serif;
+  --wide:"Archivo", "Druk Wide", Impact, sans-serif;
+  --deva:"Rozha One", "Tiro Devanagari Hindi", serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --max:1320px; --gut:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+@media (max-width:760px){:root{--gut:16px}}
+
+/* ---------- wireframe toolbar ---------- */
+.wf-bar{position:sticky;top:0;z-index:100;background:#1b1b1d;color:#ddd;font:500 12px/1 var(--sans);display:flex;align-items:center;gap:6px;padding:6px 12px;overflow-x:auto;white-space:nowrap}
+.wf-bar b{color:var(--orange);margin-right:8px;letter-spacing:.08em}
+.wf-bar button{padding:7px 12px;border-radius:999px;color:#bbb}
+.wf-bar button[aria-selected=true]{background:#333;color:#fff}
+.wf-bar .sp{flex:1}
+.wf-bar label{display:flex;gap:6px;align-items:center;cursor:pointer}
+
+/* ---------- annotations ---------- */
+.anno{position:absolute;z-index:20;top:16px;right:16px;max-width:300px;background:#fff8f3;color:#5a2a14;border:1.5px dashed var(--orange);border-radius:10px;padding:10px 12px;font:500 12px/1.45 var(--sans);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.anno b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--orange);color:#fff;font-size:11px;margin-right:6px}
+.anno.left{right:auto;left:16px}
+.hero .anno{top:100px}
+body.no-anno .anno{display:none}
+section,.sec{position:relative}
+
+/* ---------- pages ---------- */
+.page{display:none}
+.page.on{display:block}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:38px;z-index:50;height:76px;display:flex;align-items:center;transition:background .35s,color .35s,box-shadow .35s;background:rgba(246,240,230,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.top .wrap{display:flex;align-items:center;gap:32px;width:100%}
+.top .logo{height:30px;width:auto}
+.top .logo-l{display:none}
+.top nav{display:flex;gap:28px;font:600 13px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;margin-left:auto}
+.top nav a{position:relative;padding:6px 0;opacity:.85}
+.top nav a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.top nav a:hover::after{transform:scaleX(1)}
+.top .acts{display:flex;gap:10px;align-items:center}
+.icon-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid currentColor;opacity:.9;transition:background .25s,color .25s}
+.icon-btn:hover{background:var(--wa);border-color:var(--wa);color:#fff}
+.burger{display:none}
+body[data-page=home] .top:not(.scrolled){background:transparent;box-shadow:none;color:#fff;backdrop-filter:none}
+body[data-page=home] .top:not(.scrolled) .logo-d{display:none}
+body[data-page=home] .top:not(.scrolled) .logo-l{display:block}
+body[data-page=home] .top:not(.scrolled) .btn-dot{background:#fff;color:var(--ink)}
+body[data-page=commercial] .top,body[data-page=commercial]{background:var(--asphalt);color:var(--chalk)}
+body[data-page=commercial] .top{box-shadow:0 1px 0 #222}
+body[data-page=commercial] .top .logo-d{display:none}
+body[data-page=commercial] .top .logo-l{display:block}
+body[data-page=commercial] .top .btn-dot{background:var(--orange);color:#000}
+body[data-page=commercial] .top .btn-dot .dot{background:#000}
+@media (max-width:1000px){.top nav{display:none}.burger{display:grid}.top .acts{margin-left:auto}.top .acts .btn{display:none}}
+
+/* ---------- buttons ---------- */
+.btn{--h:52px;height:var(--h);padding:0 28px;border-radius:999px;display:inline-flex;align-items:center;gap:12px;font:600 14px/1 var(--sans);letter-spacing:.04em;position:relative;overflow:hidden;isolation:isolate;transition:transform .2s var(--ease),background .3s,color .3s,border-color .3s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn.sm{--h:44px;padding:0 20px;font-size:13px}
+.btn[disabled]{opacity:.4;pointer-events:none}
+.btn .lbl{transition:transform .35s var(--ease)}
+/* primary dot */
+.btn-dot{background:var(--ink);color:var(--ivory);padding-left:22px}
+.btn-dot .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);display:grid;place-items:center;flex:none;transition:width .4s var(--ease),height .4s var(--ease)}
+.btn-dot .dot svg{width:14px;height:14px;opacity:0;transform:translateX(-6px);transition:.35s var(--ease);color:#fff}
+.btn-dot:hover .dot{width:30px;height:30px}
+.btn-dot:hover .dot svg{opacity:1;transform:none}
+.btn-dot:hover .lbl{transform:translateX(2px)}
+/* outline */
+.btn-line{border:1px solid currentColor;color:var(--ink)}
+.btn-line::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);z-index:-1}
+.btn-line:hover{color:var(--ivory)}
+.btn-line:hover::before{transform:scaleX(1)}
+.on-dark .btn-line{color:#fff}
+.on-dark .btn-line::before{background:#fff}
+.on-dark .btn-line:hover{color:var(--ink)}
+/* ghost */
+.btn-ghost{height:auto;padding:4px 0;border-radius:0;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;background-color:transparent}
+.btn-ghost::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.btn-ghost{background:none;border-bottom:1px solid rgba(11,11,12,.3)}
+.on-dark .btn-ghost{border-color:rgba(255,255,255,.3)}
+.btn-ghost:hover::after{transform:scaleX(1)}
+.btn-ghost .arr{transition:transform .35s var(--ease)}
+.btn-ghost:hover .arr{transform:translateX(4px)}
+/* whatsapp */
+.btn-wa{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.btn-wa svg{color:var(--wa);width:18px;height:18px}
+.btn-wa:hover{border-color:var(--wa)}
+.btn-wa:hover svg{animation:hop .5s var(--ease)}
+@keyframes hop{40%{transform:translateY(-4px)}}
+/* shutter */
+.btn-shutter{width:76px;height:76px;padding:0;justify-content:center;background:rgba(11,11,12,.85);color:#fff;border:1px solid rgba(255,255,255,.4)}
+.btn-shutter svg{width:30px;height:30px;transition:transform .6s var(--ease)}
+.btn-shutter:hover svg{transform:rotate(60deg)}
+.btn-shutter:hover{background:var(--orange)}
+/* commercial */
+.btn-comm{border-radius:2px;background:var(--orange);color:#000;font:800 13px/1 var(--wide);font-stretch:125%;letter-spacing:.06em;text-transform:uppercase;padding:0 64px 0 24px}
+.btn-comm .blk{position:absolute;right:0;top:0;bottom:0;width:44px;display:grid;place-items:center;background:#000;color:var(--orange);transform:translateX(100%);transition:transform .35s var(--ease)}
+.btn-comm::after{content:"→";position:absolute;right:18px;transition:opacity .2s}
+.btn-comm:hover .blk{transform:none}
+.btn-comm:hover::after{opacity:0}
+.btn-comm.ghost{background:transparent;color:var(--chalk);box-shadow:inset 0 0 0 1px #444}
+.btn-comm.ghost .blk{background:var(--orange);color:#000}
+.btn.loading .lbl{opacity:0}
+.btn.loading::after{content:"• • •";position:absolute;inset:0;display:grid;place-items:center;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.3}}
+
+/* ---------- type ---------- */
+.eyebrow{font:600 12px/1.2 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
+.deva{font-family:var(--deva);color:var(--sindoor);font-size:22px;line-height:1.3;display:block;margin-bottom:6px}
+.on-dark .deva{color:#E8B866}
+.h-xl{font:500 clamp(52px,7.4vw,104px)/.98 var(--serif);letter-spacing:-.01em}
+.h-l{font:500 clamp(40px,5vw,64px)/1.04 var(--serif)}
+.h2{font:500 clamp(32px,3.6vw,46px)/1.1 var(--serif)}
+.h3{font:600 clamp(22px,2vw,28px)/1.2 var(--serif)}
+.it{font-style:italic}
+.lead{font-size:clamp(17px,1.4vw,19px);color:var(--ink-soft);max-width:60ch}
+.comm{font:900 clamp(44px,8vw,128px)/.9 var(--wide);font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em}
+.sec{padding:128px 0}
+@media (max-width:760px){.sec{padding:72px 0}}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.orn{display:flex;align-items:center;gap:14px;color:var(--marigold);max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:currentColor;opacity:.6}
+.orn i{width:8px;height:8px;transform:rotate(45deg);border:1px solid currentColor}
+
+/* ---------- photo placeholders ---------- */
+.ph{position:relative;overflow:hidden;border-radius:2px;background:var(--g,linear-gradient(160deg,#cdbda3,#a8957a));min-height:120px}
+.ph::after{content:attr(data-label);position:absolute;left:12px;bottom:10px;right:12px;font:600 10px/1.35 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.88);text-shadow:0 1px 2px rgba(0,0,0,.3)}
+.ph::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 30% 20%,rgba(255,255,255,.18),transparent 60%)}
+.ph.r45{aspect-ratio:4/5}.ph.r32{aspect-ratio:3/2}.ph.r169{aspect-ratio:16/9}.ph.r219{aspect-ratio:21/9}.ph.r11{aspect-ratio:1}.ph.r23{aspect-ratio:2/3}
+.arch{border-radius:999px 999px 3px 3px}
+.g-bride{--g:linear-gradient(165deg,#a3242b 0%,#6e1219 55%,#3a090d 100%)}
+.g-sindoor{--g:linear-gradient(160deg,#c0392b,#7a1820 60%,#2b0a0b)}
+.g-haldi{--g:linear-gradient(160deg,#f0c14b,#d38f1d 60%,#8a5410)}
+.g-mehendi{--g:linear-gradient(160deg,#8b9a4a,#56632b 60%,#2d3516)}
+.g-ivory{--g:linear-gradient(160deg,#dccdb4,#b39f80 70%,#7d6a50)}
+.g-night{--g:linear-gradient(160deg,#5a3a2c,#2a1b15 60%,#0f0a08)}
+.g-gold{--g:linear-gradient(160deg,#d9b46a,#a77a2c 60%,#5c3f12)}
+.g-temple{--g:linear-gradient(160deg,#9c5a3c,#5e3220 60%,#2c160d)}
+.g-moto{--g:linear-gradient(160deg,#3a3a3e,#151517 60%,#000),radial-gradient(circle at 80% 70%,rgba(241,90,43,.5),transparent 50%)}
+.g-moto2{--g:linear-gradient(200deg,#6b3a1f,#2a1a12 50%,#0c0c0d)}
+.g-travel{--g:linear-gradient(160deg,#5c8e94,#2a5158 60%,#0f272b)}
+.g-product{--g:linear-gradient(160deg,#5c5c60,#2a2a2d 60%,#111)}
+
+/* ---------- HOME: split hero ---------- */
+.hero{margin-top:-76px;height:min(100svh,920px);min-height:640px;display:flex;background:#000;color:#fff}
+.door{position:relative;flex:1.5;overflow:hidden;transition:flex .8s var(--ease);display:flex;align-items:flex-end}
+.door.c{flex:1}
+.hero:hover .door{flex:1}
+.hero .door:hover{flex:2.2}
+.door .ph{position:absolute;inset:0;border-radius:0}
+.door .ph::after{bottom:auto;top:96px}
+.door .shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72),rgba(0,0,0,.05) 55%,rgba(0,0,0,.35))}
+.door .in{position:relative;padding:0 48px 64px;max-width:720px}
+.door .in p{color:rgba(255,255,255,.8);margin:16px 0 28px;max-width:44ch}
+.door.c .in{padding-right:40px}
+.door.c .comm{font-size:clamp(34px,3.6vw,58px)}
+.door .tag{position:absolute;top:110px;right:24px;font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.door.w .deva{color:#F0C27A;font-size:26px}
+@media (max-width:860px){.hero{flex-direction:column;height:auto}.door,.door.c,.hero:hover .door,.hero .door:hover{flex:none;min-height:560px}.door.c{min-height:420px}.door .in{padding:0 20px 40px}}
+
+.proof{background:var(--ink);color:var(--ivory);padding:22px 0}
+.proof .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font:500 13px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.proof strong{font:500 26px/1 var(--serif);letter-spacing:0;text-transform:none;color:#fff;margin-right:8px}
+.proof .star{color:var(--orange)}
+
+.intro .wrap{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:center}
+.intro .ph{max-width:460px}
+.intro .h-l{margin:12px 0 24px}
+.intro .sig{margin-top:28px;font:italic 500 26px/1 var(--serif);color:var(--sindoor)}
+@media (max-width:860px){.intro .wrap{grid-template-columns:1fr;gap:40px}}
+
+.stories{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;gap:24px}
+.story{display:block;position:relative;overflow:hidden}
+.story .ph{transition:transform 1s var(--ease)}
+.story:hover .ph{transform:scale(1.04)}
+.story:first-child{grid-row:span 2}
+.story:first-child .ph{height:100%;min-height:640px}
+.story .cap{position:absolute;left:0;right:0;bottom:0;padding:28px;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.6),transparent)}
+.story .cap .h3{font-style:italic;font-size:34px;transition:transform .5s var(--ease)}
+.story:hover .cap .h3{transform:translateY(-4px)}
+.story .meta{font:600 11px/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-top:6px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{font:600 11px/1 var(--sans);letter-spacing:.06em;padding:7px 10px;border-radius:999px;border:1px solid currentColor;opacity:.9}
+@media (max-width:760px){.stories{grid-template-columns:1fr}.story:first-child{grid-row:auto}.story:first-child .ph{min-height:480px}}
+
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,260px);gap:20px;overflow-x:auto;padding:0 var(--gut) 12px;scroll-snap-type:x mandatory;scrollbar-width:thin;max-width:calc(var(--max) + 2*var(--gut));margin:0 auto}
+.cer{scroll-snap-align:start}
+.cer .ph{aspect-ratio:3/4.3}
+.cer h4{font:500 24px/1.2 var(--serif);margin-top:14px}
+.cer .deva{font-size:17px;margin:2px 0 0}
+.cer p{font-size:14px;color:var(--ink-soft)}
+
+.film{position:relative;color:#fff}
+.film .ph{aspect-ratio:21/9;min-height:420px}
+.film .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:20px;background:rgba(0,0,0,.25)}
+.film .ov .h2{max-width:22ch}
+
+.cstrip{background:var(--asphalt);color:var(--chalk)}
+.cgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px}
+.ctile{position:relative;overflow:hidden;border-radius:2px}
+.ctile .ph{height:100%;min-height:340px;transition:transform 1s var(--ease)}
+.ctile:hover .ph{transform:scale(1.04)}
+.ctile .cap{position:absolute;left:0;bottom:0;right:0;padding:20px;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent)}
+.ctile .cl{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+.ctile .nm{font:800 22px/1.05 var(--wide);font-stretch:112%;text-transform:uppercase;margin-top:8px}
+.marq{overflow:hidden;border-top:1px solid #222;border-bottom:1px solid #222;margin-top:56px;padding:22px 0}
+.marq div{display:flex;gap:56px;width:max-content;animation:marq 28s linear infinite;font:800 22px/1 var(--wide);font-stretch:125%;text-transform:uppercase;color:#3c3c40}
+.marq span::after{content:"●";color:var(--orange);font-size:10px;margin-left:56px;vertical-align:middle}
+@keyframes marq{to{transform:translateX(-50%)}}
+@media (max-width:760px){.cgrid{grid-template-columns:1fr}.ctile .ph{min-height:260px}}
+
+/* packages */
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:var(--paper);border:1px solid var(--line);position:relative}
+.seg button{position:relative;z-index:1;height:40px;padding:0 20px;border-radius:999px;font:600 13px/1 var(--sans);letter-spacing:.04em;color:var(--ink-soft);transition:color .3s}
+.seg button[aria-pressed=true]{color:var(--ivory)}
+.seg .pill{position:absolute;top:4px;bottom:4px;left:4px;border-radius:999px;background:var(--ink);transition:transform .45s var(--ease),width .45s var(--ease)}
+.on-dark .seg{background:#141416;border-color:#2a2a2e}
+.on-dark .seg button[aria-pressed=true]{color:#000}
+.on-dark .seg .pill{background:var(--orange)}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.tier{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:36px 32px;display:flex;flex-direction:column;gap:18px;position:relative;transition:transform .4s var(--ease),box-shadow .4s}
+.tier:hover{transform:translateY(-4px);box-shadow:0 24px 60px -30px rgba(60,30,10,.35)}
+.tier.pop{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.tier.pop .muted,.tier.pop li{color:#cfc7bb}
+.tier.pop .btn-dot{background:var(--ivory);color:var(--ink)}
+.tier.pop .btn-wa{background:transparent;color:var(--ivory);border-color:#444}
+.badge{position:absolute;top:-13px;left:32px;background:var(--orange);color:#fff;font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;border-radius:999px}
+.tier .nm{font:500 40px/1 var(--serif)}
+.tier .sub{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--marigold);margin-top:8px}
+.price{font:500 46px/1 var(--serif)}
+.price small{font:600 13px var(--sans);letter-spacing:.06em;margin-right:6px;vertical-align:top;position:relative;top:8px}
+.was{font-size:13px;color:var(--ink-soft)}
+.was s{opacity:.7}
+.tier.pop .was{color:#a9a196}
+.eb{font:600 12px/1.3 var(--sans);color:var(--sindoor);background:#f3e2d7;border-radius:8px;padding:8px 10px}
+.tier.pop .eb{background:#2b1a14;color:#f6b79e}
+.tier ul{list-style:none;display:grid;gap:9px;font-size:14px;color:var(--ink-soft)}
+.tier li{display:flex;gap:10px}
+.tier li::before{content:"";flex:none;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--orange)}
+.tier .ctas{display:grid;gap:10px;margin-top:auto}
+.tier .ctas .btn{justify-content:center}
+.muted{color:var(--ink-soft)}
+@media (max-width:980px){.tiers{grid-template-columns:1fr}}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.step{padding:32px 28px 0 0}
+.step .n{font:italic 500 56px/1 var(--serif);color:var(--marigold)}
+.step h4{font:600 20px/1.3 var(--serif);margin:16px 0 8px;font-size:24px}
+.step p{font-size:14px;color:var(--ink-soft)}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr;gap:24px}}
+
+.testi .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:center}
+.testi blockquote{font:italic 500 clamp(28px,3vw,42px)/1.25 var(--serif)}
+.testi cite{display:block;font:600 12px/1.4 var(--sans);letter-spacing:.18em;text-transform:uppercase;font-style:normal;margin-top:24px;color:var(--ink-soft)}
+.stars{color:var(--orange);letter-spacing:3px;margin-bottom:16px}
+@media (max-width:860px){.testi .wrap{grid-template-columns:1fr;gap:32px}}
+
+.ig{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media (max-width:760px){.ig{grid-template-columns:repeat(3,1fr)}}
+
+.final{background:var(--sindoor);color:#fff;text-align:center}
+.final .h-l{max-width:16ch;margin:12px auto 20px}
+.final p{color:rgba(255,255,255,.8);margin-bottom:36px}
+.final .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.final .btn-dot{background:#fff;color:var(--ink)}
+.final .deva{color:#F0C27A}
+
+footer{background:var(--ink);color:#bdb6ab;padding:96px 0 40px;font-size:14px}
+footer .grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:48px}
+footer h5{font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-bottom:18px}
+footer li{list-style:none;margin-bottom:10px}
+footer a:hover{color:#fff}
+footer .logo{width:220px;margin-bottom:20px}
+footer .bye{font-family:var(--deva);font-size:64px;color:#2c2a28;margin-top:64px;line-height:1}
+footer .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid #222;margin-top:24px;padding-top:24px;font-size:12px}
+@media (max-width:860px){footer .grid{grid-template-columns:1fr 1fr}}
+
+/* mobile action bar */
+.mbar{display:none}
+@media (max-width:760px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;position:fixed;left:10px;right:10px;bottom:10px;z-index:60;background:var(--ink);color:#fff;border-radius:999px;padding:6px;gap:6px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .mbar a{height:46px;display:flex;align-items:center;justify-content:center;gap:8px;font:600 13px var(--sans);border-radius:999px}
+  .mbar a:last-child{background:var(--orange)}
+  body{padding-bottom:72px}
+}
+
+/* ---------- PACKAGES page ---------- */
+.phero{padding:96px 0 48px;text-align:center}
+.phero .lead{margin:18px auto 32px}
+.ebanner{display:flex;align-items:center;gap:24px;justify-content:space-between;flex-wrap:wrap;background:var(--ink);color:var(--ivory);border-radius:16px;padding:28px 32px;margin:40px 0}
+.ebanner .h3{color:#fff}
+.ebanner .cd{display:flex;gap:10px}
+.ebanner .cd div{background:#1f1d1c;border-radius:10px;padding:10px 14px;text-align:center;min-width:64px}
+.ebanner .cd b{display:block;font:500 28px/1 var(--serif);color:var(--orange)}
+.ebanner .cd small{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9a938a}
+.wide-card{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-radius:16px;overflow:hidden;background:var(--paper);border:1px solid var(--line);margin-top:24px}
+.wide-card .ph{min-height:100%;border-radius:0}
+.wide-card .body{padding:40px;display:flex;flex-direction:column;gap:16px}
+.wide-card.heritage{background:#140f0c;color:var(--ivory);border-color:#2a211b}
+.wide-card.heritage .muted,.wide-card.heritage li{color:#c4b9aa}
+.wide-card.heritage .btn-line{color:var(--ivory)}
+.wide-card.heritage .btn-line::before{background:var(--ivory)}
+.wide-card.heritage .btn-line:hover{color:var(--ink)}
+.wide-card ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:14px;color:var(--ink-soft)}
+.wide-card li::before{content:"— ";color:var(--marigold)}
+@media (max-width:860px){.wide-card{grid-template-columns:1fr}.wide-card .ph{min-height:280px}.wide-card ul{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th{font:600 11px/1.2 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:14px 12px;border-bottom:1px solid var(--ink)}
+.tbl td{padding:16px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl td:last-child,.tbl th:last-child{text-align:right;white-space:nowrap}
+.tbl td b{font:600 17px var(--serif)}
+.tbl .z{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font:700 13px var(--sans);margin-right:10px}
+.tblwrap{overflow-x:auto}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+@media (max-width:860px){.two{grid-template-columns:1fr;gap:40px}}
+.terms{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.term{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px}
+.term .big{font:500 40px/1 var(--serif);color:var(--sindoor)}
+.term p{font-size:14px;color:var(--ink-soft);margin-top:8px}
+@media (max-width:860px){.terms{grid-template-columns:1fr 1fr}}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font:500 22px/1.3 var(--serif)}
+summary::after{content:"+";font:300 28px/1 var(--sans);transition:transform .3s var(--ease);color:var(--marigold)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--ink-soft);margin-top:10px;max-width:70ch}
+
+/* ---------- STORY page ---------- */
+.shero{position:relative;height:min(88svh,820px);min-height:540px;color:#fff;display:flex;align-items:flex-end}
+.shero .ph{position:absolute;inset:0;border-radius:0}
+.shero .ph::after{top:24px;bottom:auto}
+.shero .in{position:relative;padding-bottom:64px}
+.shero .h-xl{font-style:italic}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.facts div{padding:28px 24px 28px 0}
+.facts small{display:block;font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.facts b{font:500 22px/1.25 var(--serif)}
+@media (max-width:760px){.facts{grid-template-columns:1fr 1fr}}
+.prose{max-width:680px;margin:0 auto;font-size:19px;color:var(--ink-soft)}
+.prose p+p{margin-top:20px}
+.prose .drop::first-letter{font:500 84px/.8 var(--serif);float:left;margin:6px 12px 0 0;color:var(--sindoor)}
+.gal{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.gal .f{grid-column:span 6}.gal .h{grid-column:span 3}.gal .t{grid-column:span 2}
+@media (max-width:760px){.gal .h,.gal .t{grid-column:span 6}}
+.vendors{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.vendors a{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--paper);transition:border-color .3s}
+.vendors a:hover{border-color:var(--ink)}
+.vendors small{display:block;font:600 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+@media (max-width:760px){.vendors{grid-template-columns:1fr}}
+.nextst{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.nextst a{position:relative;color:#fff}
+.nextst .ph{aspect-ratio:16/8;border-radius:0}
+.nextst span{position:absolute;left:32px;bottom:28px;font:italic 500 34px/1.1 var(--serif)}
+.nextst small{display:block;font:600 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;font-style:normal;opacity:.8;margin-bottom:6px}
+
+/* ---------- COMMERCIAL page ---------- */
+.on-dark{color:var(--chalk)}
+.on-dark .eyebrow,.on-dark .lead,.on-dark .muted{color:var(--steel)}
+.chero{position:relative;min-height:min(86svh,780px);display:flex;align-items:flex-end;overflow:hidden}
+.chero .ph{position:absolute;inset:0;border-radius:0}
+.chero .ph::after{top:24px;bottom:auto}
+.chero .in{position:relative;padding-bottom:64px;width:100%}
+.chero .comm span{color:var(--orange)}
+.chero .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:32px}
+.official{display:inline-flex;gap:10px;align-items:center;font:600 12px var(--sans);letter-spacing:.16em;text-transform:uppercase;margin-bottom:24px;color:#ddd}
+.official i{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(241,90,43,.25)}
+.filters{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-bottom:32px}
+.fchips{display:flex;gap:8px;flex-wrap:wrap}
+.fchip{height:38px;padding:0 16px;border-radius:2px;border:1px solid #2e2e33;font:700 11px/1 var(--wide);font-stretch:112%;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);transition:.25s}
+.fchip:hover{color:#fff;border-color:#555}
+.fchip[aria-pressed=true]{background:var(--chalk);color:#000;border-color:var(--chalk)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pgrid .ctile .ph{min-height:0;aspect-ratio:4/5}
+.pgrid .ctile.big{grid-column:span 2}
+.pgrid .ctile.big .ph{aspect-ratio:auto;height:100%}
+.ctile .ph::after,.story .ph::after{top:14px;bottom:auto;right:auto;max-width:60%}
+.ctile .ty{position:absolute;top:14px;right:14px;font:700 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;background:rgba(0,0,0,.6);padding:7px 9px;border-radius:2px}
+.ctile.hide{display:none}
+@media (max-width:860px){.pgrid{grid-template-columns:1fr}.pgrid .ctile.big{grid-column:auto}.pgrid .ctile.big .ph{aspect-ratio:4/5}}
+.logos{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid #222;border-left:1px solid #222}
+.logos div{aspect-ratio:3/2;display:grid;place-items:center;border-right:1px solid #222;border-bottom:1px solid #222;font:800 13px var(--wide);font-stretch:112%;letter-spacing:.1em;color:#444;transition:color .3s,background .3s}
+.logos div:hover{color:var(--orange);background:#111}
+@media (max-width:760px){.logos{grid-template-columns:repeat(3,1fr)}}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#222;border:1px solid #222}
+.svc div{background:var(--asphalt);padding:32px}
+.svc .k{font:900 44px/1 var(--wide);font-stretch:125%;color:var(--orange)}
+.svc h4{font:800 18px/1.2 var(--wide);font-stretch:112%;text-transform:uppercase;margin:18px 0 8px}
+.svc p{font-size:14px;color:var(--steel)}
+@media (max-width:860px){.svc{grid-template-columns:1fr}}
+
+/* ---------- forms ---------- */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.form .full{grid-column:1/-1}
+.fld label,.fld .lab{display:block;font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:9px}
+.fld input,.fld select,.fld textarea{width:100%;height:52px;border-radius:12px;border:1px solid var(--line);background:var(--paper);padding:0 16px;font:500 15px var(--sans);color:var(--ink);transition:border-color .25s,box-shadow .25s}
+.fld textarea{height:120px;padding:14px 16px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px rgba(241,90,43,.15)}
+.on-dark .fld input,.on-dark .fld select,.on-dark .fld textarea{background:#121214;border-color:#2a2a2e;color:#fff;border-radius:2px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0}
+.opt span{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font:600 13px var(--sans);cursor:pointer;transition:.25s}
+.opt input:checked+span{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.opt input:focus-visible+span{outline:2px solid var(--orange);outline-offset:2px}
+.evrow{display:grid;grid-template-columns:150px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.evrow .bsad{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.evrow .bsad button{padding:8px 12px;font:700 11px var(--sans)}
+.evrow .bsad button[aria-pressed=true]{background:var(--ink);color:#fff}
+@media (max-width:760px){.form{grid-template-columns:1fr}.evrow{grid-template-columns:1fr auto}.evrow input{grid-column:1/-1}}
+.contact .wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:64px}
+@media (max-width:960px){.contact .wrap{grid-template-columns:1fr}}
+.chan{display:grid;gap:12px}
+.chan a{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;background:var(--paper);border:1px solid var(--line);transition:transform .3s var(--ease),border-color .3s}
+.chan a:hover{transform:translateX(4px);border-color:var(--ink)}
+.chan .ic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;flex:none}
+.chan b{display:block;font:600 15px var(--sans)}
+.chan small{color:var(--ink-soft)}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:200;background:rgba(10,8,6,.6);backdrop-filter:blur(6px);display:none;place-items:center;padding:16px}
+.modal.on{display:grid}
+.modal .box{background:var(--ivory);border-radius:20px;max-width:520px;width:100%;padding:40px;position:relative;animation:rise .5s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+.modal .x{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line)}
+.result{margin-top:20px;padding:16px;border-radius:12px;background:#eaf6ee;color:#14532d;font-size:14px;display:none}
+.result.on{display:block}
+
+/* ---------- DESIGN SYSTEM page ---------- */
+.ds-row{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:40px 0;border-top:1px solid var(--line)}
+.ds-row>h3{font:600 12px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+@media (max-width:760px){.ds-row{grid-template-columns:1fr}}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sw div{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--paper);font-size:12px}
+.sw i{display:block;height:84px}
+.sw span{display:block;padding:10px 12px}
+.sw b{display:block;font:600 13px var(--sans)}
+.btn-grid{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.ds-dark{background:var(--asphalt);padding:28px;border-radius:14px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:16px}
+.logo-tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.logo-tiles div{border-radius:14px;padding:40px 28px;display:grid;place-items:center;min-height:160px}
+@media (max-width:760px){.logo-tiles{grid-template-columns:1fr}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body data-page="home">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></symbol>
+  <symbol id="i-viber" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" d="M12 3c5 0 8 2 8 7.5S17 18 12 18l-3 3v-3.3C5.5 17 4 14.6 4 10.5 4 5 7 3 12 3Zm-2 4.5c-.5 0-1 .6-.8 1.3a7 7 0 0 0 4.7 4.8c.7.2 1.4-.3 1.4-.8l-.1-.6-1.4-.7-.7.6a4 4 0 0 1-2-2l.6-.7-.7-1.5Z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
+  <symbol id="i-aperture" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="16" cy="16" r="13"/><path d="M16 3l5 12M29 16l-12 5M16 29l-5-12M3 16l12-5M7 7l11 1M25 7l-1 11M25 25l-11-1M7 25l1-11"/></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+</svg>
+
+<!-- ================= WIREFRAME TOOLBAR (not part of the site) ================= -->
+<div class="wf-bar" role="tablist" aria-label="Wireframe pages">
+  <b>VIBESHOTS · WIREFRAME</b>
+  <button role="tab" data-go="home" aria-selected="true">Home</button>
+  <button role="tab" data-go="packages">Packages</button>
+  <button role="tab" data-go="story">Wedding story</button>
+  <button role="tab" data-go="commercial">Commercial</button>
+  <button role="tab" data-go="contact">Contact</button>
+  <button role="tab" data-go="system">Design system</button>
+  <span class="sp"></span>
+  <label><input type="checkbox" id="annoToggle" checked> Notes</label>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="top" id="top">
+  <div class="wrap">
+    <a href="#" data-go="home" aria-label="Vibeshots Nepal home">
+      <img class="logo logo-d" src="assets/logo-dark.png" alt="Vibeshots Nepal">
+      <img class="logo logo-l" src="assets/logo-light.png" alt="Vibeshots Nepal">
+    </a>
+    <nav aria-label="Main">
+      <a href="#" data-go="story">Weddings</a>
+      <a href="#" data-go="commercial">Commercial</a>
+      <a href="#" data-go="story">Films</a>
+      <a href="#" data-go="packages">Packages</a>
+      <a href="#" data-go="contact">About</a>
+      <a href="#" data-go="home">Journal</a>
+    </nav>
+    <div class="acts">
+      <button class="btn btn-dot sm" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+      <a class="icon-btn" href="https://wa.me/9779862185128" target="_blank" rel="noopener" aria-label="WhatsApp us"><svg width="20" height="20"><use href="#i-wa"/></svg></a>
+      <button class="icon-btn burger" aria-label="Open menu"><svg width="20" height="20"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================================================================= HOME -->
+<div class="page on" data-page="home">
+
+  <section class="hero" aria-label="Choose weddings or commercial">
+    <a class="door w" href="#" data-go="story">
+      <div class="ph g-bride" data-label="VIDEO LOOP 20–30s · bride in red saree, sindoor moment, haldi laughter, Bhaktapur golden hour"></div>
+      <div class="shade"></div>
+      <span class="tag">Weddings</span>
+      <div class="in">
+        <span class="deva">शुभ विवाह</span>
+        <h1 class="h-xl">Every vibe,<br><span class="it">every vow.</span></h1>
+        <p>Wedding photography and cinematic films from the heart of Bhaktapur, across the Kathmandu Valley and beyond.</p>
+        <span class="btn btn-dot" style="background:#fff;color:var(--ink)"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Explore weddings</span></span>
+      </div>
+    </a>
+    <a class="door c" href="#" data-go="commercial">
+      <div class="ph g-moto" data-label="VIDEO LOOP · motocross jump / dust / rally car pan"></div>
+      <div class="shade"></div>
+      <span class="tag">Commercial</span>
+      <div class="in">
+        <h2 class="comm">Made in<br>Bhaktapur.<br><span style="color:var(--orange)">Shot for<br>the world.</span></h2>
+        <p>Motorsport, automotive, travel and brand campaigns, in stills and motion.</p>
+        <span class="btn btn-comm">Commercial work<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></span>
+      </div>
+    </a>
+    <aside class="anno"><b>1</b>Split "two doors" hero. The hovered side widens to 70%. Weddings come first (main revenue), and the black/orange side previews the commercial world. On mobile they stack.</aside>
+  </section>
+
+  <div class="proof">
+    <div class="wrap">
+      <span><strong>200+</strong>weddings filmed</span>
+      <span><strong>4.9</strong><span class="star">★★★★★</span> Google</span>
+      <span><strong>7</strong>years</span>
+      <span><strong>40+</strong>brands</span>
+      <span><strong>Sallaghari</strong>Bhaktapur</span>
+    </div>
+  </div>
+
+  <section class="sec intro">
+    <div class="wrap">
+      <div class="ph arch r23 g-temple rv" data-label="PORTRAIT in arch mask · bride at Bhaktapur Durbar Square window"></div>
+      <div class="rv">
+        <span class="deva">नमस्ते</span>
+        <p class="eyebrow">Vibeshots Nepal</p>
+        <h2 class="h-l">We don't direct your wedding.<br><span class="it">We feel it, then frame it.</span></h2>
+        <p class="lead">Born in the lanes of Bhaktapur, we photograph Nepali weddings the way families remember them: the nervous laugh before the tika, Aama's tears at bidaai, the dance nobody planned. Calm on the day, honest in the edit, cinematic in the film.</p>
+        <p class="sig">— Team Vibeshots</p>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-line" href="#" data-go="contact"><span class="lbl">Our story</span></a>
+          <a class="btn btn-ghost" href="#" data-go="story">See a full wedding <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+    <aside class="anno"><b>2</b>The arch mask comes from the carved windows and doors of Bhaktapur Durbar Square. It is the main "Nepali" cue, used across the site.</aside>
+  </section>
+
+  <div class="orn"><i></i></div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="deva">विवाह कथाहरू</span><h2 class="h2">Wedding stories</h2></div>
+        <a class="btn btn-ghost" href="#" data-go="story">All stories <span class="arr">→</span></a>
+      </div>
+      <div class="stories">
+        <a class="story rv" href="#" data-go="story">
+          <div class="ph g-sindoor" data-label="HERO · sindoor ceremony close-up, red saree, gold jewellery"></div>
+          <div class="cap"><h3 class="h3">Aashma &amp; Rohan</h3><p class="meta">Bhaktapur · Mangsir 2082</p><div class="chips"><span class="chip">Haldi</span><span class="chip">Janti</span><span class="chip">Kanyadan</span><span class="chip">Reception</span></div></div>
+        </a>
+        <a class="story rv" href="#" data-go="story">
+          <div class="ph r32 g-night" data-label="Reception stage, warm lights, couple dancing"></div>
+          <div class="cap"><h3 class="h3">Pratiksha &amp; Sujan</h3><p class="meta">Soaltee, Kathmandu · Magh 2082</p></div>
+        </a>
+        <a class="story rv" href="#" data-go="story">
+          <div class="ph r32 g-gold" data-label="Newari wedding, Patan courtyard, swagan ritual"></div>
+          <div class="cap"><h3 class="h3">Rasana &amp; Bikash</h3><p class="meta">Patan · Falgun 2082 · Newari</p></div>
+        </a>
+      </div>
+    </div>
+    <aside class="anno"><b>3</b>The portfolio unit is the couple's story (House on the Clouds pattern). Show names, venue, BS month and ceremony tags. Sample names only.</aside>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap sec-head" style="margin-bottom:32px">
+      <div><span class="deva">संस्कार</span><h2 class="h2">Every ceremony, covered</h2></div>
+      <p class="muted" style="max-width:40ch">From the first mehendi to the last bidaai. Drag to explore →</p>
+    </div>
+    <div class="rail">
+      <div class="cer"><div class="ph arch g-mehendi" data-label="Mehendi hands"></div><span class="deva">मेहन्दी</span><h4>Mehendi</h4><p>Henna, songs and cousins.</p></div>
+      <div class="cer"><div class="ph arch g-haldi" data-label="Haldi splash"></div><span class="deva">हल्दी</span><h4>Haldi</h4><p>Yellow, loud and joyful.</p></div>
+      <div class="cer"><div class="ph arch g-ivory" data-label="Engagement rings / tika"></div><span class="deva">सगाई</span><h4>Engagement</h4><p>Rings, tika and first family photos.</p></div>
+      <div class="cer"><div class="ph arch g-night" data-label="Janti arrival with band baja"></div><span class="deva">जन्ती</span><h4>Janti</h4><p>Band baja and the grand arrival.</p></div>
+      <div class="cer"><div class="ph arch g-temple" data-label="Kanyadan, parents' hands"></div><span class="deva">कन्यादान</span><h4>Kanyadan</h4><p>The quietest, heaviest moment.</p></div>
+      <div class="cer"><div class="ph arch g-sindoor" data-label="Sindoor and pote"></div><span class="deva">सिन्दूर</span><h4>Sindoor &amp; Pote</h4><p>Red, gold and forever.</p></div>
+      <div class="cer"><div class="ph arch g-bride" data-label="Bidaai, doli, tears"></div><span class="deva">बिदाई</span><h4>Bidaai</h4><p>Goodbyes, held gently.</p></div>
+      <div class="cer"><div class="ph arch g-gold" data-label="Reception portraits"></div><span class="deva">रिसेप्सन</span><h4>Reception</h4><p>Lights, stage and the dance floor.</p></div>
+      <div class="cer"><div class="ph arch g-travel" data-label="Pre-wedding at Nagarkot"></div><span class="deva">प्रि-वेडिङ</span><h4>Pre-wedding</h4><p>Durbar Square, Nagarkot, Pokhara.</p></div>
+    </div>
+    <aside class="anno"><b>4</b>Each card links to a ceremony SEO page (/weddings/ceremonies/haldi and so on). This is the Wedding Kathmandu SEO idea, done cleanly.</aside>
+  </section>
+
+  <section class="film">
+    <div class="ph g-night" data-label="FILM POSTER 21:9 · highlight film still"></div>
+    <div class="ov">
+      <p class="eyebrow" style="color:#eee">Featured film · 4:12</p>
+      <h2 class="h2">"Aama cried first." Aashma &amp; Rohan, Bhaktapur</h2>
+      <button class="btn btn-shutter" aria-label="Play film"><svg><use href="#i-aperture"/></svg></button>
+    </div>
+    <aside class="anno"><b>5</b>Shutter play button: the aperture rotates on hover. The film opens in a lightbox (Vimeo). The embed never loads until it is clicked, which keeps the page fast.</aside>
+  </section>
+
+  <section class="sec cstrip on-dark">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow">Commercial</p><h2 class="comm" style="font-size:clamp(36px,5vw,72px)">Speed. Dust. <span style="color:var(--orange)">Glory.</span></h2></div>
+        <a class="btn btn-comm ghost" href="#" data-go="commercial">All projects<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></a>
+      </div>
+      <div class="cgrid">
+        <a class="ctile" href="#" data-go="commercial"><div class="ph g-moto" data-label="Motocross mid-air"></div><div class="cap"><p class="cl">Dirt Temple</p><p class="nm">Season coverage</p></div></a>
+        <a class="ctile" href="#" data-go="commercial"><div class="ph g-travel" data-label="Hotel / travel"></div><div class="cap"><p class="cl">Hospitality</p><p class="nm">Stay campaign</p></div></a>
+        <a class="ctile" href="#" data-go="commercial"><div class="ph g-product" data-label="Product on black"></div><div class="cap"><p class="cl">Product</p><p class="nm">Launch stills</p></div></a>
+      </div>
+    </div>
+    <div class="marq" aria-hidden="true"><div><span>Client</span><span>Client</span><span>Dirt Temple</span><span>Client</span><span>Client</span><span>Client</span><span>Client</span><span>Client</span><span>Dirt Temple</span><span>Client</span><span>Client</span><span>Client</span></div></div>
+    <aside class="anno"><b>6</b>The dark band signals "another world" without leaving the page. The marquee lists real client names (replace "Client").</aside>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="deva">प्याकेजहरू</span><h2 class="h2">Wedding packages</h2><p class="muted" style="margin-top:8px">Prices in NPR · Kathmandu Valley · early-bird 5% off when booked 90+ days ahead</p></div>
+        <div class="seg" data-seg="side"><span class="pill"></span><button aria-pressed="true" data-side="bride">Bride side</button><button aria-pressed="false" data-side="groom">Groom side</button></div>
+      </div>
+      <div class="tiers" data-tiers="home"></div>
+      <div style="text-align:center;margin-top:40px"><a class="btn btn-line" href="#" data-go="packages"><span class="lbl">All packages, add-ons &amp; travel</span></a></div>
+    </div>
+    <aside class="anno left" style="top:auto;bottom:16px"><b>7</b>The Bride/Groom toggle changes every price live. Each card's WhatsApp button pre-fills the package name (Poudel Digital idea).</aside>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="deva">कसरी</span><h2 class="h2">How booking works</h2></div></div>
+      <div class="steps">
+        <div class="step"><div class="n">01</div><h4>Check your date</h4><p>Send your saait (BS or AD) and venue. We reply within 2 hours.</p></div>
+        <div class="step"><div class="n">02</div><h4>Free 20-min call</h4><p>Meet at the Sallaghari studio, or on Google Meet if you're abroad.</p></div>
+        <div class="step"><div class="n">03</div><h4>Lock with 30%</h4><p>eSewa, Khalti, Fonepay or bank. Book 90+ days early to save 5%.</p></div>
+        <div class="step"><div class="n">04</div><h4>Shoot &amp; deliver</h4><p>Sneak peek in 48 h, gallery in 3–4 weeks, films in 4–6.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec testi" style="background:var(--paper)">
+    <div class="wrap">
+      <div class="ph r45 g-bride" data-label="Couple portrait (the reviewer)"></div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"Sample review: they were everywhere and nowhere at once. Our parents still watch the film every Dashain."</blockquote>
+        <cite>Placeholder · replace with a real Google review</cite>
+        <div style="margin-top:28px"><a class="btn btn-ghost" href="#">Read 80 reviews on Google <span class="arr">→</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="eyebrow">Follow along</p><h2 class="h2">@vibeshotsnepal</h2></div><a class="btn btn-wa" href="https://ig.me/m/vibeshotsnepal" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>DM us on Instagram</a></div>
+      <div class="ig">
+        <div class="ph r11 g-bride" data-label="IG"></div><div class="ph r11 g-haldi" data-label="IG"></div><div class="ph r11 g-moto" data-label="IG"></div>
+        <div class="ph r11 g-gold" data-label="IG"></div><div class="ph r11 g-mehendi" data-label="IG"></div><div class="ph r11 g-temple" data-label="IG"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec final">
+    <div class="wrap">
+      <span class="deva">साइत तय भयो?</span>
+      <h2 class="h-l">Saait fixed? <span class="it">Let's lock your date.</span></h2>
+      <p>Mangsir and Magh fill up fast. Tell us your date and we'll reply within 2 hours.</p>
+      <div class="row">
+        <button class="btn btn-dot" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+        <a class="btn btn-wa" href="https://wa.me/9779862185128?text=Namaste%20Vibeshots%2C%20we%27d%20like%20to%20check%20our%20wedding%20date" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="btn btn-wa" href="viber://chat?number=%2B9779862185128"><svg style="color:#7360F2"><use href="#i-viber"/></svg>Viber</a>
+        <a class="btn btn-line" href="#" data-go="contact" style="color:#fff"><span class="lbl">Book a call</span></a>
+      </div>
+    </div>
+    <aside class="anno"><b>8</b>All four channels you chose: WhatsApp, Viber, the form (Check date) and a call booking. Instagram DM sits in the IG strip and the footer.</aside>
+  </section>
+</div>
+
+<!-- ================================================================= PACKAGES -->
+<div class="page" data-page="packages">
+  <section class="phero">
+    <div class="wrap">
+      <span class="deva">प्याकेज र मूल्य</span>
+      <h1 class="h-l">Packages &amp; prices</h1>
+      <p class="lead">Every package is built from our single-event prices, bundled so the more of your wedding we cover, the more you save. All prices are in NPR for the Kathmandu Valley.</p>
+      <div class="seg" data-seg="side"><span class="pill"></span><button aria-pressed="true" data-side="bride">Bride side</button><button aria-pressed="false" data-side="groom">Groom side</button></div>
+    </div>
+  </section>
+  <section style="padding-bottom:40px">
+    <div class="wrap">
+      <div class="tiers" data-tiers="full"></div>
+
+      <div class="wide-card">
+        <div class="ph g-gold" data-label="Both families together, wide group portrait"></div>
+        <div class="body">
+          <p class="eyebrow">Both families · two teams</p>
+          <div><span class="deva">सम्पूर्ण</span><h3 class="h2">Sampurna</h3></div>
+          <div><div class="price"><small>NPR</small><span data-np="180000"></span></div><p class="was">Sum of events <s>NPR 2,08,000</s> · you save 28,000 · early bird <b data-np="171000"></b></p></div>
+          <ul><li>Engagement</li><li>Haldi / Mehendi</li><li>Pre-wedding shoot (3 h)</li><li>Wedding: bride side + groom side, 2 + 2 crew</li><li>Reception</li><li>Two wedding films + all highlights</li><li>3 albums (250+ photos each)</li><li>3 frames, 12×18</li></ul>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"><button class="btn btn-dot" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button><a class="btn btn-wa" data-wa="Sampurna (both families)" href="#"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a></div>
+        </div>
+      </div>
+
+      <div class="ebanner">
+        <div><p class="eyebrow" style="color:#b9b0a4">Early bird</p><h3 class="h3">Save an extra 5% when you lock your date 90+ days ahead.</h3><p style="color:#a9a196;font-size:14px;margin-top:6px">Book by <b style="color:#fff">15 Kartik</b> for Mangsir weddings · counts down to a real date, never a fake timer</p></div>
+        <div class="cd" id="cd"><div><b>--</b><small>days</small></div><div><b>--</b><small>hrs</small></div><div><b>--</b><small>min</small></div></div>
+      </div>
+
+      <div class="wide-card heritage">
+        <div class="ph g-temple" data-label="Fine-art portrait, Bhaktapur heritage location"></div>
+        <div class="body">
+          <p class="eyebrow" style="color:var(--marigold)">By application · 8 weddings a season</p>
+          <h3 class="h2">Vibeshots <span class="it">Heritage</span></h3>
+          <p class="muted">Our fine-art tier for families who want everything, done slowly and beautifully.</p>
+          <ul><li>2 photographers + 2 cinematographers at every event</li><li>Drone (where permitted)</li><li>Same-day edit reel at the reception</li><li>10–15 min documentary film</li><li>40-page lay-flat heirloom album</li><li>Parents' album + 24×36 canvas</li></ul>
+          <div class="price" style="font-size:36px"><small>from NPR</small><span data-np="275000"></span></div>
+          <div><a class="btn btn-line" href="#" data-go="contact"><span class="lbl">Apply for Heritage</span></a></div>
+        </div>
+      </div>
+    </div>
+    <aside class="anno"><b>9</b>Packages = the sum of the event prices minus a bundle discount (7% to 13.5%), plus 5% early bird. Heritage is the premium sub-line (House on the Clouds / Ibtida idea).</aside>
+  </section>
+
+  <section class="sec" style="padding-top:64px">
+    <div class="wrap two">
+      <div>
+        <span class="deva">एकल कार्यक्रम</span><h2 class="h2" style="margin-bottom:24px">Single events</h2>
+        <div class="tblwrap"><table class="tbl">
+          <thead><tr><th>Event</th><th>Coverage</th><th>NPR</th></tr></thead>
+          <tbody>
+            <tr><td><b>Haldi / Mehendi</b><br><span class="muted" style="font-size:13px">1 photo + 1 video · highlight film</span></td><td>6 h</td><td>30,000</td></tr>
+            <tr><td><b>Engagement</b><br><span class="muted" style="font-size:13px">+ 250+ photo album, 12×18 frame</span></td><td>6–7 h</td><td>38,000</td></tr>
+            <tr><td><b>Wedding · Bride side</b><br><span class="muted" style="font-size:13px">+ album, frame</span></td><td>7–8 h</td><td>40,000</td></tr>
+            <tr><td><b>Wedding · Groom side</b><br><span class="muted" style="font-size:13px">+ album, frame</span></td><td>9–10 h</td><td>45,000</td></tr>
+            <tr><td><b>Wedding · Both sides</b><br><span class="muted" style="font-size:13px">2 + 2 crew · 2 films, 2 albums, 2 frames</span></td><td>9–10 h</td><td>80,000</td></tr>
+            <tr><td><b>Reception</b><br><span class="muted" style="font-size:13px">+ in-venue photoshoot</span></td><td>7–8 h</td><td>35,000</td></tr>
+            <tr><td><b>Pre / post-wedding shoot</b></td><td>3 h</td><td>25,000</td></tr>
+          </tbody>
+        </table></div>
+        <p class="muted" style="font-size:13px;margin-top:12px">All include edited photos on a 64 GB pendrive + Google Drive and a full cinematic highlight video.</p>
+      </div>
+      <div>
+        <span class="deva">थप सेवा</span><h2 class="h2" style="margin-bottom:24px">Add-ons</h2>
+        <div class="tblwrap"><table class="tbl">
+          <thead><tr><th>Add-on</th><th>NPR</th></tr></thead>
+          <tbody>
+            <tr><td>Extra hour (per event)</td><td>4,000</td></tr>
+            <tr><td>Extra photographer (per event)</td><td>12,000</td></tr>
+            <tr><td>Extra videographer (per event)</td><td>15,000</td></tr>
+            <tr><td>Drone (per event, where permitted)</td><td>10,000</td></tr>
+            <tr><td>Same-day edit reel</td><td>8,000</td></tr>
+            <tr><td>Extra 250+ photo album</td><td>12,000</td></tr>
+            <tr><td>Extra 12×18 frame</td><td>3,500</td></tr>
+            <tr><td>24×36 canvas</td><td>9,000</td></tr>
+            <tr><td>Live stream for family abroad</td><td>15,000</td></tr>
+          </tbody>
+        </table></div>
+        <p class="muted" style="font-size:13px;margin-top:12px">Add-ons can be added to any package or single event.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <span class="deva">उपत्यका बाहिर</span><h2 class="h2" style="margin-bottom:12px">Outside the Valley</h2>
+      <p class="lead" style="margin-bottom:32px">We love travelling for weddings. Outside the Kathmandu Valley the coverage price rises by a zone percentage, and the family covers our crew's travel, stay and meals.</p>
+      <div class="tblwrap"><table class="tbl">
+        <thead><tr><th>Zone</th><th>Examples</th><th>Coverage price</th><th>Travel · stay · meals</th></tr></thead>
+        <tbody>
+          <tr><td><span class="z">A</span><b>Kathmandu Valley</b></td><td>Kathmandu, Lalitpur, Bhaktapur, Kirtipur</td><td>No change</td><td>Included</td></tr>
+          <tr><td><span class="z">A+</span><b>Valley edge</b></td><td>Banepa, Dhulikhel, Panauti, Nagarkot, Chitlang</td><td>No change</td><td>Transport NPR 4,000 / day</td></tr>
+          <tr><td><span class="z" style="background:var(--marigold)">B</span><b>Up to ~6 h by road</b></td><td>Pokhara, Chitwan, Gorkha, Hetauda, Nuwakot</td><td><b>+15%</b></td><td>Family covers transport, rooms (1 per 2 crew) and meals</td></tr>
+          <tr><td><span class="z" style="background:var(--sindoor)">C</span><b>Far / by flight</b></td><td>Butwal, Biratnagar, Janakpur, Birgunj, Dharan, Nepalgunj, Dhangadhi, hills</td><td><b>+25%</b></td><td>As B, plus flights where the road takes 8+ h. Travel days at 50% of the day rate.</td></tr>
+          <tr><td><span class="z" style="background:var(--orange)">✈</span><b>International</b></td><td>India, Bhutan, Thailand, Dubai…</td><td>Custom quote</td><td>Visas, flights, stay</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:14px;margin-top:14px">Example: Mangal (bride side) in Pokhara = 1,18,000 × 1.15 = <b>NPR 1,35,700</b> + crew travel and stay.</p>
+    </div>
+    <aside class="anno"><b>10</b>None of the Nepali competitors we reviewed publishes outside-Valley pricing. Doing it is a trust edge and cuts back-and-forth on WhatsApp.</aside>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="h2" style="margin-bottom:28px">Payment &amp; delivery</h2>
+      <div class="terms">
+        <div class="term"><div class="big">30%</div><p>Advance locks your date. You can move it once within 12 months.</p></div>
+        <div class="term"><div class="big">50%</div><p>On the first event day. The last 20% is due before the album and final delivery.</p></div>
+        <div class="term"><div class="big">48 h</div><p>Sneak peek of 15–20 photos. Full gallery in 3–4 weeks.</p></div>
+        <div class="term"><div class="big">4–6 wk</div><p>Highlight films. Albums 4–5 weeks after you select photos.</p></div>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:16px">We accept bank transfer, eSewa, Khalti, Fonepay QR and cash.</p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap" style="max-width:900px">
+      <span class="deva">प्रश्नहरू</span><h2 class="h2" style="margin-bottom:16px">Questions families ask</h2>
+      <details open><summary>Can we mix events that aren't in a package?</summary><p>Yes. Pick any events from the single-event list. Three or more events get a bundle discount close to the nearest package.</p></details>
+      <details><summary>What if our ceremony runs late?</summary><p>We never leave mid-ritual. Overtime is NPR 4,000 per hour, agreed on the day with the family.</p></details>
+      <details><summary>Do you cover Newari, Brahmin, Chhetri, Madhesi and Tamang weddings?</summary><p>Yes. We study the rituals with you before the day so we're in the right place at the right moment.</p></details>
+      <details><summary>How many photos will we get?</summary><p>Usually 600–1,200 edited photos per wedding day, and 250+ in the printed album.</p></details>
+      <details><summary>Can relatives abroad watch live?</summary><p>Yes, with the live-stream add-on (YouTube or Facebook, private link).</p></details>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================= STORY -->
+<div class="page" data-page="story">
+  <section class="shero">
+    <div class="ph g-sindoor" data-label="FULL-BLEED HERO · the strongest frame of the wedding"></div>
+    <div class="shade" style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.65),transparent 60%)"></div>
+    <div class="wrap in">
+      <span class="deva" style="color:#F0C27A">शुभ विवाह</span>
+      <h1 class="h-xl">Aashma &amp; Rohan</h1>
+      <p class="eyebrow" style="color:#eee;margin-top:14px">Bhaktapur Durbar Square · Mangsir 2082 (Dec 2025)</p>
+    </div>
+    <aside class="anno"><b>11</b>Story template (CMS). Sample names. Dates are shown in BS + AD, because families think in BS.</aside>
+  </section>
+  <div class="wrap">
+    <div class="facts">
+      <div><small>Ceremonies</small><b>Haldi, Janti, Kanyadan, Sindoor, Reception</b></div>
+      <div><small>Venue</small><b>Family home, Bhaktapur · Hotel, Kathmandu</b></div>
+      <div><small>Team</small><b>2 photographers · 2 cinematographers</b></div>
+      <div><small>Package</small><b>Mangal · both sides</b></div>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="prose wrap">
+      <p class="drop">Aashma's family home sits two lanes from Taumadhi Square, and the haldi spilled out onto the street before 8am. Placeholder story copy: around 150 words, written by the team in a warm voice. Mention the venue, ceremonies, a funny moment and an emotional one. It reads well and helps Google rank the venue and ceremony keywords.</p>
+      <p>By the time the janti arrived with the band baja, half the tole was dancing. Rohan's grandmother insisted on her own portrait, and it became the favourite photo of the whole wedding.</p>
+    </div>
+  </section>
+  <div class="wrap gal">
+    <div class="ph f r219 g-haldi" data-label="FULL · haldi in the courtyard"></div>
+    <div class="ph h r45 g-bride" data-label="HALF · bride portrait, red saree"></div>
+    <div class="ph h r45 g-ivory" data-label="HALF · details: pote, tilhari, mehendi"></div>
+    <div class="ph t r23 g-night" data-label="THIRD"></div><div class="ph t r23 g-temple" data-label="THIRD"></div><div class="ph t r23 g-gold" data-label="THIRD"></div>
+    <div class="ph f r169 g-night" style="display:grid;place-items:center" data-label="FILM · highlight 4:12"><button class="btn btn-shutter" aria-label="Play film"><svg><use href="#i-aperture"/></svg></button></div>
+    <div class="ph h r32 g-sindoor" data-label="HALF · sindoor"></div><div class="ph h r32 g-bride" data-label="HALF · bidaai"></div>
+  </div>
+  <section class="sec">
+    <div class="wrap" style="max-width:900px;text-align:center">
+      <blockquote class="h2 it">"Sample couple quote, one or two lines from the couple about the day."</blockquote>
+      <p class="eyebrow" style="margin-top:20px">— Aashma &amp; Rohan</p>
+    </div>
+  </section>
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h3 class="h3" style="margin-bottom:20px">The dream team</h3>
+      <div class="vendors">
+        <a href="#"><small>Venue</small>Venue name →</a>
+        <a href="#"><small>Makeup</small>Makeup artist →</a>
+        <a href="#"><small>Mehendi</small>Mehendi artist →</a>
+        <a href="#"><small>Decor</small>Decor studio →</a>
+        <a href="#"><small>Bridal wear</small>Saree / lehenga house →</a>
+        <a href="#"><small>Jewellery</small>Jeweller →</a>
+      </div>
+    </div>
+    <aside class="anno"><b>12</b>Vendor credits (Two Mann idea). Tag each vendor on Instagram too. They share the post, which brings free referrals and backlinks.</aside>
+  </section>
+  <div class="nextst">
+    <a href="#"><div class="ph g-night" data-label="Previous story"></div><span><small>← Previous</small>Pratiksha &amp; Sujan</span></a>
+    <a href="#"><div class="ph g-gold" data-label="Next story"></div><span><small>Next →</small>Rasana &amp; Bikash</span></a>
+  </div>
+</div>
+
+<!-- ================================================================= COMMERCIAL -->
+<div class="page on-dark" data-page="commercial">
+  <section class="chero">
+    <div class="ph g-moto" data-label="21:9 MOTION LOOP · motocross / rally / car rolling shot"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85),rgba(0,0,0,.1) 60%)"></div>
+    <div class="wrap in">
+      <p class="official"><i></i>Official media partner · Dirt Temple (example, confirm)</p>
+      <h1 class="comm">Made in Bhaktapur.<br><span>Shot for the world.</span></h1>
+      <div class="row">
+        <a class="btn btn-comm" href="#brief">Start a project<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></a>
+        <a class="btn btn-comm ghost" href="#">Watch showreel<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+    <aside class="anno"><b>13</b>The commercial world: black, orange and wide heavy type that echoes the bold logo wordmark. The buttons are square, not pills. Use an "Official ___" trust line, Larry Chen style.</aside>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="filters">
+        <div class="seg" data-seg="mode"><span class="pill"></span><button aria-pressed="true" data-mode="all">All</button><button aria-pressed="false" data-mode="stills">Stills</button><button aria-pressed="false" data-mode="motion">Motion</button></div>
+        <div class="fchips">
+          <button class="fchip" aria-pressed="true" data-f="all">All</button>
+          <button class="fchip" aria-pressed="false" data-f="moto">Motorsport</button>
+          <button class="fchip" aria-pressed="false" data-f="auto">Automotive</button>
+          <button class="fchip" aria-pressed="false" data-f="travel">Travel &amp; Hospitality</button>
+          <button class="fchip" aria-pressed="false" data-f="brand">Brands &amp; Product</button>
+          <button class="fchip" aria-pressed="false" data-f="event">Events</button>
+        </div>
+      </div>
+      <div class="pgrid">
+        <a class="ctile big" data-s="moto" data-t="stills motion" href="#"><div class="ph g-moto" data-label="Motocross mid-air"></div><span class="ty">Stills + Film</span><div class="cap"><p class="cl">Dirt Temple × Vibeshots</p><p class="nm">Season coverage</p></div></a>
+        <a class="ctile" data-s="auto" data-t="motion" href="#"><div class="ph g-moto2" data-label="Bike launch TVC"></div><span class="ty">Film</span><div class="cap"><p class="cl">Moto brand</p><p class="nm">Launch film</p></div></a>
+        <a class="ctile" data-s="travel" data-t="stills" href="#"><div class="ph g-travel" data-label="Lakeside hotel"></div><span class="ty">Stills</span><div class="cap"><p class="cl">Hotel</p><p class="nm">Stay campaign</p></div></a>
+        <a class="ctile" data-s="brand" data-t="stills" href="#"><div class="ph g-product" data-label="Product on black"></div><span class="ty">Stills</span><div class="cap"><p class="cl">Camera brand</p><p class="nm">Festival content</p></div></a>
+        <a class="ctile" data-s="event" data-t="stills motion" href="#"><div class="ph g-night" data-label="Concert / corporate event"></div><span class="ty">Stills + Film</span><div class="cap"><p class="cl">Event</p><p class="nm">Aftermovie</p></div></a>
+        <a class="ctile" data-s="moto" data-t="stills" href="#"><div class="ph g-moto2" data-label="Rally car, dust"></div><span class="ty">Stills</span><div class="cap"><p class="cl">Rally</p><p class="nm">Hill stage</p></div></a>
+        <a class="ctile" data-s="travel" data-t="motion" href="#"><div class="ph g-travel" data-label="Trek / travel film"></div><span class="ty">Film</span><div class="cap"><p class="cl">Travel</p><p class="nm">Destination film</p></div></a>
+      </div>
+    </div>
+    <aside class="anno"><b>14</b>Stills / Motion switch (Easton Chang) plus sector chips. Both filter live. Each case study page: client credit line → brief → images and film → results → next (Amy Shore).</aside>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <p class="eyebrow" style="margin-bottom:20px">Trusted by</p>
+      <div class="logos"><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div><div>LOGO</div></div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="comm" style="font-size:clamp(32px,4.4vw,60px);margin-bottom:32px">What we make</h2>
+      <div class="svc">
+        <div><div class="k">01</div><h4>Campaign stills</h4><p>Hero images for ads, billboards and launches.</p></div>
+        <div><div class="k">02</div><h4>Brand films &amp; TVC</h4><p>Concept to colour grade. 4K, drone, gimbal and car rigs.</p></div>
+        <div><div class="k">03</div><h4>Motorsport coverage</h4><p>Race weekends with same-day selects for socials.</p></div>
+        <div><div class="k">04</div><h4>Social content packs</h4><p>Monthly reels and photo sets for brands.</p></div>
+        <div><div class="k">05</div><h4>Travel &amp; hospitality</h4><p>Hotels, resorts and destinations, from rooms to reels.</p></div>
+        <div><div class="k">06</div><h4>Events</h4><p>Concerts, corporate events and aftermovies.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="brief" style="padding-top:0">
+    <div class="wrap two">
+      <div>
+        <h2 class="comm" style="font-size:clamp(32px,4.4vw,60px)">Start a <span style="color:var(--orange)">project</span></h2>
+        <p class="lead" style="margin-top:20px">Send a short brief. We reply within one working day with ideas and a quote.</p>
+        <div class="chan" style="margin-top:28px">
+          <a href="https://wa.me/9779808807033" target="_blank" rel="noopener" style="background:#121214;border-color:#2a2a2e"><span class="ic" style="background:var(--wa)"><svg width="22" height="22"><use href="#i-wa"/></svg></span><span><b>WhatsApp</b><small style="color:var(--steel)">9808807033</small></span></a>
+          <a href="https://ig.me/m/vibeshots_nepal" target="_blank" rel="noopener" style="background:#121214;border-color:#2a2a2e"><span class="ic" style="background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)"><svg width="22" height="22"><use href="#i-ig"/></svg></span><span><b>Instagram</b><small style="color:var(--steel)">@vibeshots_nepal</small></span></a>
+        </div>
+      </div>
+      <form class="form" onsubmit="return fakeSend(this)">
+        <div class="fld"><label for="c1">Name</label><input id="c1" required></div>
+        <div class="fld"><label for="c2">Company</label><input id="c2"></div>
+        <div class="fld"><label for="c3">Email</label><input id="c3" type="email" required></div>
+        <div class="fld"><label for="c4">Phone</label><input id="c4" type="tel" value="+977 "></div>
+        <div class="fld"><label for="c5">Project type</label><select id="c5"><option>Stills</option><option>Film</option><option>Stills + Film</option></select></div>
+        <div class="fld"><label for="c6">Sector</label><select id="c6"><option>Motorsport</option><option>Automotive</option><option>Travel &amp; hospitality</option><option>Brand / product</option><option>Event</option></select></div>
+        <div class="fld"><label for="c7">Shoot dates</label><input id="c7" placeholder="e.g. Poush 2082"></div>
+        <div class="fld"><label for="c8">Budget</label><select id="c8"><option>Under 50k</option><option>50k–1.5 lakh</option><option>1.5–5 lakh</option><option>5 lakh+</option></select></div>
+        <div class="fld full"><label for="c9">Usage</label><input id="c9" placeholder="Social, web, print, TV…"></div>
+        <div class="fld full"><label for="c10">Brief / references</label><textarea id="c10"></textarea></div>
+        <div class="full"><button class="btn btn-comm" type="submit"><span class="lbl">Send brief</span><span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></button></div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================= CONTACT -->
+<div class="page" data-page="contact">
+  <section class="phero" style="padding-bottom:24px">
+    <div class="wrap">
+      <span class="deva">सम्पर्क</span>
+      <h1 class="h-l">Tell us about <span class="it">your wedding</span></h1>
+      <p class="lead">Fill this in once and we'll reply within 2 hours (9am–8pm) on the channel you prefer.</p>
+    </div>
+  </section>
+  <section class="sec contact" style="padding-top:24px">
+    <div class="wrap">
+      <form class="form" onsubmit="return fakeSend(this)">
+        <div class="fld"><label for="f1">Your name *</label><input id="f1" required></div>
+        <div class="fld"><label for="f2">Partner's name</label><input id="f2"></div>
+        <div class="fld full"><span class="lab">You are the… *</span><div class="opts">
+          <label class="opt"><input type="radio" name="who" checked><span>Bride</span></label><label class="opt"><input type="radio" name="who"><span>Groom</span></label><label class="opt"><input type="radio" name="who"><span>Family member</span></label><label class="opt"><input type="radio" name="who"><span>Planner</span></label></div></div>
+        <div class="fld"><label for="f3">Phone (WhatsApp / Viber) *</label><input id="f3" type="tel" value="+977 " required></div>
+        <div class="fld"><label for="f4">Email</label><input id="f4" type="email"></div>
+        <div class="fld full"><span class="lab">Which side do we cover? *</span><div class="opts">
+          <label class="opt"><input type="radio" name="side" checked><span>Bride side</span></label><label class="opt"><input type="radio" name="side"><span>Groom side</span></label><label class="opt"><input type="radio" name="side"><span>Both</span></label></div></div>
+        <div class="fld full"><span class="lab">Events &amp; dates *</span>
+          <div class="evrow"><label class="opt"><input type="checkbox"><span>Engagement</span></label><input type="text" placeholder="e.g. 12 Mangsir 2083" aria-label="Engagement date" class="ev"><span class="bsad"><button type="button" aria-pressed="true">BS</button><button type="button" aria-pressed="false">AD</button></span></div>
+          <div class="evrow"><label class="opt"><input type="checkbox"><span>Haldi / Mehendi</span></label><input type="text" placeholder="e.g. 12 Mangsir 2083" aria-label="Haldi date" class="ev"><span class="bsad"><button type="button" aria-pressed="true">BS</button><button type="button" aria-pressed="false">AD</button></span></div>
+          <div class="evrow"><label class="opt"><input type="checkbox"><span>Pre-wedding</span></label><input type="text" placeholder="e.g. 12 Mangsir 2083" aria-label="Pre-wedding date" class="ev"><span class="bsad"><button type="button" aria-pressed="true">BS</button><button type="button" aria-pressed="false">AD</button></span></div>
+          <div class="evrow"><label class="opt"><input type="checkbox" checked><span>Wedding</span></label><input type="text" placeholder="e.g. 12 Mangsir 2083" aria-label="Wedding date" class="ev"><span class="bsad"><button type="button" aria-pressed="true">BS</button><button type="button" aria-pressed="false">AD</button></span></div>
+          <div class="evrow"><label class="opt"><input type="checkbox"><span>Reception</span></label><input type="text" placeholder="e.g. 12 Mangsir 2083" aria-label="Reception date" class="ev"><span class="bsad"><button type="button" aria-pressed="true">BS</button><button type="button" aria-pressed="false">AD</button></span></div>
+        </div>
+        <div class="fld"><label for="f5">Venue / city *</label><input id="f5" placeholder="e.g. Bhaktapur, family home" required></div>
+        <div class="fld"><label for="f6">Package of interest</label><select id="f6"><option>Not sure yet</option><option>Saath</option><option>Mangal</option><option>Shubha</option><option>Sampurna</option><option>Heritage</option></select></div>
+        <div class="fld"><label for="f7">Budget</label><select id="f7"><option>Under 75k</option><option>75k–1.25 lakh</option><option>1.25–1.75 lakh</option><option>1.75 lakh+</option></select></div>
+        <div class="fld"><label for="f8">How did you hear about us?</label><select id="f8"><option>Instagram</option><option>Facebook</option><option>TikTok</option><option>Google</option><option>Friend / family</option><option>Venue</option><option>Other</option></select></div>
+        <div class="fld full"><label for="f9">Anything else?</label><textarea id="f9" placeholder="Rituals, community (Newari, Brahmin…), guest count, dreams…"></textarea></div>
+        <div class="fld full"><span class="lab">Best way to reply *</span><div class="opts">
+          <label class="opt"><input type="radio" name="via" checked><span>WhatsApp</span></label><label class="opt"><input type="radio" name="via"><span>Viber</span></label><label class="opt"><input type="radio" name="via"><span>Call</span></label><label class="opt"><input type="radio" name="via"><span>Email</span></label></div></div>
+        <div class="full" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center"><button class="btn btn-dot" type="submit"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Send inquiry</span></button><span class="muted" style="font-size:13px">We never share your number.</span></div>
+      </form>
+      <aside>
+        <div class="chan">
+          <a href="https://wa.me/9779862185128" target="_blank" rel="noopener"><span class="ic" style="background:var(--wa)"><svg width="22" height="22"><use href="#i-wa"/></svg></span><span><b>WhatsApp</b><small>9862185128 · fastest reply</small></span></a>
+          <a href="viber://chat?number=%2B9779862185128"><span class="ic" style="background:#7360F2"><svg width="22" height="22"><use href="#i-viber"/></svg></span><span><b>Viber</b><small>9862185128</small></span></a>
+          <a href="https://ig.me/m/vibeshotsnepal" target="_blank" rel="noopener"><span class="ic" style="background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)"><svg width="22" height="22"><use href="#i-ig"/></svg></span><span><b>Instagram DM</b><small>@vibeshotsnepal</small></span></a>
+          <a href="#"><span class="ic" style="background:var(--ink)"><svg width="22" height="22"><use href="#i-cal"/></svg></span><span><b>Book a 20-min call</b><small>Studio or Google Meet · Cal.com</small></span></a>
+          <a href="tel:+9779808807033"><span class="ic" style="background:var(--sindoor)"><svg width="22" height="22"><use href="#i-phone"/></svg></span><span><b>Call</b><small>9862185128 / 9808807033</small></span></a>
+        </div>
+        <div class="ph r32 g-ivory" style="margin-top:16px;border-radius:14px" data-label="MAP · Sallaghari, Bhaktapur (Google Maps embed)"></div>
+        <p class="muted" style="font-size:14px;margin-top:12px">Studio: Sallaghari, Bhaktapur · Sun–Fri 10am–6pm · by appointment on Saturdays</p>
+      </aside>
+    </div>
+    <aside class="anno"><b>15</b>Form fields mix Sanshine (budget, type) and Two Mann (how you heard about us). Every date field has a BS/AD switch. The right column has all four channels.</aside>
+  </section>
+</div>
+
+<!-- ================================================================= DESIGN SYSTEM -->
+<div class="page" data-page="system">
+  <section class="phero" style="text-align:left">
+    <div class="wrap">
+      <p class="eyebrow">Design system v0.1</p>
+      <h1 class="h-l">Two worlds, <span class="it">one lens.</span></h1>
+      <p class="lead">Live tokens, type and buttons. Hover the buttons to see their states. Full spec: <code>docs/02-design-system.md</code>.</p>
+    </div>
+  </section>
+  <div class="wrap" style="padding-bottom:120px">
+    <div class="ds-row"><h3>Logo</h3>
+      <div class="logo-tiles">
+        <div style="background:var(--ivory);border:1px solid var(--line)"><img src="assets/logo-dark.png" alt="Logo on ivory" style="width:240px"></div>
+        <div style="background:var(--asphalt)"><img src="assets/logo-light.png" alt="Logo on black" style="width:240px"></div>
+        <div class="g-bride ph" style="border-radius:14px;display:grid;place-items:center" data-label="On photo + gradient"><img src="assets/logo-light.png" alt="Logo on photo" style="width:240px;position:relative;z-index:1"></div>
+      </div>
+    </div>
+    <div class="ds-row"><h3>Colour · Weddings</h3>
+      <div class="sw">
+        <div><i style="background:#F6F0E6"></i><span><b>Ivory</b>#F6F0E6</span></div>
+        <div><i style="background:#FBF8F2"></i><span><b>Paper</b>#FBF8F2</span></div>
+        <div><i style="background:#0B0B0C"></i><span><b>Ink</b>#0B0B0C</span></div>
+        <div><i style="background:#4A4542"></i><span><b>Ink soft</b>#4A4542</span></div>
+        <div><i style="background:#7A1820"></i><span><b>Sindoor</b>#7A1820</span></div>
+        <div><i style="background:#C8962E"></i><span><b>Marigold</b>#C8962E</span></div>
+        <div><i style="background:#F15A2B"></i><span><b>Logo orange</b>#F15A2B</span></div>
+        <div><i style="background:#E2D8C8"></i><span><b>Line</b>#E2D8C8</span></div>
+      </div>
+    </div>
+    <div class="ds-row"><h3>Colour · Commercial</h3>
+      <div class="sw">
+        <div><i style="background:#0A0A0B"></i><span><b>Asphalt</b>#0A0A0B</span></div>
+        <div><i style="background:#17171A"></i><span><b>Carbon</b>#17171A</span></div>
+        <div><i style="background:#F4F4F2"></i><span><b>Chalk</b>#F4F4F2</span></div>
+        <div><i style="background:#8A8A90"></i><span><b>Steel</b>#8A8A90</span></div>
+        <div><i style="background:#F15A2B"></i><span><b>Orange</b>#F15A2B</span></div>
+      </div>
+    </div>
+    <div class="ds-row"><h3>Type</h3>
+      <div style="display:grid;gap:28px">
+        <div><p class="eyebrow">Display · Cormorant Garamond (premium: Canela)</p><p class="h-xl">Aashma <span class="it">&amp;</span> Rohan</p></div>
+        <div><p class="eyebrow">Devanagari accent · Rozha One</p><p style="font:48px/1.2 var(--deva);color:var(--sindoor)">शुभ विवाह · संस्कार · धन्यवाद</p></div>
+        <div><p class="eyebrow">Body · Manrope (premium: Neue Montreal)</p><p class="lead">From the first haldi to the last bidaai, we're there and quietly ready. Honest edits, cinematic films, delivered on time.</p></div>
+        <div style="background:var(--asphalt);color:var(--chalk);padding:28px;border-radius:14px"><p class="eyebrow" style="color:var(--steel)">Commercial display · Archivo Expanded 900 (premium: Druk Wide)</p><p class="comm" style="font-size:clamp(40px,6vw,88px)">Speed. Dust. <span style="color:var(--orange)">Glory.</span></p></div>
+        <div><p class="eyebrow">Nepali body · Mukta</p><p style="font:18px/1.7 Mukta,sans-serif">हामी भक्तपुरबाट तपाईंको विवाहका हरेक पल सुन्दर तरिकाले कैद गर्छौं।</p></div>
+      </div>
+    </div>
+    <div class="ds-row"><h3>Buttons</h3>
+      <div>
+        <div class="btn-grid">
+          <button class="btn btn-dot"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Primary · Dot</span></button>
+          <button class="btn btn-line"><span class="lbl">Secondary · Outline</span></button>
+          <a class="btn btn-ghost" href="#">Ghost link <span class="arr">→</span></a>
+          <a class="btn btn-wa" href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+          <button class="btn btn-shutter" aria-label="Play"><svg><use href="#i-aperture"/></svg></button>
+        </div>
+        <div class="btn-grid" style="margin-top:16px">
+          <button class="btn btn-dot sm"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Small 44px</span></button>
+          <button class="btn btn-dot" disabled><span class="dot"></span><span class="lbl">Disabled</span></button>
+          <button class="btn btn-dot loading"><span class="dot"></span><span class="lbl">Loading</span></button>
+          <button class="btn btn-line" id="focusDemo"><span class="lbl">Tab to see focus ring</span></button>
+        </div>
+        <div class="ds-dark on-dark">
+          <button class="btn btn-comm">Commercial primary<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></button>
+          <button class="btn btn-comm ghost">Commercial ghost<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></button>
+          <button class="btn btn-line"><span class="lbl">Outline on dark</span></button>
+        </div>
+        <div style="margin-top:20px"><div class="seg" data-seg="demo"><span class="pill"></span><button aria-pressed="true">Bride side</button><button aria-pressed="false">Groom side</button></div> <span class="muted" style="font-size:13px;margin-left:12px">Segmented toggle with a sliding pill</span></div>
+      </div>
+    </div>
+    <div class="ds-row"><h3>Shapes</h3>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:end">
+        <div class="ph arch g-temple" style="width:160px;aspect-ratio:2/3" data-label="Arch · portraits"></div>
+        <div class="ph g-ivory" style="width:200px;aspect-ratio:3/2" data-label="Print · 2px radius"></div>
+        <div style="width:220px;height:120px;border-radius:16px;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;font-size:13px" class="muted">Card · 16px radius</div>
+        <div style="width:300px"><div class="orn" style="padding:0"><i></i></div><p class="muted" style="font-size:13px;margin-top:8px;text-align:center">Toran divider · marigold hairline</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <img class="logo" src="assets/logo-light.png" alt="Vibeshots Nepal">
+        <p style="max-width:34ch">Wedding and commercial photography and films from Sallaghari, Bhaktapur, serving all of Nepal.</p>
+        <div style="display:flex;gap:10px;margin-top:20px">
+          <a class="icon-btn" href="https://www.instagram.com/vibeshotsnepal/" aria-label="Instagram weddings" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-ig"/></svg></a>
+          <a class="icon-btn" href="https://wa.me/9779862185128" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-wa"/></svg></a>
+          <a class="icon-btn" href="viber://chat?number=%2B9779862185128" aria-label="Viber"><svg width="18" height="18"><use href="#i-viber"/></svg></a>
+        </div>
+      </div>
+      <div><h5>Weddings</h5><ul><li><a href="#" data-go="story">Stories</a></li><li><a href="#">Films</a></li><li><a href="#">Pre-wedding</a></li><li><a href="#" data-go="packages">Packages</a></li><li><a href="#">Client login</a></li></ul></div>
+      <div><h5>Studio</h5><ul><li><a href="#" data-go="commercial">Commercial</a></li><li><a href="#" data-go="contact">About</a></li><li><a href="#">Journal</a></li><li><a href="#" data-go="contact">Contact</a></li></ul></div>
+      <div><h5>Visit</h5><ul><li>Sallaghari, Bhaktapur, Nepal</li><li><a href="tel:+9779862185128">9862185128</a> / <a href="tel:+9779808807033">9808807033</a></li><li>hello@vibeshotsnepal.com</li><li>@vibeshotsnepal · @vibeshots_nepal</li></ul></div>
+    </div>
+    <p class="bye">धन्यवाद</p>
+    <div class="legal"><span>© 2026 Vibeshots Nepal</span><span>Terms · Privacy</span></div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+  <a href="https://wa.me/9779862185128" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-wa"/></svg>WhatsApp</a>
+  <a href="tel:+9779862185128"><svg width="18" height="18"><use href="#i-phone"/></svg>Call</a>
+  <a href="#" data-check><svg width="18" height="18"><use href="#i-cal"/></svg>Check date</a>
+</nav>
+
+<!-- ================= CHECK DATE MODAL ================= -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="box">
+    <button class="x" aria-label="Close" data-close>✕</button>
+    <span class="deva">साइत</span>
+    <h2 class="h3" id="mTitle" style="font-size:32px">Check your date</h2>
+    <p class="muted" style="font-size:14px;margin:6px 0 20px">Enter your date in BS or AD.</p>
+    <form class="form" style="grid-template-columns:1fr" onsubmit="return checkDate(event)">
+      <div class="fld"><label for="m1">Wedding date</label><input id="m1" placeholder="e.g. 18 Mangsir 2083 or 4 Dec 2026" required></div>
+      <div class="fld"><label for="m2">City / venue</label><input id="m2" placeholder="e.g. Bhaktapur" required></div>
+      <button class="btn btn-dot" type="submit" style="justify-content:center"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check availability</span></button>
+    </form>
+    <div class="result" id="mRes"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const np=n=>Number(n).toLocaleString('en-IN');
+  const WA='9779862185128';
+  const waLink=txt=>`https://wa.me/${WA}?text=${encodeURIComponent('Namaste Vibeshots, I\'m interested in the '+txt+' package.')}`;
+
+  /* ---- page switching ---- */
+  function go(p){
+    if(!$(`.page[data-page="${p}"]`)) p='home';
+    $$('.page').forEach(el=>el.classList.toggle('on',el.dataset.page===p));
+    $$('.wf-bar [data-go]').forEach(b=>b.setAttribute('aria-selected',b.dataset.go===p));
+    document.body.dataset.page=p;
+    history.replaceState(null,'','#'+p);
+    window.scrollTo({top:0,behavior:'instant'});
+    onScroll(); reveal(); $$('.seg').forEach(placePill);
+  }
+  document.addEventListener('click',e=>{
+    const g=e.target.closest('[data-go]');
+    if(g){e.preventDefault();go(g.dataset.go);}
+    const c=e.target.closest('[data-check]');
+    if(c){e.preventDefault();openModal();}
+  });
+
+  /* ---- header state ---- */
+  const top=$('#top');
+  function onScroll(){top.classList.toggle('scrolled',scrollY>80);}
+  addEventListener('scroll',onScroll,{passive:true});
+
+  /* ---- annotations ---- */
+  $('#annoToggle').addEventListener('change',e=>document.body.classList.toggle('no-anno',!e.target.checked));
+
+  /* ---- packages ---- */
+  const T=[
+    {id:'saath',nm:'Saath',deva:'साथ',sub:'Essential',events:'Wedding day + Reception',
+     bride:[75000,70000],groom:[80000,75000],
+     inc:['Wedding day + Reception','1 photographer + 1 videographer per event','All edited photos · pendrive + Google Drive','Highlight film per event','1 album (250+ photos) · 1 frame 12×18','Sneak peek in 48 h']},
+    {id:'mangal',nm:'Mangal',deva:'मङ्गल',sub:'Signature',pop:true,
+     bride:[130000,118000],groom:[135000,123000],
+     inc:['Haldi / Mehendi + Pre-wedding shoot + Wedding + Reception','1 + 1 crew per event','All edited photos · pendrive + Drive','Highlights + a combined 4–6 min wedding film','1 album (250+) · 1 frame 12×18','Sneak peek in 48 h']},
+    {id:'shubha',nm:'Shubha',deva:'शुभ',sub:'Grand',
+     bride:[168000,148000],groom:[173000,153000],
+     inc:['Everything in Mangal + Engagement','1 + 1 crew per event','Engagement film + wedding film + highlights','2 albums (wedding + engagement)','2 frames 12×18','Priority editing']}
+  ];
+  let side='bride';
+  function renderTiers(){
+    $$('[data-tiers]').forEach(box=>{
+      const full=box.dataset.tiers==='full';
+      box.innerHTML=T.map(t=>{
+        const [sum,price]=t[side]; const eb=Math.round(price*.95/50)*50;
+        const label=`${t.nm} (${side} side)`;
+        return `<article class="tier${t.pop?' pop':''}">
+          ${t.pop?'<span class="badge">Most popular</span>':''}
+          <div><span class="deva" style="font-size:18px;margin:0">${t.deva}</span><h3 class="nm">${t.nm}</h3><p class="sub">${t.sub}</p></div>
+          <div><div class="price"><small>NPR</small>${np(price)}</div>
+          <p class="was">Sum of events <s>${np(sum)}</s> · save ${np(sum-price)}</p></div>
+          <p class="eb">Early bird: NPR ${np(eb)}</p>
+          <ul>${(full?t.inc:t.inc.slice(0,4)).map(i=>`<li>${i}</li>`).join('')}</ul>
+          <div class="ctas">
+            <button class="btn btn-dot" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+            <a class="btn btn-wa" href="${waLink(label)}" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a>
+          </div></article>`;
+      }).join('');
+    });
+  }
+  $$('[data-np]').forEach(el=>el.textContent=np(el.dataset.np));
+  $$('[data-wa]').forEach(el=>{el.href=waLink(el.dataset.wa);el.target='_blank';el.rel='noopener';});
+
+  /* ---- segmented toggles ---- */
+  function placePill(seg){
+    const on=seg.querySelector('button[aria-pressed=true]'), pill=seg.querySelector('.pill');
+    if(!on||!pill||!on.offsetWidth) return;
+    pill.style.width=on.offsetWidth+'px';
+    pill.style.transform=`translateX(${on.offsetLeft-4}px)`;
+  }
+  $$('.seg').forEach(seg=>{
+    seg.addEventListener('click',e=>{
+      const b=e.target.closest('button'); if(!b) return;
+      seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+      placePill(seg);
+      if(b.dataset.side){side=b.dataset.side;
+        $$('[data-seg=side]').forEach(s=>{s.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.side===side));placePill(s);});
+        renderTiers();}
+      if(b.dataset.mode){mode=b.dataset.mode;filter();}
+    });
+  });
+  addEventListener('resize',()=>$$('.seg').forEach(placePill));
+
+  /* ---- commercial filters ---- */
+  let mode='all', sector='all';
+  function filter(){
+    $$('.pgrid .ctile').forEach(t=>{
+      const okS=sector==='all'||t.dataset.s===sector;
+      const okM=mode==='all'||t.dataset.t.includes(mode);
+      t.classList.toggle('hide',!(okS&&okM));
+    });
+  }
+  $$('.fchip').forEach(c=>c.addEventListener('click',()=>{
+    $$('.fchip').forEach(x=>x.setAttribute('aria-pressed',x===c)); sector=c.dataset.f; filter();
+  }));
+
+  /* ---- BS/AD toggles ---- */
+  $$('.bsad').forEach(g=>g.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    const inp=g.parentElement.querySelector('.ev');
+    if(b.textContent==='AD'){inp.type='date';}else{inp.type='text';inp.placeholder='e.g. 12 Mangsir 2083';}
+  }));
+
+  /* ---- modal ---- */
+  const modal=$('#modal');
+  function openModal(){modal.classList.add('on');$('#mRes').classList.remove('on');setTimeout(()=>$('#m1').focus(),50);}
+  modal.addEventListener('click',e=>{if(e.target===modal||e.target.closest('[data-close]'))modal.classList.remove('on');});
+  addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('on');});
+  window.checkDate=function(e){
+    e.preventDefault();
+    const d=$('#m1').value, c=$('#m2').value, r=$('#mRes');
+    const busy=/mangsir|magh|falgun|dec|jan|feb/i.test(d);
+    const msg=`Namaste Vibeshots, is ${d} in ${c} available?`;
+    r.innerHTML=(busy?'<b>Popular saait.</b> Only a few slots are usually left in this season. ':'<b>Good news, this date is likely available.</b> ')+
+      `<br><a class="btn btn-wa sm" style="margin-top:12px" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(msg)}"><svg><use href="#i-wa"/></svg>Confirm on WhatsApp</a>`;
+    r.classList.add('on');
+    return false;
+  };
+  window.fakeSend=function(f){
+    const b=f.querySelector('[type=submit]'); b.classList.add('loading');
+    setTimeout(()=>{b.classList.remove('loading');b.querySelector('.lbl').textContent='Sent · we\'ll reply soon ✓';},1200);
+    return false;
+  };
+
+  /* ---- early-bird countdown (demo date) ---- */
+  const target=new Date(Date.now()+12*864e5+5*36e5);
+  function tick(){
+    const s=Math.max(0,target-Date.now()), d=Math.floor(s/864e5), h=Math.floor(s%864e5/36e5), m=Math.floor(s%36e5/6e4);
+    const b=$$('#cd b'); b[0].textContent=d; b[1].textContent=h; b[2].textContent=m;
+  }
+  tick(); setInterval(tick,30000);
+
+  /* ---- reveal on scroll ---- */
+  const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.15}):null;
+  function reveal(){$$('.page.on .rv:not(.in)').forEach(el=>io?io.observe(el):el.classList.add('in'));}
+
+  renderTiers();
+  addEventListener('hashchange',()=>go(location.hash.slice(1)));
+  go(location.hash.slice(1)||'home');
+})();
+</script>
+</body>
+</html>
