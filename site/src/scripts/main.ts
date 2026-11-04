@@ -178,7 +178,8 @@ $$<HTMLFormElement>('form[data-form]').forEach((f) => f.addEventListener('submit
     grouped.set(k, [...(grouped.get(k) || []), val]);
   });
   grouped.forEach((vals, k) => {
-    if (k.startsWith('cal-')) return;
+    if (k.startsWith('cal-') || k === 'country-code') return;
+    if (k === 'phone') { lines.push(`phone: ${grouped.get('country-code')?.[0] ?? ''} ${vals[0]}`.replace(': +  ', ': ')); return; }
     if (k.startsWith('date-')) {
       const cal = grouped.get(`cal-${k.slice(5)}`)?.[0] || '';
       lines.push(`${k.slice(5).replace(/-/g, ' ')}: ${vals[0]} ${cal}`.trim());
@@ -191,6 +192,55 @@ $$<HTMLFormElement>('form[data-form]').forEach((f) => f.addEventListener('submit
   const win = window.open(waUrl, '_blank');
   if (win) { win.opener = null; location.href = thanks; } else { location.href = waUrl; }
 }));
+
+/* ---- parallax banners: the photo moves slower than the page ---- */
+const banners = $$('[data-parallax]');
+if (banners.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const vh = innerHeight;
+    const speed = innerWidth < 760 ? 0.1 : 0.2;
+    banners.forEach((b) => {
+      const r = b.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const max = r.height * 0.14;
+      const off = Math.max(-max, Math.min(max, (r.top + r.height / 2 - vh / 2) * -speed));
+      const m = b.querySelector<HTMLElement>('.pmedia');
+      if (m) m.style.transform = `translate3d(0, ${off.toFixed(1)}px, 0) scale(1.04)`;
+    });
+  };
+  const onTick = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', onTick, { passive: true });
+  addEventListener('resize', onTick);
+  update();
+}
+
+/* ---- lightbox for the image wall ---- */
+const lb = $('#lightbox');
+const lbImgs = $$<HTMLImageElement>('[data-lightbox] img');
+if (lb && lbImgs.length) {
+  let i = 0;
+  const img = $<HTMLImageElement>('img', lb)!;
+  const cap = $('.lb-c', lb)!;
+  const show = (n: number) => {
+    i = (n + lbImgs.length) % lbImgs.length;
+    img.src = lbImgs[i].currentSrc || lbImgs[i].src;
+    img.alt = lbImgs[i].alt;
+    cap.textContent = `${i + 1} / ${lbImgs.length}`;
+  };
+  lbImgs.forEach((im, n) => im.closest('.media')?.addEventListener('click', () => { show(n); lb.classList.add('on'); }));
+  $('.lb-x', lb)?.addEventListener('click', () => lb.classList.remove('on'));
+  $('.lb-p', lb)?.addEventListener('click', () => show(i - 1));
+  $('.lb-n', lb)?.addEventListener('click', () => show(i + 1));
+  lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('on'); });
+  addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'ArrowLeft') show(i - 1);
+    if (e.key === 'ArrowRight') show(i + 1);
+    if (e.key === 'Escape') lb.classList.remove('on');
+  });
+}
 
 /* ---- reveal on scroll ---- */
 if ('IntersectionObserver' in window) {

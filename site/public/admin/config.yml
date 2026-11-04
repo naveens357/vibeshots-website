@@ -33,6 +33,7 @@ collections:
     sortable_fields: [date, title]
     fields:
       - { label: Couple names (e.g. Aashma & Rohan), name: title, widget: string }
+      - { label: Story title phrase, name: headline, widget: string, required: false, hint: "A short phrase shown above the names, e.g. Meant to Be, Two Lanes Apart" }
       - { label: Wedding date (AD), name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
       - { label: Date in BS (e.g. Mangsir 2082), name: dateBS, widget: string, required: false }
       - { label: Venue, name: venue, widget: string }
@@ -133,6 +134,75 @@ collections:
       - { label: SEO description, name: seoDescription, widget: text, required: false }
       - { label: Case study text, name: body, widget: markdown }
 
+  # ------------------------------------------------------------------- Films
+  - name: films
+    label: Films
+    label_singular: Film
+    folder: site/src/content/films
+    create: true
+    slug: "{{slug}}"
+    summary: "{{kind}} · {{title}} · {{subtitle}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Couple names / film title, name: title, widget: string }
+      - { label: "Subtitle (e.g. The Bhaktapur Edit)", name: subtitle, widget: string, required: false }
+      - { label: Type, name: kind, widget: select, options: [{ label: Reel (vertical, short), value: reel }, { label: Highlight film, value: highlight }, { label: Full film, value: full }] }
+      - { label: Film link (YouTube or Vimeo), name: url, widget: string, required: false }
+      - { label: "Cover image (shown black-and-white with the names on top)", name: poster, widget: image, required: false, choose_url: false }
+      - { label: Placeholder colour, name: posterTone, widget: select, default: night, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
+      - { label: Date (AD), name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
+      - { label: Date in BS, name: dateBS, widget: string, required: false }
+      - { label: Venue / city, name: venue, widget: string, required: false }
+      - { label: Length (e.g. 4:12), name: length, widget: string, required: false }
+      - { label: Linked wedding story (its file name), name: story, widget: string, required: false, hint: "e.g. aashma-rohan-bhaktapur" }
+      - { label: Sample content (untick when real), name: sample, widget: boolean, default: false }
+
+  # ------------------------------------------------------- Albums & pre-weddings
+  - name: albums
+    label: Albums
+    label_singular: Album
+    folder: site/src/content/albums
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} · {{location}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Couple names, name: title, widget: string }
+      - { label: Location, name: location, widget: string, required: false }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
+      - { label: Short summary, name: excerpt, widget: text, required: false }
+      - { label: Cover photo, name: cover, widget: image, required: false, choose_url: false }
+      - { label: Cover alt text, name: coverAlt, widget: string, required: false }
+      - { label: Cover placeholder colour, name: coverTone, widget: select, default: ivory, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
+      - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
+      - *gallery
+      - { label: Sample content (untick when real), name: sample, widget: boolean, default: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Text, name: body, widget: markdown }
+  - name: prewedding
+    label: Pre-weddings
+    label_singular: Pre-wedding shoot
+    folder: site/src/content/prewedding
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} · {{location}}"
+    sortable_fields: [date, title]
+    fields:
+      - { label: Couple names, name: title, widget: string }
+      - { label: Location, name: location, widget: string, required: false }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
+      - { label: Short summary, name: excerpt, widget: text, required: false }
+      - { label: Cover photo, name: cover, widget: image, required: false, choose_url: false }
+      - { label: Cover alt text, name: coverAlt, widget: string, required: false }
+      - { label: Cover placeholder colour, name: coverTone, widget: select, default: travel, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
+      - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
+      - *gallery
+      - { label: Sample content (untick when real), name: sample, widget: boolean, default: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Text, name: body, widget: markdown }
+
   # ----------------------------------------------------------------- Journal
   - name: journal
     label: Journal
@@ -159,6 +229,58 @@ collections:
     label: Site settings
     editor: { preview: false }
     files:
+      - name: home
+        label: Home page
+        file: site/src/data/home.json
+        fields:
+          - { label: Welcome title, name: welcomeTitle, widget: string }
+          - { label: Welcome lines (one per line), name: welcomeLines, widget: text }
+          - { label: Hero photo, name: heroImage, widget: image, required: false, choose_url: false }
+          - { label: Hero video (MP4, 20–30 s, muted), name: heroVideo, widget: file, required: false, choose_url: false }
+          - { label: Quote, name: quote, widget: text }
+          - { label: Quote by, name: quoteBy, widget: string }
+          - label: "Banner blocks (What we love / believe / do)"
+            name: blocks
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: "Banner photo (shown black-and-white, with parallax)", name: image, widget: image, required: false, choose_url: false }
+              - *tone
+              - { label: Text, name: text, widget: text }
+      - name: images
+        label: Images wall
+        file: site/src/data/images.json
+        fields:
+          - { label: Intro line, name: intro, widget: string }
+          - label: Photos
+            name: images
+            widget: list
+            summary: "{{fields.alt}}{{fields.label}}"
+            fields:
+              - { label: Photo, name: src, widget: image, required: false, choose_url: false }
+              - { label: Alt text, name: alt, widget: string, required: false }
+              - { label: Shape, name: ratio, widget: select, default: "45", options: [{ label: Portrait 4:5, value: "45" }, { label: Tall 2:3, value: "23" }, { label: Landscape 3:2, value: "32" }, { label: Square, value: "11" }] }
+              - { label: Placeholder label, name: label, widget: string, required: false }
+              - *tone
+      - name: faq
+        label: FAQ page
+        file: site/src/data/faq.json
+        fields:
+          - { label: Intro, name: intro, widget: text }
+          - label: Topics
+            name: groups
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Topic, name: title, widget: string }
+              - label: Questions
+                name: items
+                widget: list
+                summary: "{{fields.q}}"
+                fields:
+                  - { label: Question, name: q, widget: string }
+                  - { label: Answer, name: a, widget: text }
       - name: site
         label: Contact, stats & reviews
         file: site/src/data/site.json

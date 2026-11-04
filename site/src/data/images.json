@@ -1,0 +1,131 @@
+{
+  "intro": "A few of our favourite frames. Tap any photo to see it large.",
+  "images": [
+    {
+      "src": "",
+      "alt": "",
+      "tone": "bride",
+      "ratio": "45",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "sindoor",
+      "ratio": "32",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "haldi",
+      "ratio": "23",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "mehendi",
+      "ratio": "11",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "ivory",
+      "ratio": "45",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "night",
+      "ratio": "32",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "gold",
+      "ratio": "45",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "temple",
+      "ratio": "32",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "travel",
+      "ratio": "23",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "bride",
+      "ratio": "11",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "sindoor",
+      "ratio": "45",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "haldi",
+      "ratio": "32",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "mehendi",
+      "ratio": "45",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "night",
+      "ratio": "23",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "gold",
+      "ratio": "11",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "temple",
+      "ratio": "45",
+      "label": "Best-of photo"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "tone": "travel",
+      "ratio": "32",
+      "label": "Best-of photo"
+    }
+  ]
+}

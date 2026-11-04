@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Media from '../components/Media.astro';
+
+const films = (await getCollection('films')).sort((a, b) => +b.data.date - +a.data.date);
+const groups = [
+  { kind: 'reel', title: 'Reels', deva: 'रिल्स', note: 'Short edits for Instagram and TikTok' },
+  { kind: 'highlight', title: 'Highlight films', deva: 'हाइलाइट', note: 'The whole wedding in four to six minutes' },
+  { kind: 'full', title: 'Full films', deva: 'पूर्ण फिल्म', note: 'Every ritual, every speech, every dance' },
+] as const;
+---
+<Base title="Wedding Films" description="Cinematic wedding films by Vibeshots Nepal: Instagram reels, highlight films and full wedding films from Bhaktapur, Kathmandu and across Nepal.">
+  {groups.map((g, gi) => {
+    const list = films.filter((f) => f.data.kind === g.kind);
+    if (!list.length) return null;
+    return (
+      <section class="sec" style={gi === 0 ? 'padding-top:96px' : 'padding-top:24px'} id={g.kind}>
+        <div class="wrap">
+          <div class="stitle rv"><span class="deva" lang="ne">{g.deva}</span>{gi === 0 ? <h1>{g.title}</h1> : <h2>{g.title}</h2>}<p>{g.note}</p></div>
+          <div class:list={['fgrid', { reels: g.kind === 'reel' }]}>
+            {list.map((f) => {
+              const d = f.data;
+              const inner = (
+                <>
+                  <Media src={d.poster} alt={`${d.title} film`} tone={d.posterTone} label="" />
+                  <span class="fname"><b>{d.title}</b>{d.subtitle && <i>{d.subtitle}</i>}</span>
+                  {d.url && <span class="play" aria-hidden="true"><span></span></span>}
+                  <p class="meta">{[d.dateBS, d.venue, d.length].filter(Boolean).join(' · ')}</p>
+                </>
+              );
+              return d.url
+                ? <button class="fcard rv" type="button" data-film={d.url} aria-label={`Play ${d.title}: ${d.subtitle}`}>{inner}</button>
+                : d.story
+                  ? <a class="fcard rv" href={`/weddings/${d.story}/`}>{inner}</a>
+                  : <div class="fcard rv">{inner}</div>;
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+  <section class="sec tight center">
+    <div class="wrap"><a class="link-caps" href="/contact/">Plan your wedding film <span aria-hidden="true">→</span></a></div>
+  </section>
+</Base>

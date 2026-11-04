@@ -4,15 +4,23 @@ import site from '../data/site.json';
 interface Props { over?: boolean }
 const { over = false } = Astro.props;
 const path = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const nav = [
-  { href: '/weddings/', label: 'Weddings' },
+  { href: '/weddings/', label: 'Stories' },
+  { href: '/films/', label: 'Films' },
+  { href: '/images/', label: 'Images' },
+  { href: '/albums/', label: 'Albums' },
+  { href: '/pre-weddings/', label: 'Pre-weddings' },
   { href: '/commercial/', label: 'Commercial' },
-  { href: '/weddings/#films', label: 'Films' },
   { href: '/packages/', label: 'Packages' },
-  { href: '/about/', label: 'About' },
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/contact/', label: 'Contact' },
+];
+const more = [
+  { href: '/about/', label: 'About us' },
   { href: '/journal/', label: 'Journal' },
 ];
-const isCurrent = (href: string) => !href.includes('#') && path.startsWith(href);
+const isCurrent = (href: string) => path.startsWith(`${base}${href}`);
 ---
 <a class="skip" href="#main">Skip to content</a>
 <header class:list={['top', { over }]} id="top">
@@ -38,8 +46,7 @@ const isCurrent = (href: string) => !href.includes('#') && path.startsWith(href)
   </div>
   <ul>
     <li><a href="/">Home</a></li>
-    {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-    <li><a href="/contact/">Contact</a></li>
+    {[...nav, ...more].map((n) => <li><a href={n.href}>{n.label}</a></li>)}
   </ul>
   <div class="bot">
     <button class="btn btn-dot light block" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>

@@ -62,6 +62,14 @@ Full breakdown, add-ons and terms: [docs/03-site-plan.md §5](docs/03-site-plan.
 3. Start content selection (Phase 1). It takes the longest.
 4. Build in Framer from the wireframe and the design system.
 
+## Design v2: minimal, inspired by The Wedding Story (Nov 2026)
+- **Look:** quieter palette (warm off-white, grey text), thin type, spaced-capital section titles between hairlines, and more space.
+- **Home page:** a parallax welcome photo → quote → three black-and-white parallax banners (What we love / believe / do) → stories → films and commercial → packages → team → contact.
+- **Menu:** Stories · Films · Images · Albums · Pre-weddings · Commercial · Packages · FAQ · Contact.
+- **New pages:** Films (reels / highlights / full films), Images (a photo wall with a viewer), Albums, Pre-weddings and a full FAQ.
+- **Stories:** each one has a phrase title.
+- **Contact form:** now asks for guest count and where the client lives, and has a country-code phone field.
+
 ## Research log
 
 | Date | Step |

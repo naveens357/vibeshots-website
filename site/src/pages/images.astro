@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Media from '../components/Media.astro';
+import data from '../data/images.json';
+---
+<Base title="Images" description="A wall of our favourite wedding photographs from Nepal: rituals, portraits and families, photographed by Vibeshots Nepal.">
+  <section class="sec" style="padding-top:96px">
+    <div class="wrap">
+      <div class="stitle"><span class="deva" lang="ne">तस्बिरहरू</span><h1>Images</h1>{data.intro && <p>{data.intro}</p>}</div>
+      <div class="wall" data-lightbox>
+        {data.images.map((im) => <Media class="rv" src={im.src} alt={im.alt} tone={im.tone} label={im.label} ratio={im.ratio} />)}
+      </div>
+    </div>
+  </section>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="">
+    <button class="lb-x" type="button" aria-label="Close">×</button>
+    <button class="lb-p" type="button" aria-label="Previous photo">‹</button>
+    <button class="lb-n" type="button" aria-label="Next photo">›</button>
+    <p class="lb-c"></p>
+  </div>
+</Base>

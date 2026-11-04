@@ -2,189 +2,90 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Media from '../components/Media.astro';
+import PBanner from '../components/PBanner.astro';
 import StoryCard from '../components/StoryCard.astro';
-import ProjectTile from '../components/ProjectTile.astro';
 import PackageTiers from '../components/PackageTiers.astro';
 import SideToggle from '../components/SideToggle.astro';
 import Team from '../components/Team.astro';
 import site from '../data/site.json';
-import packages from '../data/packages.json';
-import { waLink, viberLink, igDm } from '../lib/format';
+import home from '../data/home.json';
+import { waLink } from '../lib/format';
 
 const stories = (await getCollection('stories')).sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || +b.data.date - +a.data.date).slice(0, 3);
-const projects = (await getCollection('projects')).sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || +b.data.date - +a.data.date).slice(0, 3);
-const ceremonies = (await getCollection('ceremonies')).sort((a, b) => a.data.order - b.data.order);
-const filmStory = stories.find((s) => s.data.film) ?? stories[0];
 const t = site.testimonials[0];
 ---
 <Base title={site.name} headerOver>
-  <section class="hero" aria-label="Weddings and commercial work">
-    <a class="door w" href="/weddings/">
-      <Media video={site.heroWeddingVideo} poster={site.heroWeddingPoster} src={site.heroWeddingPoster} tone="bride" label="Hero loop · bride in red saree, sindoor moment, haldi laughter, Bhaktapur golden hour" eager />
-      <div class="shade"></div>
-      <span class="tag">Weddings</span>
-      <div class="in">
-        <span class="deva" lang="ne">शुभ विवाह</span>
-        <h1 class="h-xl">Every vibe,<br><span class="it">every vow.</span></h1>
-        <p>Wedding photography and cinematic films from the heart of Bhaktapur, across the Kathmandu Valley and beyond.</p>
-        <span class="btn btn-dot light"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Explore weddings</span></span>
-      </div>
-    </a>
-    <a class="door c" href="/commercial/">
-      <Media video={site.heroCommercialVideo} poster={site.heroCommercialPoster} src={site.heroCommercialPoster} tone="moto" label="Hero loop · motocross jump, dust, rally car pan" />
-      <div class="shade"></div>
-      <span class="tag">Commercial</span>
-      <div class="in">
-        <h2 class="comm">Made in<br>Bhaktapur.<br><span class="accent">Shot for<br>the world.</span></h2>
-        <p>Motorsport, automotive, travel and brand campaigns, in stills and motion.</p>
-        <span class="btn btn-comm">Commercial work<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></span>
-      </div>
-    </a>
-  </section>
-
-  <div class="proof">
-    <div class="wrap">
-      {site.stats.map((s) => <span><strong>{s.value}</strong>{s.label}</span>)}
-      <span><strong>Sallaghari</strong>Bhaktapur</span>
+  <PBanner variant="hero" as="h1" title={home.welcomeTitle} text={home.welcomeLines} deva="नमस्ते" src={home.heroImage} video={home.heroVideo} tone="bride" label="Hero photo or 20–30 s loop · couple in red saree, Bhaktapur golden hour" eager>
+    <div slot="foot" class="hero-foot">
+      <span class="scroll-cue" aria-hidden="true">Scroll<i></i></span>
+      <a href="/commercial/">Commercial work <span aria-hidden="true">→</span></a>
     </div>
-  </div>
+  </PBanner>
 
-  <section class="sec intro">
-    <div class="wrap">
-      <Media class="rv" ratio="23" arch tone="temple" label="Portrait in arch · bride at a Bhaktapur Durbar Square window" alt="Bride framed by a carved Bhaktapur window" />
-      <div class="rv">
-        <span class="deva" lang="ne">नमस्ते</span>
-        <p class="eyebrow">Vibeshots Nepal</p>
-        <h2 class="h-l">We don't direct your wedding.<br><span class="it">We feel it, then frame it.</span></h2>
-        <p class="lead">Born in the lanes of Bhaktapur, we photograph Nepali weddings the way families remember them: the nervous laugh before the tika, Aama's tears at bidaai, the dance nobody planned. Calm on the day, honest in the edit, cinematic in the film.</p>
-        <p class="sig">— Team Vibeshots</p>
-        <div class="row-btns" style="margin-top:28px">
-          <a class="btn btn-line" href="/about/"><span class="lbl">Our story</span></a>
-          <a class="btn btn-ghost" href="/weddings/">See full weddings <span class="arr">→</span></a>
-        </div>
-      </div>
+  <section class="sec">
+    <div class="wrap quote rv">
+      <blockquote>“{home.quote}”</blockquote>
+      <cite>— {home.quoteBy}</cite>
     </div>
   </section>
+
+  {home.blocks.map((b) => (
+    <>
+      <PBanner title={b.title} src={b.image} tone={b.tone} bw label="Black-and-white banner photo" />
+      <section class="sec manifesto"><div class="wrap rv">{b.text.split('\n').map((p) => <p>{p}</p>)}</div></section>
+    </>
+  ))}
 
   <div class="orn"><i></i></div>
 
   <section class="sec">
     <div class="wrap">
-      <div class="sec-head">
-        <div><span class="deva" lang="ne">विवाह कथाहरू</span><h2 class="h2">Wedding stories</h2></div>
-        <a class="btn btn-ghost" href="/weddings/">All stories <span class="arr">→</span></a>
-      </div>
-      <div class="stories">
-        {stories.map((s, i) => <StoryCard story={s} ratio={i === 0 ? '' : '32'} chips={i === 0} />)}
-      </div>
-    </div>
-  </section>
-
-  <section class="sec tight" id="ceremonies">
-    <div class="wrap sec-head" style="margin-bottom:32px">
-      <div><span class="deva" lang="ne">संस्कार</span><h2 class="h2">Every ceremony, covered</h2></div>
-      <p class="muted" style="max-width:40ch">From the first mehendi to the last bidaai. Swipe to explore →</p>
-    </div>
-    <div class="rail">
-      {ceremonies.map((c) => (
-        <a class="cer" href={`/weddings/ceremonies/${c.id}/`}>
-          <Media src={c.data.cover} alt={c.data.coverAlt} tone={c.data.coverTone} label={c.data.coverLabel} ratio="34" arch />
-          <span class="deva" lang="ne">{c.data.deva}</span>
-          <h3>{c.data.title}</h3>
-          <p>{c.data.tagline}</p>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  {filmStory && (
-    <section class="film">
-      <Media src={filmStory.data.filmPoster || filmStory.data.cover} tone="night" label="Film poster 21:9 · highlight film still" ratio="219" />
-      <div class="ov">
-        <p class="eyebrow" style="color:#eee">Featured film{filmStory.data.filmLength && ` · ${filmStory.data.filmLength}`}</p>
-        <h2 class="h2">{filmStory.data.title}, {filmStory.data.city || filmStory.data.venue}</h2>
-        {filmStory.data.film
-          ? <button class="btn btn-shutter" type="button" data-film={filmStory.data.film} aria-label={`Play ${filmStory.data.title} film`}><svg><use href="#i-aperture"/></svg></button>
-          : <a class="btn btn-shutter" href={`/weddings/${filmStory.id}/`} aria-label="See the story"><svg><use href="#i-aperture"/></svg></a>}
-      </div>
-    </section>
-  )}
-
-  <section class="sec cstrip on-dark">
-    <div class="wrap">
-      <div class="sec-head">
-        <div><p class="eyebrow">Commercial</p><h2 class="comm" style="font-size:clamp(36px,5vw,72px)">Speed. Dust. <span class="accent">Glory.</span></h2></div>
-        <a class="btn btn-comm ghost" href="/commercial/">All projects<span class="blk"><svg width="16" height="16"><use href="#i-arrow"/></svg></span></a>
-      </div>
-      <div class="cgrid">{projects.map((p) => <ProjectTile project={p} />)}</div>
-    </div>
-    <div class="marq" aria-hidden="true"><div>{[...site.clients, ...site.clients].map((c) => <span>{c}</span>)}</div></div>
-  </section>
-
-  <section class="sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="deva" lang="ne">प्याकेजहरू</span><h2 class="h2">Wedding packages</h2>
-          <p class="muted small" style="margin-top:8px">Prices in NPR · Kathmandu Valley · early bird {packages.earlyBird.percent}% off when booked {packages.earlyBird.daysAhead}+ days ahead</p>
-        </div>
-        <SideToggle />
-      </div>
-      <PackageTiers />
-      <div class="center" style="margin-top:40px"><a class="btn btn-line" href="/packages/"><span class="lbl">All packages, add-ons &amp; travel</span></a></div>
+      <div class="stitle rv"><span class="deva" lang="ne">विवाह कथाहरू</span><h2>Stories</h2><p>Delve into the weddings we've been part of.</p></div>
+      <div class="sgrid">{stories.map((s) => <StoryCard story={s} />)}</div>
+      <p class="center" style="margin-top:56px"><a class="link-caps" href="/weddings/">All stories <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
   <section class="sec tight">
+    <div class="wrap door-split">
+      <a class="door-mini rv" href="/films/">
+        <Media tone="night" label="Film still" />
+        <span class="cap"><b>Films</b><span>Reels, highlights and full wedding films</span></span>
+      </a>
+      <a class="door-mini rv" href="/commercial/">
+        <Media tone="moto" label="Motorsport still" />
+        <span class="cap"><b>Commercial</b><span>Motorsport, travel and brands</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--paper)">
     <div class="wrap">
-      <div class="sec-head"><div><span class="deva" lang="ne">कसरी</span><h2 class="h2">How booking works</h2></div></div>
-      <div class="steps">
-        <div class="step"><div class="n">01</div><h3>Check your date</h3><p>Send your saait (BS or AD) and venue. {site.replyPromise}</p></div>
-        <div class="step"><div class="n">02</div><h3>Free 20-min call</h3><p>Meet at the Sallaghari studio, or on Google Meet if you're abroad.</p></div>
-        <div class="step"><div class="n">03</div><h3>Lock with 30%</h3><p>eSewa, Khalti, Fonepay or bank. Book {packages.earlyBird.daysAhead}+ days early to save {packages.earlyBird.percent}%.</p></div>
-        <div class="step"><div class="n">04</div><h3>Shoot &amp; deliver</h3><p>Sneak peek in 48 h, gallery in 3–4 weeks, films in 4–6.</p></div>
-      </div>
+      <div class="stitle rv"><span class="deva" lang="ne">प्याकेजहरू</span><h2>Packages</h2><p>Kathmandu Valley prices in NPR · 5% early-bird when booked 90+ days ahead</p></div>
+      <div class="center" style="margin:-24px 0 40px"><SideToggle /></div>
+      <PackageTiers />
+      <p class="center" style="margin-top:48px"><a class="link-caps" href="/packages/">All packages, add-ons &amp; travel <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
   <Team link bio={false} />
 
   {t && (
-    <section class="sec testi" style="background:var(--paper)">
-      <div class="wrap">
-        <Media src={t.image} tone={t.tone} label="Couple portrait (the reviewer)" ratio="45" />
-        <div>
-          <div class="stars" aria-label="5 stars">★★★★★</div>
-          <blockquote>“{t.quote}”</blockquote>
-          <cite>{t.name}{t.detail && ` · ${t.detail}`}</cite>
-          {site.googleReviewsUrl && <div style="margin-top:28px"><a class="btn btn-ghost" href={site.googleReviewsUrl} target="_blank" rel="noopener">{site.googleReviewsLabel} <span class="arr">→</span></a></div>}
-        </div>
+    <section class="sec tight">
+      <div class="wrap quote rv">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <blockquote>“{t.quote}”</blockquote>
+        <cite>{t.name}{t.detail && ` · ${t.detail}`}</cite>
       </div>
     </section>
   )}
 
-  <section class="sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <div><p class="eyebrow">Follow along</p><h2 class="h2">@{site.instagramWeddings}</h2></div>
-        <a class="btn btn-wa" href={igDm()} target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>DM us on Instagram</a>
-      </div>
-      <div class="ig">
-        {['bride', 'haldi', 'moto', 'gold', 'mehendi', 'temple'].map((tone) => <a href={`https://www.instagram.com/${site.instagramWeddings}/`} target="_blank" rel="noopener" aria-label="Instagram post"><Media tone={tone} label="Instagram" ratio="11" /></a>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="sec final">
-    <div class="wrap">
-      <span class="deva" lang="ne">साइत तय भयो?</span>
-      <h2 class="h-l">Saait fixed? <span class="it">Let's lock your date.</span></h2>
-      <p>Mangsir and Magh fill up fast. Tell us your date and we'll get back to you within 2 hours.</p>
+  <section class="sec" style="border-top:1px solid var(--line)">
+    <div class="wrap center rv">
+      <div class="stitle" style="margin-bottom:28px"><span class="deva" lang="ne">साइत तय भयो?</span><h2>Let's talk</h2><p>Tell us your date, and we'll reply within 2 hours.</p></div>
       <div class="row-btns">
-        <button class="btn btn-dot light" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+        <button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
         <a class="btn btn-wa" href={waLink("Namaste Vibeshots, we'd like to check our wedding date")} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
-        <a class="btn btn-wa viber" href={viberLink()}><svg><use href="#i-viber"/></svg>Viber</a>
-        <a class="btn btn-line light" href="/contact/"><span class="lbl">Book a call</span></a>
       </div>
     </div>
   </section>

@@ -37,7 +37,7 @@ const related = (await getCollection('stories'))
     <section class="sec tight">
       <div class="wrap">
         <div class="sec-head"><h2 class="h2">Weddings with {d.title.toLowerCase()}</h2></div>
-        <div class="stories grid3">{related.map((s) => <StoryCard story={s} ratio="45" />)}</div>
+        <div class="sgrid">{related.map((s) => <StoryCard story={s} />)}</div>
       </div>
     </section>
   )}

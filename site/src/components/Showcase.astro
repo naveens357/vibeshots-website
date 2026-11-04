@@ -1,0 +1,44 @@
+---
+/** List and detail views shared by Albums and Pre-weddings. */
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import Media from './Media.astro';
+type Entry = CollectionEntry<'albums'> | CollectionEntry<'prewedding'>;
+interface Props { base: string; items?: Entry[]; entry?: Entry }
+const { base, items = [], entry } = Astro.props;
+const Content = entry ? (await render(entry)).Content : null;
+const ratio = (l: string) => (l === 'full' ? '219' : l === 'half' ? '32' : '45');
+---
+{entry && Content ? (
+  <>
+    <section class="sec" style="padding-top:96px;padding-bottom:48px">
+      <div class="wrap">
+        <div class="stitle"><h1>{entry.data.title}</h1>{entry.data.location && <p>{entry.data.location}</p>}</div>
+        <div style="max-width:1100px;margin:0 auto">
+          <Media src={entry.data.cover} alt={entry.data.coverAlt || entry.data.title} tone={entry.data.coverTone} label={entry.data.coverLabel} ratio="32" eager />
+        </div>
+      </div>
+    </section>
+    <section class="sec tight"><div class="wrap"><div class="prose center"><Content /></div></div></section>
+    <div class="wrap gal" style="max-width:1100px">
+      {entry.data.gallery.map((g) => <Media class={g.layout} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={ratio(g.layout)} />)}
+    </div>
+    <section class="sec center">
+      <div class="wrap row-btns" style="justify-content:center;gap:40px">
+        <a class="link-caps" href={base}>← Back</a>
+        <a class="link-caps" href="/contact/">Plan yours <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </>
+) : (
+  <div class="plist">
+    {items.map((it) => (
+      <a class="pitem rv" href={`${base}${it.id}/`}>
+        <Media src={it.data.cover} alt={it.data.coverAlt || it.data.title} tone={it.data.coverTone} label={it.data.coverLabel} />
+        <h3>{it.data.title}</h3>
+        {it.data.location && <p class="where">{it.data.location}</p>}
+        {it.data.excerpt && <p>{it.data.excerpt}</p>}
+      </a>
+    ))}
+  </div>
+)}
