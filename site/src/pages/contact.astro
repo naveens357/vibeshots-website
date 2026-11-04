@@ -7,6 +7,8 @@ import { waLink, viberLink, igDm, tel, mapDirections } from '../lib/format';
 const events = ['Engagement', 'Haldi / Mehendi', 'Pre-wedding', 'Wedding', 'Reception'];
 const pkgNames = [...packages.tiers.map((t) => t.name), packages.sampurna.name, packages.heritage.name];
 const faq = packages.faq.slice(0, 4);
+// Most-asked countries first (Nepal, then where most diaspora clients live).
+const codes = [['+977', 'Nepal'], ['+91', 'India'], ['+61', 'Australia'], ['+1', 'USA / Canada'], ['+44', 'UK'], ['+971', 'UAE'], ['+974', 'Qatar'], ['+966', 'Saudi Arabia'], ['+60', 'Malaysia'], ['+81', 'Japan'], ['+82', 'South Korea'], ['+49', 'Germany'], ['+', 'Other']];
 ---
 <Base title="Contact & Booking" description={`Check your wedding date with Vibeshots Nepal. WhatsApp, Viber, call or send an inquiry. ${site.replyPromise}`}>
   <section class="phero" style="padding-bottom:24px">
@@ -28,7 +30,12 @@ const faq = packages.faq.slice(0, 4);
         <fieldset class="fld full" style="border:0"><legend class="lab">You are the… *</legend><div class="opts">
           {['Bride', 'Groom', 'Family member', 'Planner'].map((v, i) => <label class="opt"><input type="radio" name="role" value={v} checked={i === 0}><span>{v}</span></label>)}
         </div></fieldset>
-        <div class="fld"><label for="f3">Phone (WhatsApp / Viber) *</label><input id="f3" name="phone" type="tel" autocomplete="tel" placeholder="+977 98…" required></div>
+        <div class="fld"><label for="f3">Phone (WhatsApp / Viber) *</label>
+          <div class="phone-row">
+            <select name="country-code" aria-label="Country code">{codes.map(([c, n]) => <option value={c}>{n} {c}</option>)}</select>
+            <input id="f3" name="phone" type="tel" autocomplete="tel-national" placeholder="98…" required>
+          </div>
+        </div>
         <div class="fld"><label for="f4">Email</label><input id="f4" name="email" type="email" autocomplete="email"></div>
         <fieldset class="fld full" style="border:0"><legend class="lab">Which side do we cover? *</legend><div class="opts">
           {['Bride side', 'Groom side', 'Both'].map((v, i) => <label class="opt"><input type="radio" name="side" value={v} checked={i === 0}><span>{v}</span></label>)}
@@ -47,6 +54,8 @@ const faq = packages.faq.slice(0, 4);
           })}
         </fieldset>
         <div class="fld"><label for="f5">Venue / city *</label><input id="f5" name="venue" placeholder="e.g. Bhaktapur, family home" required></div>
+        <div class="fld"><label for="f10">Where do you live?</label><input id="f10" name="lives-in" autocomplete="address-level2" placeholder="e.g. Kathmandu, or Sydney"></div>
+        <div class="fld"><label for="f11">Expected guest count</label><select id="f11" name="guests"><option>Under 150</option><option>150–300</option><option>300–600</option><option>600+</option><option>Not sure yet</option></select></div>
         <div class="fld"><label for="f6">Package of interest</label><select id="f6" name="package"><option>Not sure yet</option>{pkgNames.map((n) => <option>{n}</option>)}</select></div>
         <div class="fld"><label for="f7">Budget</label><select id="f7" name="budget"><option>Under 75k</option><option>75k–1.25 lakh</option><option>1.25–1.75 lakh</option><option>1.75 lakh+</option></select></div>
         <div class="fld"><label for="f8">How did you hear about us?</label><select id="f8" name="source"><option>Instagram</option><option>Facebook</option><option>TikTok</option><option>Google</option><option>Friend / family</option><option>Venue</option><option>Other</option></select></div>

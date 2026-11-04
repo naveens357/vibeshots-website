@@ -1,15 +1,16 @@
 ---
+/** Story card: square photo, phrase title, couple names, month · city, short teaser. */
 import type { CollectionEntry } from 'astro:content';
 import Media from './Media.astro';
-interface Props { story: CollectionEntry<'stories'>; ratio?: string; chips?: boolean }
-const { story, ratio = '32', chips = false } = Astro.props;
+interface Props { story: CollectionEntry<'stories'> }
+const { story } = Astro.props;
 const d = story.data;
+const when = d.date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
 ---
-<a class="story rv" href={`/weddings/${story.id}/`}>
-  <Media src={d.cover} alt={d.coverAlt || `${d.title} wedding`} tone={d.coverTone} label={d.coverLabel} ratio={ratio} />
-  <div class="cap">
-    <h3 class="h3">{d.title}</h3>
-    <p class="meta">{[d.venue, d.dateBS, d.community].filter(Boolean).join(' · ')}</p>
-    {chips && <div class="chips">{d.ceremonies.slice(0, 4).map((c) => <span class="chip">{c}</span>)}</div>}
-  </div>
+<a class="scard bw rv" href={`/weddings/${story.id}/`}>
+  <Media src={d.cover} alt={d.coverAlt || `${d.title} wedding`} tone={d.coverTone} label={d.coverLabel} />
+  <h3>{d.headline || d.title}</h3>
+  {d.headline && <p class="who">{d.title}</p>}
+  <p class="where">{[d.dateBS || when, d.city || d.venue].filter(Boolean).join(' · ')}</p>
+  {d.excerpt && <p>{d.excerpt}</p>}
 </a>

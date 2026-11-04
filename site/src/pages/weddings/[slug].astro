@@ -15,12 +15,13 @@ const d = story.data;
 const { Content } = await render(story);
 const dateAD = d.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
 ---
-<Base title={d.seoTitle || `${d.title} · ${d.venue}`} description={d.seoDescription || d.excerpt} image={d.cover || undefined}>
+<Base title={d.seoTitle || `${d.headline ? `${d.headline}: ` : ''}${d.title} · ${d.venue}`} description={d.seoDescription || d.excerpt} image={d.cover || undefined}>
   <section class="shero">
     <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager />
     <div class="shade"></div>
     <div class="wrap in">
       <span class="deva gold" lang="ne">शुभ विवाह</span>
+      {d.headline && <p class="ttl-caps">{d.headline}</p>}
       <h1 class="h-xl it">{d.title}</h1>
       <p class="eyebrow" style="color:#eee;margin-top:14px">{d.venue} · {d.dateBS ? `${d.dateBS} (${dateAD})` : dateAD}{d.community && ` · ${d.community}`}</p>
     </div>
@@ -84,8 +85,8 @@ const dateAD = d.date.toLocaleDateString('en-GB', { month: 'short', year: 'numer
 
   {prev && next && prev.id !== story.id && (
     <nav class="nextst" aria-label="More stories">
-      <a href={`/weddings/${prev.id}/`}><Media src={prev.data.cover} tone={prev.data.coverTone} label="" /><span><small>← Previous</small>{prev.data.title}</span></a>
-      <a href={`/weddings/${next.id}/`}><Media src={next.data.cover} tone={next.data.coverTone} label="" /><span><small>Next →</small>{next.data.title}</span></a>
+      <a href={`/weddings/${prev.id}/`}><Media src={prev.data.cover} tone={prev.data.coverTone} label="" /><span><small>← Previous</small>{prev.data.headline || prev.data.title}</span></a>
+      <a href={`/weddings/${next.id}/`}><Media src={next.data.cover} tone={next.data.coverTone} label="" /><span><small>Next →</small>{next.data.headline || next.data.title}</span></a>
     </nav>
   )}
 </Base>

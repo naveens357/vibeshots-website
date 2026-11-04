@@ -1,5 +1,6 @@
 ---
 title: "Pratiksha & Sujan"
+headline: "The Dance-Off"
 date: "2026-01-24"
 dateBS: "Magh 2082"
 venue: "Hotel ballroom, Kathmandu"

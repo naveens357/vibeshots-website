@@ -8,13 +8,10 @@ const { link = false, bio = true } = Astro.props;
 ---
 <section class="sec team-sec" id="team">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <span class="deva" lang="ne">हाम्रो टोली</span>
-        <h2 class="h2">{a.teamHeading}</h2>
-        {a.teamIntro && <p class="muted" style="margin-top:10px;max-width:52ch">{a.teamIntro}</p>}
-      </div>
-      {link && <a class="btn btn-ghost" href="/about/#team">Meet the team <span class="arr">→</span></a>}
+    <div class="stitle rv">
+      <span class="deva" lang="ne">हाम्रो टोली</span>
+      <h2>{a.teamHeading}</h2>
+      {a.teamIntro && <p>{a.teamIntro}</p>}
     </div>
     <div class="team4">
       {a.team.map((m) => (
@@ -36,5 +33,6 @@ const { link = false, bio = true } = Astro.props;
         </article>
       ))}
     </div>
+    {link && <p class="center" style="margin-top:56px"><a class="link-caps" href="/about/#team">Meet the team <span aria-hidden="true">→</span></a></p>}
   </div>
 </section>

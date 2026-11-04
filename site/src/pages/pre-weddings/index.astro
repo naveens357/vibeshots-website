@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Showcase from '../../components/Showcase.astro';
+const items = (await getCollection('prewedding')).sort((a, b) => +b.data.date - +a.data.date);
+---
+<Base title="Pre-wedding Shoots" description="Pre-wedding photo shoots in Bhaktapur Durbar Square, Nagarkot, Pokhara and across Nepal by Vibeshots Nepal.">
+  <section class="sec" style="padding-top:96px">
+    <div class="wrap">
+      <div class="stitle"><span class="deva" lang="ne">प्रि-वेडिङ</span><h1>Pre-weddings</h1><p>Durbar squares, mountain sunrises and lakes at golden hour.</p></div>
+      <Showcase base="/pre-weddings/" items={items} />
+    </div>
+  </section>
+</Base>

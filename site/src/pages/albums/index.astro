@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Showcase from '../../components/Showcase.astro';
+const items = (await getCollection('albums')).sort((a, b) => +b.data.date - +a.data.date);
+---
+<Base title="Wedding Albums" description="Heirloom wedding albums and photobooks by Vibeshots Nepal: lay-flat pages, linen covers and parents' albums.">
+  <section class="sec" style="padding-top:96px">
+    <div class="wrap">
+      <div class="stitle"><span class="deva" lang="ne">एल्बम</span><h1>Albums</h1><p>Heirlooms you can hold, made to be opened at every Dashain.</p></div>
+      <Showcase base="/albums/" items={items} />
+    </div>
+  </section>
+</Base>

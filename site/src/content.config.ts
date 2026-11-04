@@ -29,6 +29,8 @@ const stories = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/stories' }),
   schema: z.object({
     title: z.string(),
+    /** Short phrase used as the story's title, e.g. "Meant to Be". */
+    headline: z.string().optional().default(''),
     date: z.coerce.date(),
     dateBS: z.string().optional().default(''),
     venue: z.string(),
@@ -96,4 +98,41 @@ const journal = defineCollection({
   }),
 });
 
-export const collections = { stories, projects, ceremonies, journal };
+const films = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/films' }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional().default(''),
+    kind: z.enum(['reel', 'highlight', 'full']),
+    url: z.string().optional().default(''),
+    poster: z.string().optional().default(''),
+    posterTone: tone,
+    date: z.coerce.date(),
+    dateBS: z.string().optional().default(''),
+    venue: z.string().optional().default(''),
+    length: z.string().optional().default(''),
+    story: z.string().optional().default(''),
+    sample: z.boolean().default(false),
+  }),
+});
+
+// Albums (photobooks) and pre-wedding shoots share one shape.
+const showcase = (base: string) => defineCollection({
+  loader: glob({ pattern: '**/*.md', base }),
+  schema: z.object({
+    title: z.string(),
+    location: z.string().optional().default(''),
+    date: z.coerce.date(),
+    excerpt: z.string().optional().default(''),
+    ...cover,
+    gallery: z.array(galleryItem).default([]),
+    sample: z.boolean().default(false),
+    ...seo,
+  }),
+});
+
+export const collections = {
+  stories, projects, ceremonies, journal, films,
+  albums: showcase('./src/content/albums'),
+  prewedding: showcase('./src/content/prewedding'),
+};

@@ -1,0 +1,89 @@
+{
+  "intro": "The beauty lies in the details. Here is everything families usually ask us.",
+  "groups": [
+    {
+      "title": "Booking",
+      "items": [
+        {
+          "q": "Where are you based, and do you travel?",
+          "a": "Our studio is in Sallaghari, Bhaktapur. We cover the whole Kathmandu Valley at no extra travel cost, travel across Nepal (see the travel zones on the packages page), and take weddings abroad on a custom quote."
+        },
+        {
+          "q": "How do we book our date?",
+          "a": "Check your date with us on WhatsApp or the contact form, have a free 20-minute call, then lock the date with a 30% advance. Dates in Mangsir, Magh and Falgun fill up months ahead."
+        },
+        {
+          "q": "Our saait is only in BS. Is that fine?",
+          "a": "Of course. Send us the date in BS or AD, and we’ll confirm it either way."
+        },
+        {
+          "q": "Can we book only a pre-wedding shoot?",
+          "a": "Yes. A 3-hour pre-wedding shoot is NPR 25,000 on its own, or it’s included in the Mangal, Shubha and Sampurna packages."
+        }
+      ]
+    },
+    {
+      "title": "On the day",
+      "items": [
+        {
+          "q": "Who do we talk to on the wedding day?",
+          "a": "You get one lead from our team, who has your timeline and family list. Ask a cousin or friend to be your point person, so you can enjoy the day."
+        },
+        {
+          "q": "Can we also have another photographer or videographer?",
+          "a": "Yes, as long as we agree positions beforehand so nobody blocks the rituals."
+        },
+        {
+          "q": "Do you know Newari and other community rituals?",
+          "a": "We cover Brahmin, Chhetri, Newari, Madhesi, Tamang and other ceremonies, and go through the order of rituals with you before the day."
+        },
+        {
+          "q": "What are family blessing recordings?",
+          "a": "Short audio or video messages from parents, grandparents and friends, recorded before or on the day. We weave them into your film, and they often become the most precious part."
+        }
+      ]
+    },
+    {
+      "title": "Films & photos",
+      "items": [
+        {
+          "q": "What do we receive?",
+          "a": "All edited photos on a 64 GB pendrive and Google Drive, a highlight film for each event, and the albums and frames in your package. Usually 600–1,200 edited photos for each wedding day."
+        },
+        {
+          "q": "How long does delivery take?",
+          "a": "A sneak peek of 15–20 photos within 48 hours. The full gallery in 3–4 weeks, highlight films in 4–6 weeks, and albums 4–5 weeks after you choose your photos."
+        },
+        {
+          "q": "Who chooses the music and film title?",
+          "a": "We suggest music that fits your story, and you can send us songs you love. We use licensed music where the film will be posted online."
+        },
+        {
+          "q": "Can we get the raw footage or raw photos?",
+          "a": "Raw files are not included, but you can request them for a fee."
+        },
+        {
+          "q": "Will vendors be credited?",
+          "a": "Yes. We credit your venue, makeup, decor and other vendors on your story page, and tag them when we post."
+        }
+      ]
+    },
+    {
+      "title": "Payments & usage",
+      "items": [
+        {
+          "q": "How do payments work?",
+          "a": "30% advance to lock the date, 50% on the first event day, and 20% before the album and final delivery. We accept bank transfer, eSewa, Khalti, Fonepay QR and cash."
+        },
+        {
+          "q": "What if we need to move our date?",
+          "a": "You can move your booking once within 12 months, subject to availability. The advance is not refundable."
+        },
+        {
+          "q": "Will you post our photos online?",
+          "a": "We share selected moments on our website and Instagram only with your consent. You can opt out in the contract at any time."
+        }
+      ]
+    }
+  ]
+}

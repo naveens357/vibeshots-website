@@ -60,6 +60,12 @@ Open `/admin/` on the live site, sign in with GitHub, edit, and click **Publish*
 - **Add a commercial project:** Commercial projects → New. Choose the sector and Stills and/or Motion, so the filters on `/commercial` pick it up.
 - **Change a price:** Site settings → Packages & prices. Every price on the site, including the home page cards, early-bird prices, WhatsApp messages and Google data, updates from this one place.
 - **Early-bird banner:** set the end date and text under Packages & prices → Early-bird offer. The banner hides itself after that date.
+- **Home page:** Site settings → Home page holds the welcome title and lines, the hero photo or video, the quote, and the three banner blocks (What we love / believe / do). Banner photos are shown in black and white and drift slowly as you scroll (parallax).
+- **Story titles:** each wedding story has a "Story title phrase", for example *Two Lanes Apart*. It's shown in spaced capitals above the couple's names, like The Wedding Story's stories.
+- **Films:** Films → New. Pick Reel, Highlight film or Full film, paste the YouTube or Vimeo link, and add a cover image. Covers are shown in black and white with the couple names on top.
+- **Images wall:** Site settings → Images wall. Add your best photos; visitors can tap any of them to see it large.
+- **Albums and Pre-weddings:** each has its own collection, with a cover, a gallery and a short text.
+- **FAQ:** Site settings → FAQ page. Questions are grouped by topic.
 - **Team section:** Site settings → About page → Team. Each member has a name, role, experience (number first, for example "8 years", shown in the round badge), track record ("200+ weddings"), up to 3 specialties, a short bio, an Instagram handle and a 4:5 portrait. The section appears on the home page (without bios) and on the About page (with bios).
 - **Hero videos:** Site settings → Contact, stats & reviews. Upload a 20–30 s muted MP4 under 6 MB, plus a poster image.
 - **Remove a sample:** delete the sample entries once you have 3 or more real ones, or overwrite them and untick "Sample content".

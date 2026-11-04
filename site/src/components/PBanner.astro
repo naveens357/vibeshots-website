@@ -1,0 +1,30 @@
+---
+/** Full-width photo banner whose image drifts slower than the page (parallax). */
+import Media from './Media.astro';
+interface Props {
+  title: string;
+  text?: string;
+  deva?: string;
+  src?: string;
+  video?: string;
+  tone?: string;
+  label?: string;
+  variant?: 'hero' | 'strip';
+  bw?: boolean;
+  as?: 'h1' | 'h2';
+  eager?: boolean;
+}
+const { title, text, deva, src, video, tone = 'night', label = '', variant = 'strip', bw = false, as: Tag = 'h2', eager = false } = Astro.props;
+---
+<section class:list={['pbanner', variant, { bw }]} data-parallax>
+  <div class="pmedia"><Media src={src} video={video} tone={tone} label={label} alt="" eager={eager} /></div>
+  <div class="veil"></div>
+  <div class="in rv">
+    {deva && <span class="deva" lang="ne">{deva}</span>}
+    <Tag class="ttl">{title}</Tag>
+    <svg class="flour" viewBox="0 0 120 14" aria-hidden="true"><path d="M0 7h48M72 7h48" stroke="currentColor" stroke-width=".8"/><path d="M60 1l6 6-6 6-6-6z" fill="none" stroke="currentColor" stroke-width=".8"/></svg>
+    {text && text.split('\n').map((line) => <p>{line}</p>)}
+    <slot />
+  </div>
+  <slot name="foot" />
+</section>
