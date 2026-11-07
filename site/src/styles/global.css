@@ -382,6 +382,7 @@ details p{color:var(--ink-soft);margin-top:10px;max-width:70ch}
 .final .h-l{max-width:16ch;margin:12px auto 20px}
 .final p{color:rgba(255,255,255,.82);margin-bottom:36px}
 .final .deva{color:#F0C27A}
+.final .row-btns{justify-content:center}
 
 /* ---------- page heroes ---------- */
 .phero{padding:96px 0 48px;text-align:center}

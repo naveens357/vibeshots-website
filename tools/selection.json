@@ -24,7 +24,8 @@
     "himalaya": "photo/langtang",
     "mlakes": "photo/pachpokhari",
     "samsara": "media-inbox/samsara food",
-    "jack": "media-inbox/jack painting"
+    "jack": "media-inbox/jack painting",
+    "dirt": "photo/dirt temple mx race"
   },
   "groups": {
     "stories/biwash-swastika": {
@@ -321,7 +322,7 @@
         "lake:22",
         "raceaug:1",
         "manish:8",
-        "himalaya:2",
+        "himalaya:12",
         "sabinx:1",
         "sabin:3"
       ]
@@ -382,6 +383,52 @@
         "jack:7"
       ],
       "cover": "jack:3"
+    },
+    "projects/dirt-temple-mx": {
+      "items": [
+        "dirt:12",
+        "dirt:9",
+        "dirt:13",
+        "dirt:5",
+        "dirt:1",
+        "dirt:2",
+        "dirt:3",
+        "dirt:6",
+        "dirt:15",
+        "dirt:16",
+        "dirt:17",
+        "dirt:18",
+        "dirt:19",
+        "dirt:21",
+        "dirt:22",
+        "dirt:23",
+        "dirt:24"
+      ],
+      "cover": "dirt:12"
+    },
+    "projects/langtang": {
+      "items": [
+        "himalaya:13",
+        "himalaya:1",
+        "himalaya:2",
+        "himalaya:3",
+        "himalaya:4",
+        "himalaya:5",
+        "himalaya:8",
+        "himalaya:9",
+        "himalaya:10",
+        "himalaya:15",
+        "himalaya:16",
+        "himalaya:6",
+        "himalaya:7",
+        "himalaya:11",
+        "himalaya:12",
+        "himalaya:14",
+        "himalaya:18",
+        "himalaya:19",
+        "mlakes:1"
+      ],
+      "cover": "himalaya:13"
     }
   }
 }
