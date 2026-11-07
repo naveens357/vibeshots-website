@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Vibeshots mark: the bold "v" of the wordmark with the orange i-dot -->
+  <rect width="64" height="64" rx="14" fill="#0B0B0C"/>
+  <path d="M8 21h11l8.6 24.5L36.2 21H47L33.4 52H21.6z" fill="#F7F3EC"/>
+  <circle cx="51" cy="20" r="6.2" fill="#F15A2B"/>
+</svg>

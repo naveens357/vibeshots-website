@@ -378,7 +378,7 @@
       "category": "commercial"
     },
     {
-      "src": "/uploads/projects/langtang/01--dsc4149.webp",
+      "src": "/uploads/projects/langtang/13--dsc4149.webp",
       "alt": "Langtang trek",
       "tone": "ivory",
       "ratio": "32",
@@ -386,7 +386,7 @@
       "category": "commercial"
     },
     {
-      "src": "/uploads/projects/langtang/07--dsc4094.webp",
+      "src": "/uploads/projects/langtang/08--dsc4094.webp",
       "alt": "Langtang trek",
       "tone": "ivory",
       "ratio": "32",
@@ -394,10 +394,626 @@
       "category": "commercial"
     },
     {
-      "src": "/uploads/projects/langtang/10--dsc4162.webp",
+      "src": "/uploads/projects/langtang/15--dsc4162.webp",
       "alt": "Langtang trek",
       "tone": "ivory",
       "ratio": "32",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/images-more/01-dsc02521.webp",
+      "alt": "Bride in red silhouetted against golden curtains",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/02-dsc02536.webp",
+      "alt": "Bride in red veil by tall window light",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/03-dsc02577.webp",
+      "alt": "Groom watching the bride step onto the balcony",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/04-dsc02608.webp",
+      "alt": "Bride in red on a staircase below a chandelier",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/05-dsc02620.webp",
+      "alt": "Bride walking up a grand staircase in red",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/06-dsc02535.webp",
+      "alt": "Groom in white daura suruwal and red topi on blue stairs",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/07-dsc03230.webp",
+      "alt": "Black and white shot of the couple walking up the stairs",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/08-dsc03265.webp",
+      "alt": "Couple in red lehenga and navy suit on garden steps",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/09-dsc03306.webp",
+      "alt": "Couple outside a white brick house among plants",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/10-dsc03309.webp",
+      "alt": "Couple sharing a quiet moment at a white brick doorway",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/11-dsc03341.webp",
+      "alt": "Groom in a black suit at a white brick doorway",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/12-dsc04564.webp",
+      "alt": "Bride in red saree on a blue sofa at home",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/13-dsc04566.webp",
+      "alt": "Bride smiling on a blue sofa in a red saree",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/14-dsc04648.webp",
+      "alt": "Groom kissing the bride’s forehead in an arched doorway",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/15-dsc04727-1-.webp",
+      "alt": "Bride leaning on a white railing with a bouquet",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/16-dsc04755.webp",
+      "alt": "Groom lifting the bride’s red veil in the reception courtyard",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/17-dsc00963.webp",
+      "alt": "Couple walking hand in hand outside a white palace venue",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/18-dsc00968.webp",
+      "alt": "Couple outside the reception venue on red-carpeted stairs",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/19-dsc00970.webp",
+      "alt": "Bride and groom walking in front of the white staircases",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/20-dsc00972.webp",
+      "alt": "Couple in front of the reception venue entrance",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/21-dsc00975.webp",
+      "alt": "Bride and groom standing before the grand staircases",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/22-dsc00980.webp",
+      "alt": "Couple holding hands beside the welcome sign",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/23-dsc00984.webp",
+      "alt": "Bride and groom on the venue forecourt",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/24-dsc00986.webp",
+      "alt": "Couple framed by twin red-draped staircases",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/25-dsc00989.webp",
+      "alt": "Bride and groom on a red-draped staircase",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/26-dsc00994.webp",
+      "alt": "Couple posing on the staircase decorated with red silk",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/27-dsc00995.webp",
+      "alt": "Groom on the red-draped staircase rail",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/28-dsc00998.webp",
+      "alt": "Groom in a sage suit by the red silk banister",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/29-dsc01001.webp",
+      "alt": "Bride and groom outside the white venue",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/30-dsc01005.webp",
+      "alt": "Couple smiling by the arched window",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/31-dsc01006.webp",
+      "alt": "Couple sharing a laugh outside the venue",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/32-dsc01017.webp",
+      "alt": "Couple on the stairs beside the red drapes",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/33-dsc01018.webp",
+      "alt": "Couple walking down the decorated staircase",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/34-dsc01021.webp",
+      "alt": "Groom leading the bride down the staircase",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/35-dsc01028.webp",
+      "alt": "Couple beside the welcome sign for Sonam and Rina",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/36-dsc01103.webp",
+      "alt": "Bride in red veil with the groom on the reception stage",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/37-dsc03975.webp",
+      "alt": "Couple walking beside tall windows, bride in red",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/38-dsc03988.webp",
+      "alt": "Couple in a field with banana trees behind",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/39-dsc03992.webp",
+      "alt": "Couple holding each other in a green field",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/40-dsc04009.webp",
+      "alt": "Groom kissing the bride on the forehead in red saree",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/41-dsc04029.webp",
+      "alt": "Close-up of the groom’s lilac suit and brooch",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/42-dsc03333.webp",
+      "alt": "Couple under a painted umbrella with a rainbow over the hills",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/43-dsc03356.webp",
+      "alt": "Groom smiling at the bride’s umbrella on the rooftop",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/44-dsc03397.webp",
+      "alt": "Groom leaning on the rooftop railing above the valley",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/45-dsc03520.webp",
+      "alt": "Bride laughing on the rooftop, mehendi on her hands",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/46--dsc0288.webp",
+      "alt": "Groom walking down brick steps in a garden",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/47--dsc6665.webp",
+      "alt": "Couple under the bride’s red veil, almost touching",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/48--dsc6934.webp",
+      "alt": "Black and white portrait of the couple in a Patan courtyard",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/49-dsc05054.webp",
+      "alt": "Couple stepping through a carved Bhaktapur doorway",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/50-dsc05151.webp",
+      "alt": "Black and white glimpse of the couple through a wooden lattice",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/51-dsc00006-2.webp",
+      "alt": "Bride in red saree before an arched glass door",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/52-dsc00007.webp",
+      "alt": "Bride in red turning before an arched window",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/53--dsc6627.webp",
+      "alt": "Couple holding hands over a fallen log",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/54--dsc6649.webp",
+      "alt": "Groom lifting the bride on a garden path",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/55--dsc6688.webp",
+      "alt": "Groom lying back on a log in the forest",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/56--dsc6759.webp",
+      "alt": "Black and white portrait, foreheads together, by a small house",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/57--dsc6981.webp",
+      "alt": "Bride touching a pink flower in her hair",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/58--dsc7009.webp",
+      "alt": "Bride running along a forest road in white",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/59--dsc7085.webp",
+      "alt": "Couple embracing at sunset under the trees",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/60-dsc01723-enhanced-nr.webp",
+      "alt": "Black and white playful portrait with a friend in sunglasses",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/61-dsc00134.webp",
+      "alt": "Couple dancing below a tall white building",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/62-dsc00140.webp",
+      "alt": "Couple twirling under the white gables",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/63-dsc00165.webp",
+      "alt": "Couple in purple and gold by a white wall",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/64-dsc00172.webp",
+      "alt": "Couple holding hands under the slate roof",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/65-dsc00386.webp",
+      "alt": "Couple dancing on a garden terrace",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "wedding"
+    },
+    {
+      "src": "/uploads/images-more/66--dsc1583.webp",
+      "alt": "Racers lined up on the starting straight",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/images-more/67-dsc03616.webp",
+      "alt": "Young boy in a monastery with a pencil, smiling",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/images-more/68-dsc03830.webp",
+      "alt": "Prayer flags against a steep pine forest",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/images-more/69-dsc03921.webp",
+      "alt": "Close-up of hands holding prayer beads",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/images-more/70-dsc04023.webp",
+      "alt": "Phoksundo Lake below snow-capped peaks",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/images-more/71--dsc4177-2.webp",
+      "alt": "Porter carrying a load through the snow in Langtang",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/images-more/72--dsc4178.webp",
+      "alt": "Yak on a snowy slope in the evening",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/images-more/73--dsc0126.webp",
+      "alt": "Plates of food on a dark table at Samsara Restro",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/projects/dirt-temple-mx/02-dsc01833-2-.webp",
+      "alt": "Motocross rider in the air through the trees",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/projects/dirt-temple-mx/12-dsc02159.webp",
+      "alt": "Rider in red and white kit on a muddy track",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/projects/dirt-temple-mx/14-dsc02239.webp",
+      "alt": "Rider coming through the ruts, framed by a dark edge",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": "",
+      "category": "commercial"
+    },
+    {
+      "src": "/uploads/projects/dirt-temple-mx/17-dsc02394.webp",
+      "alt": "Winner holding a trophy beside a mud-caked bike",
+      "tone": "ivory",
+      "ratio": "23",
       "label": "",
       "category": "commercial"
     }
