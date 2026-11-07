@@ -3,7 +3,8 @@ import packages from '../data/packages.json';
 import { np, earlyBird, waPackage } from '../lib/format';
 interface Props { full?: boolean }
 const { full = false } = Astro.props;
-const sides = ['bride', 'groom'] as const;
+const sides = ['bride', 'groom', 'both'] as const;
+const sideLabel = { bride: 'bride side', groom: 'groom side', both: 'both families' };
 ---
 <div class="tiers" data-side-scope data-side="bride">
   {packages.tiers.map((t) => (
@@ -21,13 +22,21 @@ const sides = ['bride', 'groom'] as const;
           <p class="eb" style="margin-top:14px">Early bird: NPR {np(earlyBird(t[s].price))}</p>
         </div>
       ))}
-      <ul>{(full ? t.includes : t.includes.slice(0, 4)).map((i) => <li>{i}</li>)}</ul>
+      {(['bride', 'both'] as const).map((s) => {
+        const list = s === 'both' ? t.bothIncludes : t.includes;
+        // bride and groom share one list; "both" has its own
+        return <ul class={s === 'both' ? 's-both' : 's-one'}>{(full ? list : list.slice(0, 4)).map((i) => <li>{i}</li>)}</ul>;
+      })}
       <div class="ctas">
         <button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
         {sides.map((s) => (
-          <a class={`btn btn-wa s-${s}`} href={waPackage(`${t.name} (${s} side)`)} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a>
+          <a class={`btn btn-wa s-${s}`} href={waPackage(`${t.name} (${sideLabel[s]})`)} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a>
         ))}
       </div>
     </article>
   ))}
+</div>
+<div class="tier-dots" data-tier-dots role="tablist" aria-label="Packages">
+  {packages.tiers.map((t, i) => <button type="button" role="tab" aria-label={`Show ${t.name}`} aria-current={i === 0 ? 'true' : 'false'}></button>)}
+  <span class="hint" aria-hidden="true">Swipe</span>
 </div>

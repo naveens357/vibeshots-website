@@ -13,14 +13,32 @@
       "label": "Essential",
       "popular": false,
       "events": "Wedding day + Reception",
-      "bride": { "sum": 75000, "price": 70000 },
-      "groom": { "sum": 80000, "price": 75000 },
+      "bride": {
+        "sum": 75000,
+        "price": 70000
+      },
+      "groom": {
+        "sum": 80000,
+        "price": 75000
+      },
+      "both": {
+        "sum": 115000,
+        "price": 107000
+      },
       "includes": [
         "Wedding day + Reception",
         "1 photographer + 1 videographer per event",
         "All edited photos on 64 GB pendrive + Google Drive",
         "Cinematic highlight film for each event",
         "1 album (250+ photos) and 1 frame (12×18)",
+        "Sneak peek within 48 hours"
+      ],
+      "bothIncludes": [
+        "Wedding day (both sides) + Reception",
+        "2 photographers + 2 videographers on the wedding day, 1 + 1 at the reception",
+        "All edited photos on 64 GB pendrive + Google Drive",
+        "Two wedding highlight films (one per side) + reception highlight",
+        "2 albums (250+ photos) and 2 frames (12×18), one set per family",
         "Sneak peek within 48 hours"
       ]
     },
@@ -31,14 +49,32 @@
       "label": "Signature",
       "popular": true,
       "events": "Haldi/Mehendi + Pre-wedding + Wedding + Reception",
-      "bride": { "sum": 130000, "price": 118000 },
-      "groom": { "sum": 135000, "price": 123000 },
+      "bride": {
+        "sum": 130000,
+        "price": 118000
+      },
+      "groom": {
+        "sum": 135000,
+        "price": 123000
+      },
+      "both": {
+        "sum": 170000,
+        "price": 155000
+      },
       "includes": [
         "Haldi / Mehendi, pre-wedding shoot (3 h), wedding day and reception",
         "1 photographer + 1 videographer per event",
         "All edited photos on 64 GB pendrive + Google Drive",
         "Event highlights + a combined 4–6 min wedding film",
         "1 album (250+ photos) and 1 frame (12×18)",
+        "Sneak peek within 48 hours"
+      ],
+      "bothIncludes": [
+        "Haldi / Mehendi, pre-wedding shoot (3 h), wedding day (both sides) and reception",
+        "2 + 2 crew on the wedding day, 1 + 1 at every other event",
+        "All edited photos on 64 GB pendrive + Google Drive",
+        "Event highlights + two wedding films (one per side)",
+        "2 albums (250+ photos) and 2 frames (12×18), one set per family",
         "Sneak peek within 48 hours"
       ]
     },
@@ -49,8 +85,18 @@
       "label": "Grand",
       "popular": false,
       "events": "Engagement + Haldi/Mehendi + Pre-wedding + Wedding + Reception",
-      "bride": { "sum": 168000, "price": 148000 },
-      "groom": { "sum": 173000, "price": 153000 },
+      "bride": {
+        "sum": 168000,
+        "price": 148000
+      },
+      "groom": {
+        "sum": 173000,
+        "price": 153000
+      },
+      "both": {
+        "sum": 208000,
+        "price": 180000
+      },
       "includes": [
         "Everything in Mangal, plus the engagement",
         "1 photographer + 1 videographer per event",
@@ -58,26 +104,17 @@
         "2 albums (wedding + engagement, 250+ photos each)",
         "2 frames (12×18)",
         "Priority editing"
+      ],
+      "bothIncludes": [
+        "Everything in Mangal for both families, plus the engagement",
+        "2 + 2 crew on the wedding day, 1 + 1 at every other event",
+        "Engagement film, two wedding films and every event highlight",
+        "3 albums (bride side, groom side, engagement)",
+        "3 frames (12×18)",
+        "Priority editing"
       ]
     }
   ],
-  "sampurna": {
-    "name": "Sampurna",
-    "deva": "सम्पूर्ण",
-    "label": "Both families · two teams",
-    "sum": 208000,
-    "price": 180000,
-    "includes": [
-      "Engagement",
-      "Haldi / Mehendi",
-      "Pre-wedding shoot (3 h)",
-      "Wedding: bride side + groom side, 2 + 2 crew",
-      "Reception",
-      "Two wedding films + all event highlights",
-      "3 albums (250+ photos each)",
-      "3 frames (12×18)"
-    ]
-  },
   "heritage": {
     "name": "Heritage",
     "fromPrice": 275000,
@@ -93,48 +130,173 @@
     ]
   },
   "singles": [
-    { "name": "Haldi / Mehendi", "detail": "1 photographer + 1 videographer · highlight film", "hours": "6 h", "price": 30000 },
-    { "name": "Engagement", "detail": "+ 250+ photo album, 12×18 frame", "hours": "6–7 h", "price": 38000 },
-    { "name": "Wedding · Bride side", "detail": "+ album, frame", "hours": "7–8 h", "price": 40000 },
-    { "name": "Wedding · Groom side", "detail": "+ album, frame", "hours": "9–10 h", "price": 45000 },
-    { "name": "Wedding · Both sides", "detail": "2 + 2 crew · 2 films, 2 albums, 2 frames", "hours": "9–10 h", "price": 80000 },
-    { "name": "Reception", "detail": "+ in-venue photoshoot", "hours": "7–8 h", "price": 35000 },
-    { "name": "Pre / post-wedding shoot", "detail": "1 photographer + 1 videographer · highlight film", "hours": "3 h", "price": 25000 }
+    {
+      "name": "Haldi / Mehendi",
+      "detail": "1 photographer + 1 videographer · highlight film",
+      "hours": "6 h",
+      "price": 30000
+    },
+    {
+      "name": "Engagement",
+      "detail": "+ 250+ photo album, 12×18 frame",
+      "hours": "6–7 h",
+      "price": 38000
+    },
+    {
+      "name": "Wedding · Bride side",
+      "detail": "+ album, frame",
+      "hours": "7–8 h",
+      "price": 40000
+    },
+    {
+      "name": "Wedding · Groom side",
+      "detail": "+ album, frame",
+      "hours": "9–10 h",
+      "price": 45000
+    },
+    {
+      "name": "Wedding · Both sides",
+      "detail": "2 + 2 crew · 2 films, 2 albums, 2 frames",
+      "hours": "9–10 h",
+      "price": 80000
+    },
+    {
+      "name": "Reception",
+      "detail": "+ in-venue photoshoot",
+      "hours": "7–8 h",
+      "price": 35000
+    },
+    {
+      "name": "Pre / post-wedding shoot",
+      "detail": "1 photographer + 1 videographer · highlight film",
+      "hours": "3 h",
+      "price": 25000
+    }
   ],
   "singlesNote": "All single events include edited photos on a 64 GB pendrive + Google Drive and a full cinematic highlight video.",
   "addons": [
-    { "name": "Extra hour (per event)", "price": 4000 },
-    { "name": "Extra photographer (per event)", "price": 12000 },
-    { "name": "Extra videographer (per event)", "price": 15000 },
-    { "name": "Drone (per event, where permitted)", "price": 10000 },
-    { "name": "Same-day edit reel", "price": 8000 },
-    { "name": "Extra 250+ photo album", "price": 12000 },
-    { "name": "Extra 12×18 frame", "price": 3500 },
-    { "name": "24×36 canvas", "price": 9000 },
-    { "name": "Live stream for family abroad (per event)", "price": 15000 }
+    {
+      "name": "Extra hour (per event)",
+      "price": 4000
+    },
+    {
+      "name": "Extra photographer (per event)",
+      "price": 12000
+    },
+    {
+      "name": "Extra videographer (per event)",
+      "price": 15000
+    },
+    {
+      "name": "Drone (per event, where permitted)",
+      "price": 10000
+    },
+    {
+      "name": "Same-day edit reel",
+      "price": 8000
+    },
+    {
+      "name": "Extra 250+ photo album",
+      "price": 12000
+    },
+    {
+      "name": "Extra 12×18 frame",
+      "price": 3500
+    },
+    {
+      "name": "24×36 canvas",
+      "price": 9000
+    },
+    {
+      "name": "Live stream for family abroad (per event)",
+      "price": 15000
+    }
   ],
   "zones": [
-    { "code": "A", "name": "Kathmandu Valley", "places": "Kathmandu, Lalitpur, Bhaktapur, Kirtipur", "coverage": "No change", "travel": "Included" },
-    { "code": "A+", "name": "Valley edge", "places": "Banepa, Dhulikhel, Panauti, Nagarkot, Chitlang", "coverage": "No change", "travel": "Transport NPR 4,000 / day" },
-    { "code": "B", "name": "Up to ~6 h by road", "places": "Pokhara, Chitwan, Gorkha, Hetauda, Nuwakot", "coverage": "+15%", "travel": "Family covers transport, rooms (1 per 2 crew) and meals" },
-    { "code": "C", "name": "Far / by flight", "places": "Butwal, Biratnagar, Janakpur, Birgunj, Dharan, Nepalgunj, Dhangadhi, hill districts", "coverage": "+25%", "travel": "As zone B, plus flights where the road takes 8+ h. Travel days at 50% of the day rate." },
-    { "code": "✈", "name": "International", "places": "India, Bhutan, Thailand, Dubai…", "coverage": "Custom quote", "travel": "Visas, flights and stay" }
+    {
+      "code": "A",
+      "name": "Kathmandu Valley",
+      "places": "Kathmandu, Lalitpur, Bhaktapur, Kirtipur",
+      "coverage": "No change",
+      "travel": "Included"
+    },
+    {
+      "code": "A+",
+      "name": "Valley edge",
+      "places": "Banepa, Dhulikhel, Panauti, Nagarkot, Chitlang",
+      "coverage": "No change",
+      "travel": "Transport NPR 4,000 / day"
+    },
+    {
+      "code": "B",
+      "name": "Up to ~6 h by road",
+      "places": "Pokhara, Chitwan, Gorkha, Hetauda, Nuwakot",
+      "coverage": "+15%",
+      "travel": "Family covers transport, rooms (1 per 2 crew) and meals"
+    },
+    {
+      "code": "C",
+      "name": "Far / by flight",
+      "places": "Butwal, Biratnagar, Janakpur, Birgunj, Dharan, Nepalgunj, Dhangadhi, hill districts",
+      "coverage": "+25%",
+      "travel": "As zone B, plus flights where the road takes 8+ h. Travel days at 50% of the day rate."
+    },
+    {
+      "code": "✈",
+      "name": "International",
+      "places": "India, Bhutan, Thailand, Dubai…",
+      "coverage": "Custom quote",
+      "travel": "Visas, flights and stay"
+    }
   ],
   "zoneExample": "Example: Mangal (bride side) in Pokhara = 1,18,000 × 1.15 = NPR 1,35,700, plus crew travel and stay.",
   "terms": [
-    { "big": "30%", "text": "Advance locks your date. You can move it once within 12 months." },
-    { "big": "50%", "text": "On the first event day. The last 20% is due before the album and final delivery." },
-    { "big": "48 h", "text": "Sneak peek of 15–20 photos. Full gallery in 3–4 weeks." },
-    { "big": "4–6 wk", "text": "Highlight films. Albums 4–5 weeks after you select photos." }
+    {
+      "big": "30%",
+      "text": "Advance locks your date. You can move it once within 12 months."
+    },
+    {
+      "big": "50%",
+      "text": "On the first event day. The last 20% is due before the album and final delivery."
+    },
+    {
+      "big": "48 h",
+      "text": "Sneak peek of 15–20 photos. Full gallery in 3–4 weeks."
+    },
+    {
+      "big": "4–6 wk",
+      "text": "Highlight films. Albums 4–5 weeks after you select photos."
+    }
   ],
   "paymentMethods": "We accept bank transfer, eSewa, Khalti, Fonepay QR and cash.",
   "faq": [
-    { "q": "Can we mix events that aren't in a package?", "a": "Yes. Pick any events from the single-event list. Three or more events get a bundle discount close to the nearest package." },
-    { "q": "What if our ceremony runs late?", "a": "We never leave mid-ritual. Overtime is NPR 4,000 per hour, agreed on the day with the family." },
-    { "q": "Do you cover Newari, Brahmin, Chhetri, Madhesi and Tamang weddings?", "a": "Yes. We go through the rituals with you before the day, so we're in the right place at the right moment." },
-    { "q": "How many photos will we get?", "a": "Usually 600–1,200 edited photos per wedding day, and 250+ in the printed album." },
-    { "q": "Can relatives abroad watch live?", "a": "Yes, with the live-stream add-on (a private YouTube or Facebook link)." },
-    { "q": "Do you give raw files?", "a": "Raw files are not included, but you can request them for a fee." },
-    { "q": "Do you travel outside Nepal?", "a": "Yes. Weddings in India, Bhutan and further away get a custom quote." }
+    {
+      "q": "Can we mix events that aren't in a package?",
+      "a": "Yes. Pick any events from the single-event list. Three or more events get a bundle discount close to the nearest package."
+    },
+    {
+      "q": "What if our ceremony runs late?",
+      "a": "We never leave mid-ritual. Overtime is NPR 4,000 per hour, agreed on the day with the family."
+    },
+    {
+      "q": "Do you cover Newari, Brahmin, Chhetri, Madhesi and Tamang weddings?",
+      "a": "Yes. We go through the rituals with you before the day, so we're in the right place at the right moment."
+    },
+    {
+      "q": "How many photos will we get?",
+      "a": "Usually 600–1,200 edited photos per wedding day, and 250+ in the printed album."
+    },
+    {
+      "q": "Can relatives abroad watch live?",
+      "a": "Yes, with the live-stream add-on (a private YouTube or Facebook link)."
+    },
+    {
+      "q": "Do you give raw files?",
+      "a": "Raw files are not included, but you can request them for a fee."
+    },
+    {
+      "q": "Do you travel outside Nepal?",
+      "a": "Yes. Weddings in India, Bhutan and further away get a custom quote."
+    }
   ]
 }

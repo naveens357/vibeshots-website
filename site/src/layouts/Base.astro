@@ -21,7 +21,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const ogImage = new URL(image.startsWith('/') ? `${baseUrl}${image}` : image, Astro.site);
 const homeUrl = new URL(`${baseUrl}/`, Astro.site).toString();
-const prices = packages.tiers.flatMap((t) => [t.bride.price, t.groom.price]).concat(packages.sampurna.price);
+const prices = packages.tiers.flatMap((t) => [t.bride.price, t.groom.price, t.both.price]);
 
 const schema = {
   '@context': 'https://schema.org',

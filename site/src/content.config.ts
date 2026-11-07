@@ -10,7 +10,7 @@ const galleryItem = z.object({
   alt: z.string().optional().default(''),
   tone,
   label: z.string().optional().default(''),
-  layout: z.enum(['full', 'half', 'third']).default('half'),
+  layout: z.enum(['full', 'half', 'third', 'center']).default('half'),
 });
 
 const cover = {
@@ -41,6 +41,10 @@ const stories = defineCollection({
     team: z.string().optional().default(''),
     excerpt: z.string().optional().default(''),
     ...cover,
+    /** Wide photo for the top of the story page (falls back to the cover). */
+    hero: z.string().optional().default(''),
+    /** Which side the title sits on, so it doesn't cover faces in the hero photo. */
+    heroAlign: z.enum(['left', 'right']).default('left'),
     film: z.string().optional().default(''),
     filmPoster: z.string().optional().default(''),
     filmLength: z.string().optional().default(''),
@@ -67,6 +71,7 @@ const projects = defineCollection({
     results: z.string().optional().default(''),
     ...cover,
     film: z.string().optional().default(''),
+    filmPoster: z.string().optional().default(''),
     gallery: z.array(galleryItem).default([]),
     featured: z.boolean().default(false),
     sample: z.boolean().default(false),
@@ -116,7 +121,7 @@ const films = defineCollection({
   }),
 });
 
-// Albums (photobooks) and pre-wedding shoots share one shape.
+// Pre-wedding shoots: cover, gallery and a short text.
 const showcase = (base: string) => defineCollection({
   loader: glob({ pattern: '**/*.md', base }),
   schema: z.object({
@@ -133,6 +138,5 @@ const showcase = (base: string) => defineCollection({
 
 export const collections = {
   stories, projects, ceremonies, journal, films,
-  albums: showcase('./src/content/albums'),
   prewedding: showcase('./src/content/prewedding'),
 };

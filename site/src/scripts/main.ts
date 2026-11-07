@@ -38,7 +38,9 @@ document.addEventListener('click', (e) => {
     const src = embedUrl(film.dataset.film || '');
     if (src && filmSlot) {
       e.preventDefault();
-      filmSlot.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe>`;
+      filmSlot.innerHTML = /\.(mp4|webm)(\?|$)/i.test(src)
+        ? `<video src="${src}" controls autoplay playsinline style="width:100%;height:100%;background:#000"></video>`
+        : `<iframe src="${src}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe>`;
       openModal(filmModal);
     }
   }
@@ -92,6 +94,46 @@ function setSide(side: string) {
   });
 }
 $$('[data-seg=side] button').forEach((b) => b.addEventListener('click', () => setSide(b.dataset.side!)));
+
+/* ---- package carousel (phones): dots follow the swipe, opens on "Most popular" ---- */
+$$('.tiers').forEach((track) => {
+  const dots = track.nextElementSibling?.matches('[data-tier-dots]') ? $$('button', track.nextElementSibling) : [];
+  const cards = $$('.tier', track);
+  if (!dots.length || !cards.length) return;
+  const isCarousel = () => getComputedStyle(track).overflowX === 'auto';
+  const center = (c: HTMLElement) => c.offsetLeft + c.offsetWidth / 2 - track.clientWidth / 2;
+  const sync = () => {
+    if (!isCarousel()) { cards.forEach((c) => c.classList.remove('off')); return; }
+    const mid = track.scrollLeft;
+    let best = 0;
+    cards.forEach((c, i) => { if (Math.abs(center(c) - mid) < Math.abs(center(cards[best]) - mid)) best = i; });
+    cards.forEach((c, i) => c.classList.toggle('off', i !== best));
+    dots.forEach((d, i) => d.setAttribute('aria-current', String(i === best)));
+  };
+  dots.forEach((d, i) => d.addEventListener('click', () => track.scrollTo({ left: center(cards[i]), behavior: 'smooth' })));
+  let raf = 0;
+  track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(sync); }, { passive: true });
+  track.addEventListener('scrollend', sync);
+  addEventListener('resize', sync);
+  const popular = cards.findIndex((c) => c.classList.contains('pop'));
+  if (isCarousel() && popular > 0) track.scrollLeft = center(cards[popular]);
+  sync();
+});
+
+/* ---- Images page: weddings / commercial switch (also opens from #commercial) ---- */
+const wall = $('[data-cat-scope]');
+if (wall) {
+  const setCat = (cat: string) => {
+    wall.dataset.catScope = cat;
+    $$('[data-seg=imgcat] button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
+    $$('[data-seg=imgcat]').forEach(placePill);
+  };
+  $$('[data-seg=imgcat] button').forEach((b) => b.addEventListener('click', () => {
+    setCat(b.dataset.cat!);
+    history.replaceState(null, '', b.dataset.cat === 'commercial' ? '#commercial' : location.pathname);
+  }));
+  if (location.hash === '#commercial') setCat('commercial');
+}
 
 /* ---- commercial filters ---- */
 let mode = 'all';
@@ -218,9 +260,10 @@ if (banners.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
 /* ---- lightbox for the image wall ---- */
 const lb = $('#lightbox');
-const lbImgs = $$<HTMLImageElement>('[data-lightbox] img');
-if (lb && lbImgs.length) {
+const allImgs = $$<HTMLImageElement>('[data-lightbox] img');
+if (lb && allImgs.length) {
   let i = 0;
+  let lbImgs = allImgs;
   const img = $<HTMLImageElement>('img', lb)!;
   const cap = $('.lb-c', lb)!;
   const show = (n: number) => {
@@ -229,7 +272,12 @@ if (lb && lbImgs.length) {
     img.alt = lbImgs[i].alt;
     cap.textContent = `${i + 1} / ${lbImgs.length}`;
   };
-  lbImgs.forEach((im, n) => im.closest('.media')?.addEventListener('click', () => { show(n); lb.classList.add('on'); }));
+  // only cycle through the photos currently shown (the selected category)
+  allImgs.forEach((im) => im.closest('.media')?.addEventListener('click', () => {
+    lbImgs = allImgs.filter((x) => x.offsetParent !== null);
+    show(lbImgs.indexOf(im));
+    lb.classList.add('on');
+  }));
   $('.lb-x', lb)?.addEventListener('click', () => lb.classList.remove('on'));
   $('.lb-p', lb)?.addEventListener('click', () => show(i - 1));
   $('.lb-n', lb)?.addEventListener('click', () => show(i + 1));

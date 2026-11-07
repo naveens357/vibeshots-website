@@ -16,5 +16,10 @@ Thumbs.db
 .DS_Store
 desktop.ini
 
-# raw photo drops before optimising (see site/README.md)
+# raw photo/video drops before optimising (see site/README.md) — never commit originals
 media-inbox/
+/photo/
+/video/
+tools/node_modules/
+tools/.npm-cache/
+tools/out/

@@ -35,7 +35,7 @@ The coloured gradient blocks are photo and video placeholders. Each label says w
    - Marigold "toran" dividers.
    - Prices in lakh format (1,18,000).
    - Dates in both BS and AD.
-3. **Packages built from your event prices.** Saath, Mangal (most popular), Shubha and Sampurna save 5,000 to 28,000. There is an extra **5% early bird** for bookings 90+ days ahead.
+3. **Packages built from your event prices.** Saath, Mangal (most popular) and Shubha each come for the bride side, groom side or both families, and save 5,000 to 28,000. There is an extra **5% early bird** for bookings 90+ days ahead.
 4. **Outside-Valley pricing published openly:**
    - Zone B (Pokhara, Chitwan…) is **+15%**.
    - Zone C (far or by flight) is **+25%**.
@@ -45,13 +45,14 @@ The coloured gradient blocks are photo and video placeholders. Each label says w
 
 ## Packages at a glance (NPR, Kathmandu Valley)
 
-| Package | Events | Bride side | Groom side |
-|---|---|---|---|
-| **Saath** | Wedding + Reception | 70,000 | 75,000 |
-| **Mangal** ★ | Haldi/Mehendi + Pre-wedding + Wedding + Reception | 1,18,000 | 1,23,000 |
-| **Shubha** | Mangal + Engagement | 1,48,000 | 1,53,000 |
-| **Sampurna** | Everything, with both families on the wedding day (2 teams) | 1,80,000 (both) | |
-| **Heritage** | Fine-art premium tier, by application | from 2,75,000 | |
+| Package | Events | Bride side | Groom side | Both families |
+|---|---|---|---|---|
+| **Saath** | Wedding + Reception | 70,000 | 75,000 | 1,07,000 |
+| **Mangal** ★ | Haldi/Mehendi + Pre-wedding + Wedding + Reception | 1,18,000 | 1,23,000 | 1,55,000 |
+| **Shubha** | Mangal + Engagement | 1,48,000 | 1,53,000 | 1,80,000 |
+| **Heritage** | Fine-art premium tier, by application | from 2,75,000 | | |
+
+"Both families" means two teams on the wedding day, one with each family.
 
 Full breakdown, add-ons and terms: [docs/03-site-plan.md §5](docs/03-site-plan.md).
 
@@ -65,8 +66,8 @@ Full breakdown, add-ons and terms: [docs/03-site-plan.md §5](docs/03-site-plan.
 ## Design v2: minimal, inspired by The Wedding Story (Nov 2026)
 - **Look:** quieter palette (warm off-white, grey text), thin type, spaced-capital section titles between hairlines, and more space.
 - **Home page:** a parallax welcome photo → quote → three black-and-white parallax banners (What we love / believe / do) → stories → films and commercial → packages → team → contact.
-- **Menu:** Stories · Films · Images · Albums · Pre-weddings · Commercial · Packages · FAQ · Contact.
-- **New pages:** Films (reels / highlights / full films), Images (a photo wall with a viewer), Albums, Pre-weddings and a full FAQ.
+- **Menu:** Stories · Films · Images · Pre-weddings · Commercial · Packages · FAQ · Contact.
+- **New pages:** Films (reels / highlights / full films), Images (a photo wall with a viewer), Pre-weddings and a full FAQ.
 - **Stories:** each one has a phrase title.
 - **Contact form:** now asks for guest count and where the client lives, and has a country-code phone field.
 

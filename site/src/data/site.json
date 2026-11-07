@@ -24,15 +24,27 @@
   "replyPromise": "We reply within 2 hours, 9am–8pm.",
   "heroWeddingVideo": "",
   "heroWeddingPoster": "",
-  "heroCommercialVideo": "",
-  "heroCommercialPoster": "",
-  "showreelUrl": "",
-  "officialLine": "Official media partner · Dirt Temple",
+  "heroCommercialVideo": "/uploads/commercial/hero-loop.mp4",
+  "heroCommercialPoster": "/uploads/commercial/hero-poster.webp",
+  "showreelUrl": "/uploads/films/samsara-restro-promo.mp4",
+  "officialLine": "Motorsport · Travel · Brands",
   "stats": [
-    { "value": "200+", "label": "weddings filmed" },
-    { "value": "4.9★", "label": "on Google" },
-    { "value": "7", "label": "years" },
-    { "value": "40+", "label": "brands" }
+    {
+      "value": "200+",
+      "label": "weddings filmed"
+    },
+    {
+      "value": "4.9★",
+      "label": "on Google"
+    },
+    {
+      "value": "7",
+      "label": "years"
+    },
+    {
+      "value": "40+",
+      "label": "brands"
+    }
   ],
   "googleReviewsUrl": "",
   "googleReviewsLabel": "Read our reviews on Google",
@@ -45,5 +57,5 @@
       "tone": "bride"
     }
   ],
-  "clients": ["Dirt Temple", "Client", "Client", "Client", "Client", "Client", "Client", "Client", "Client", "Client", "Client", "Client"]
+  "clients": []
 }

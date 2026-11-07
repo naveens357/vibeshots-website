@@ -5,7 +5,7 @@ import site from '../data/site.json';
 import packages from '../data/packages.json';
 import { waLink, viberLink, igDm, tel, mapDirections } from '../lib/format';
 const events = ['Engagement', 'Haldi / Mehendi', 'Pre-wedding', 'Wedding', 'Reception'];
-const pkgNames = [...packages.tiers.map((t) => t.name), packages.sampurna.name, packages.heritage.name];
+const pkgNames = [...packages.tiers.map((t) => t.name), packages.heritage.name];
 const faq = packages.faq.slice(0, 4);
 // Most-asked countries first (Nepal, then where most diaspora clients live).
 const codes = [['+977', 'Nepal'], ['+91', 'India'], ['+61', 'Australia'], ['+1', 'USA / Canada'], ['+44', 'UK'], ['+971', 'UAE'], ['+974', 'Qatar'], ['+966', 'Saudi Arabia'], ['+60', 'Malaysia'], ['+81', 'Japan'], ['+82', 'South Korea'], ['+49', 'Germany'], ['+', 'Other']];

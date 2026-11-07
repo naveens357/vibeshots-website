@@ -1,28 +1,30 @@
 {
   "welcomeTitle": "Welcome",
   "welcomeLines": "Weddings, told the way your family will remember them.\nFrom the heart of Bhaktapur, across the Kathmandu Valley and beyond.",
-  "heroImage": "",
-  "heroVideo": "",
+  "heroImage": "/uploads/home/hero-poster.webp",
+  "heroVideo": "/uploads/home/hero-loop.mp4",
   "quote": "A wedding lasts a day. The way it felt should last a lifetime.",
   "quoteBy": "Team Vibeshots",
   "blocks": [
     {
       "title": "What we love",
-      "image": "",
+      "image": "/uploads/home/02-dsc04683.webp",
       "tone": "bride",
       "text": "The nervous laugh before the tika. Aama’s tears at bidaai. The cousin who starts the dance nobody planned. We love the small, unrepeatable moments that make a Nepali wedding feel like home."
     },
     {
       "title": "What we believe",
-      "image": "",
+      "image": "/uploads/home/03--dsc7381.webp",
       "tone": "temple",
       "text": "That a wedding belongs to the family, not the camera. We know the rituals, we stay out of the way, and we never ask you to fake a moment. Honest pictures age beautifully."
     },
     {
       "title": "What we do",
-      "image": "",
+      "image": "/uploads/home/04-dsc02526.webp",
       "tone": "night",
       "text": "Photographs, cinematic films and heirloom albums for weddings across Nepal, and commercial work for motorsport, travel and brands. One calm team, from the first mehendi to the last frame."
     }
-  ]
+  ],
+  "filmsImage": "/uploads/home/05-dsc04699.webp",
+  "commercialImage": "/uploads/home/06--dsc1320.webp"
 }

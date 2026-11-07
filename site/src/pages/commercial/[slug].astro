@@ -20,7 +20,7 @@ const type = d.types.map((t) => (t === 'motion' ? 'Film' : 'Stills')).join(' + '
 <Base title={d.seoTitle || `${d.client} · ${d.title}`} description={d.seoDescription || d.credit || `${d.client}: ${d.title}. ${sectors[d.sector]} work by Vibeshots Nepal.`} image={d.cover || undefined} dark headerOver>
   <div class="on-dark">
     <section class="chero" style="min-height:min(78svh,720px)">
-      <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager />
+      <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager sizes="100vw" />
       <div class="shade"></div>
       <div class="wrap in">
         <p class="official"><i></i>{d.client} · {sectors[d.sector]}</p>
@@ -41,16 +41,16 @@ const type = d.types.map((t) => (t === 'motion' ? 'Film' : 'Stills')).join(' + '
     <section class="sec"><div class="wrap"><div class="prose"><Content /></div></div></section>
 
     {d.film && (
-      <div class="wrap" style="margin-bottom:12px">
+      <div class="wrap" style="margin-bottom:12px;max-width:1100px">
         <div class="filmbox">
-          <Media tone="moto" label="Film" ratio="169" />
+          <Media src={d.filmPoster || d.cover} alt={`${d.client} film`} tone="moto" label="Film" ratio="169" sizes="100vw" />
           <button class="btn btn-shutter" type="button" data-film={d.film} aria-label="Play film"><svg><use href="#i-aperture"/></svg></button>
         </div>
       </div>
     )}
 
     <div class="wrap gal">
-      {d.gallery.map((g) => <Media class={g.layout} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={g.layout === 'full' ? '219' : g.layout === 'half' ? '45' : '23'} />)}
+      {d.gallery.map((g) => <Media class={g.layout} sizes={g.layout === 'full' ? '100vw' : g.layout === 'half' ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 100vw, 33vw'} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={g.layout === 'full' ? '32' : '23'} />)}
     </div>
 
     {d.results && (
