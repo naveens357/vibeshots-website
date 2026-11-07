@@ -4,13 +4,12 @@ import Media from '../components/Media.astro';
 import PackageTiers from '../components/PackageTiers.astro';
 import SideToggle from '../components/SideToggle.astro';
 import p from '../data/packages.json';
-import { np, earlyBird, waPackage } from '../lib/format';
-const sam = p.sampurna;
+import { np } from '../lib/format';
 const eb = p.earlyBird;
 const showBanner = new Date(`${eb.deadline}T23:59:59+05:45`) > new Date();
 const zoneClass: Record<string, string> = { B: 'b', C: 'c', '✈': 'i' };
 ---
-<Base title="Wedding Packages & Prices" description="Wedding photography and film packages in NPR for the Kathmandu Valley: Saath, Mangal, Shubha and Sampurna, plus single events, add-ons and outside-Valley travel pricing.">
+<Base title="Wedding Packages & Prices" description="Wedding photography and film packages in NPR for the Kathmandu Valley: Saath, Mangal and Shubha for the bride side, groom side or both families, plus single events, add-ons and outside-Valley travel pricing.">
   <section class="phero">
     <div class="wrap">
       <span class="deva" lang="ne">प्याकेज र मूल्य</span>
@@ -23,23 +22,7 @@ const zoneClass: Record<string, string> = { B: 'b', C: 'c', '✈': 'i' };
   <section style="padding-bottom:40px">
     <div class="wrap">
       <PackageTiers full />
-
-      <div class="wide-card rv">
-        <Media tone="gold" label="Both families together, wide group portrait" />
-        <div class="body">
-          <p class="eyebrow">{sam.label}</p>
-          <div><span class="deva" lang="ne">{sam.deva}</span><h2 class="h2">{sam.name}</h2></div>
-          <div>
-            <div class="price"><small>NPR</small>{np(sam.price)}</div>
-            <p class="was">Sum of events <s>NPR {np(sam.sum)}</s> · you save {np(sam.sum - sam.price)} · early bird <b>NPR {np(earlyBird(sam.price))}</b></p>
-          </div>
-          <ul>{sam.includes.map((i) => <li>{i}</li>)}</ul>
-          <div class="row-btns" style="margin-top:8px">
-            <button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
-            <a class="btn btn-wa" href={waPackage(`${sam.name} (both families)`)} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a>
-          </div>
-        </div>
-      </div>
+      <p class="muted small center" style="margin-top:20px">Both families: we send two teams on the wedding day, one with the bride's family and one with the groom's, so neither side misses a ritual.</p>
 
       {showBanner && (
         <div class="ebanner" data-ebanner>

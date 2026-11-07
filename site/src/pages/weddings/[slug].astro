@@ -17,9 +17,9 @@ const dateAD = d.date.toLocaleDateString('en-GB', { month: 'short', year: 'numer
 ---
 <Base title={d.seoTitle || `${d.headline ? `${d.headline}: ` : ''}${d.title} · ${d.venue}`} description={d.seoDescription || d.excerpt} image={d.cover || undefined}>
   <section class="shero">
-    <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager />
+    <Media src={d.hero || d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager sizes="100vw" />
     <div class="shade"></div>
-    <div class="wrap in">
+    <div class:list={['wrap in', { right: d.heroAlign === 'right' }]}>
       <span class="deva gold" lang="ne">शुभ विवाह</span>
       {d.headline && <p class="ttl-caps">{d.headline}</p>}
       <h1 class="h-xl it">{d.title}</h1>
@@ -43,7 +43,7 @@ const dateAD = d.date.toLocaleDateString('en-GB', { month: 'short', year: 'numer
   <div class="wrap gal">
     {d.gallery.map((g, i) => (
       <>
-        <Media class={g.layout} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={g.layout === 'full' ? '219' : g.layout === 'half' ? '45' : '23'} />
+        <Media class={g.layout} sizes={g.layout === 'full' ? '100vw' : g.layout === 'half' ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 100vw, 33vw'} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={g.layout === 'full' ? '32' : '23'} />
         {i === 2 && d.film && (
           <div class="filmbox full">
             <Media src={d.filmPoster || d.cover} tone="night" label="Highlight film" ratio="169" />

@@ -2,8 +2,8 @@
 title: "Haldi & Mehendi photo checklist for Nepali families"
 date: "2026-10-05"
 excerpt: "Ten shots families always thank us for, and how to plan the day so we catch them."
-cover: ""
-coverAlt: ""
+cover: "/uploads/journal/02-dsc03538.webp"
+coverAlt: "Friends with painted umbrellas at a mehendi"
 coverTone: "haldi"
 coverLabel: "Haldi splash"
 draft: false

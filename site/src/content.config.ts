@@ -10,7 +10,7 @@ const galleryItem = z.object({
   alt: z.string().optional().default(''),
   tone,
   label: z.string().optional().default(''),
-  layout: z.enum(['full', 'half', 'third']).default('half'),
+  layout: z.enum(['full', 'half', 'third', 'center']).default('half'),
 });
 
 const cover = {
@@ -41,6 +41,10 @@ const stories = defineCollection({
     team: z.string().optional().default(''),
     excerpt: z.string().optional().default(''),
     ...cover,
+    /** Wide photo for the top of the story page (falls back to the cover). */
+    hero: z.string().optional().default(''),
+    /** Which side the title sits on, so it doesn't cover faces in the hero photo. */
+    heroAlign: z.enum(['left', 'right']).default('left'),
     film: z.string().optional().default(''),
     filmPoster: z.string().optional().default(''),
     filmLength: z.string().optional().default(''),

@@ -2,130 +2,200 @@
   "intro": "A few of our favourite frames. Tap any photo to see it large.",
   "images": [
     {
-      "src": "",
-      "alt": "",
-      "tone": "bride",
-      "ratio": "45",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "sindoor",
-      "ratio": "32",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "haldi",
-      "ratio": "23",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "mehendi",
-      "ratio": "11",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
+      "src": "/uploads/images/01-dsc00009.webp",
+      "alt": "Bride in red turning, her veil swirling in motion",
       "tone": "ivory",
-      "ratio": "45",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "night",
-      "ratio": "32",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "gold",
-      "ratio": "45",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "temple",
-      "ratio": "32",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "travel",
       "ratio": "23",
-      "label": "Best-of photo"
+      "label": ""
     },
     {
-      "src": "",
-      "alt": "",
-      "tone": "bride",
-      "ratio": "11",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "sindoor",
-      "ratio": "45",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "haldi",
-      "ratio": "32",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "mehendi",
-      "ratio": "45",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
+      "src": "/uploads/images/02--dsc0439.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
       "tone": "ivory",
       "ratio": "32",
-      "label": "Best-of photo"
+      "label": ""
     },
     {
-      "src": "",
-      "alt": "",
-      "tone": "night",
+      "src": "/uploads/images/03-dsc00005.webp",
+      "alt": "Bride in a red sari with a long veil on the steps of a white venue",
+      "tone": "ivory",
       "ratio": "23",
-      "label": "Best-of photo"
+      "label": ""
     },
     {
-      "src": "",
-      "alt": "",
-      "tone": "gold",
-      "ratio": "11",
-      "label": "Best-of photo"
+      "src": "/uploads/images/04-dsc00089.webp",
+      "alt": "Black and white profile of a mother-to-be in a black halter dress",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
     },
     {
-      "src": "",
-      "alt": "",
-      "tone": "temple",
-      "ratio": "45",
-      "label": "Best-of photo"
-    },
-    {
-      "src": "",
-      "alt": "",
-      "tone": "travel",
+      "src": "/uploads/images/05-dsc04683.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
       "ratio": "32",
-      "label": "Best-of photo"
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/06-dsc02522.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/07-dsc00023.webp",
+      "alt": "Bride in a red sari standing at the end of a white walkway",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/08--dsc7370.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/09--dsc6303.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/10--dsc4009.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/11-dsc00116.webp",
+      "alt": "Couple embracing, hands on the bump, in traditional Nepali dress",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/12-dsc01023.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/13-dsc05027.webp",
+      "alt": "Couple in silhouette, foreheads together, against a low sun",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/14--dsc1501.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/15-dsc03866.webp",
+      "alt": "Person with arms raised beside a prayer flag above the lake",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/16-dsc03497.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/17--dsc0482.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/18-dsc01703.webp",
+      "alt": "Black and white shot of the groom dipping the laughing bride",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/19-dsc09935.webp",
+      "alt": "Mother-to-be in a white tulle gown, the train thrown up behind her",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/20--dsc6305.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/21--dsc7098.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/22-dsc05158.webp",
+      "alt": "Couple framed by an ornate carved wooden window",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/23-star.webp",
+      "alt": "The Milky Way rising over a dark mountain ridge at night",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/24--dsc1320.webp",
+      "alt": "Racer number 36 leaning a sport bike into a corner",
+      "tone": "ivory",
+      "ratio": "32",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/25-dsc04027.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/26--dsc4132.webp",
+      "alt": "Trekker in sunglasses behind fluttering prayer flags, snow peaks behind",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/27--dsc3995.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
+    },
+    {
+      "src": "/uploads/images/28--dsc6684.webp",
+      "alt": "Wedding photograph by Vibeshots Nepal",
+      "tone": "ivory",
+      "ratio": "23",
+      "label": ""
     }
   ]
 }

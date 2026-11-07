@@ -38,7 +38,9 @@ document.addEventListener('click', (e) => {
     const src = embedUrl(film.dataset.film || '');
     if (src && filmSlot) {
       e.preventDefault();
-      filmSlot.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe>`;
+      filmSlot.innerHTML = /\.(mp4|webm)(\?|$)/i.test(src)
+        ? `<video src="${src}" controls autoplay playsinline style="width:100%;height:100%;background:#000"></video>`
+        : `<iframe src="${src}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Film"></iframe>`;
       openModal(filmModal);
     }
   }
@@ -92,6 +94,31 @@ function setSide(side: string) {
   });
 }
 $$('[data-seg=side] button').forEach((b) => b.addEventListener('click', () => setSide(b.dataset.side!)));
+
+/* ---- package carousel (phones): dots follow the swipe, opens on "Most popular" ---- */
+$$('.tiers').forEach((track) => {
+  const dots = track.nextElementSibling?.matches('[data-tier-dots]') ? $$('button', track.nextElementSibling) : [];
+  const cards = $$('.tier', track);
+  if (!dots.length || !cards.length) return;
+  const isCarousel = () => getComputedStyle(track).overflowX === 'auto';
+  const center = (c: HTMLElement) => c.offsetLeft + c.offsetWidth / 2 - track.clientWidth / 2;
+  const sync = () => {
+    if (!isCarousel()) { cards.forEach((c) => c.classList.remove('off')); return; }
+    const mid = track.scrollLeft;
+    let best = 0;
+    cards.forEach((c, i) => { if (Math.abs(center(c) - mid) < Math.abs(center(cards[best]) - mid)) best = i; });
+    cards.forEach((c, i) => c.classList.toggle('off', i !== best));
+    dots.forEach((d, i) => d.setAttribute('aria-current', String(i === best)));
+  };
+  dots.forEach((d, i) => d.addEventListener('click', () => track.scrollTo({ left: center(cards[i]), behavior: 'smooth' })));
+  let raf = 0;
+  track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(sync); }, { passive: true });
+  track.addEventListener('scrollend', sync);
+  addEventListener('resize', sync);
+  const popular = cards.findIndex((c) => c.classList.contains('pop'));
+  if (isCarousel() && popular > 0) track.scrollLeft = center(cards[popular]);
+  sync();
+});
 
 /* ---- commercial filters ---- */
 let mode = 'all';

@@ -2,7 +2,12 @@
 /**
  * Photo or video. When `src` (or `video`) is empty it renders a labelled
  * colour placeholder, so the site works before real media is uploaded.
+ * Uploaded WebP photos with a "-sm.webp" copy get a srcset, so phones and
+ * small cards download the 900px version.
  */
+import fs from 'node:fs';
+import path from 'node:path';
+
 interface Props {
   src?: string;
   video?: string;
@@ -13,19 +18,22 @@ interface Props {
   ratio?: string;
   arch?: boolean;
   eager?: boolean;
+  sizes?: string;
   class?: string;
   style?: string;
 }
-const { src, video, poster, alt = '', tone = 'ivory', label = '', ratio = '', arch = false, eager = false, class: cls = '', style } = Astro.props;
+const { src, video, poster, alt = '', tone = 'ivory', label = '', ratio = '', arch = false, eager = false, sizes = '(max-width: 760px) 100vw, 50vw', class: cls = '', style } = Astro.props;
 const classes = ['media', ratio && `r${ratio}`, arch && 'arch', cls];
 const hasMedia = Boolean(src || video);
+const small = src && /^\/uploads\/.+\.webp$/.test(src) ? src.replace(/\.webp$/, '-sm.webp') : '';
+const srcset = small && fs.existsSync(path.join(process.cwd(), 'public', small)) ? `${small} 900w, ${src} 2000w` : undefined;
 ---
 {hasMedia ? (
   <div class:list={classes} style={style}>
     {video ? (
       <video src={video} poster={poster || src} autoplay muted loop playsinline preload="metadata" aria-label={alt}></video>
     ) : (
-      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : 'auto'} />
+      <img src={src} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : 'auto'} />
     )}
     <slot />
   </div>

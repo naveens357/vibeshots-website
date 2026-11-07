@@ -8,7 +8,7 @@ import data from '../data/images.json';
     <div class="wrap">
       <div class="stitle"><span class="deva" lang="ne">तस्बिरहरू</span><h1>Images</h1>{data.intro && <p>{data.intro}</p>}</div>
       <div class="wall" data-lightbox>
-        {data.images.map((im) => <Media class="rv" src={im.src} alt={im.alt} tone={im.tone} label={im.label} ratio={im.ratio} />)}
+        {data.images.map((im) => <Media class="rv" src={im.src} alt={im.alt} tone={im.tone} label={im.label} ratio={im.ratio} sizes="(max-width: 760px) 100vw, 33vw" />)}
       </div>
     </div>
   </section>

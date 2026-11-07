@@ -19,15 +19,21 @@ function baseLinks() {
       'astro:build:done': async ({ dir }) => {
         if (base === '/') return;
         const root = fileURLToPath(dir);
-        const attr = /(\s(?:href|src|action|poster|data-thanks)=")\/(?!\/)/g;
+        const attr = /(\s(?:href|src|action|poster|data-thanks|data-film)=")\/(?!\/)/g;
+        // a "/path" entry in a srcset list that isn't already prefixed
+        const rootUrlInList = new RegExp(`(^|,\\s*)/(?!/|${base.slice(1)}/)`, 'g');
         const walk = async (d) => {
           for (const e of await fs.readdir(d, { withFileTypes: true })) {
             const p = path.join(d, e.name);
             if (e.isDirectory()) await walk(p);
             else if (e.name.endsWith('.html')) {
               const html = await fs.readFile(p, 'utf8');
-              const out = html.replace(attr, (m, pre, offset) =>
-                html.startsWith(`${base}/`, offset + pre.length) ? m : `${pre}${base}/`);
+              const out = html
+                .replace(attr, (m, pre, offset) =>
+                  html.startsWith(`${base}/`, offset + pre.length) ? m : `${pre}${base}/`)
+                // srcset lists several URLs: prefix each root-relative one
+                .replace(/(\ssrcset=")([^"]*)"/g, (m, pre, list) =>
+                  `${pre}${list.replace(rootUrlInList, `$1${base}/`)}"`);
               if (out !== html) await fs.writeFile(p, out);
             }
           }

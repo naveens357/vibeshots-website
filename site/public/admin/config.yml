@@ -47,7 +47,9 @@ collections:
       - { label: Cover alt text, name: coverAlt, widget: string, required: false }
       - { label: Cover placeholder colour, name: coverTone, widget: select, default: bride, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
       - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
-      - { label: Film link (YouTube or Vimeo), name: film, widget: string, required: false }
+      - { label: "Wide photo for the top of the story (landscape works best)", name: hero, widget: image, required: false, choose_url: false }
+      - { label: Title position on the top photo, name: heroAlign, widget: select, options: [left, right], default: left, hint: "Pick the side with no faces" }
+      - { label: Film link (YouTube, Vimeo or an uploaded MP4), name: film, widget: string, required: false }
       - { label: Film poster image, name: filmPoster, widget: image, required: false, choose_url: false }
       - { label: Film length (e.g. 4:12), name: filmLength, widget: string, required: false }
       - { label: Couple quote, name: quote, widget: text, required: false }
@@ -60,7 +62,7 @@ collections:
         fields:
           - { label: Photo, name: src, widget: image, required: false, choose_url: false }
           - { label: Alt text (describe the photo for Google and screen readers), name: alt, widget: string, required: false }
-          - { label: Layout, name: layout, widget: select, options: [full, half, third], default: half }
+          - { label: Layout, name: layout, widget: select, options: [full, half, third, center], default: half, hint: "Full = landscape across the page, Half = two portraits side by side, Third = three in a row, Center = one portrait on its own" }
           - { label: Placeholder label (shown until a photo is added), name: label, widget: string, required: false }
           - &tone
             label: Placeholder colour (used only when there is no photo)
@@ -239,6 +241,8 @@ collections:
           - { label: Hero video (MP4, 20–30 s, muted), name: heroVideo, widget: file, required: false, choose_url: false }
           - { label: Quote, name: quote, widget: text }
           - { label: Quote by, name: quoteBy, widget: string }
+          - { label: Films tile photo, name: filmsImage, widget: image, required: false, choose_url: false }
+          - { label: Commercial tile photo, name: commercialImage, widget: image, required: false, choose_url: false }
           - label: "Banner blocks (What we love / believe / do)"
             name: blocks
             widget: list
@@ -360,17 +364,9 @@ collections:
               - { label: Events included (one line), name: events, widget: string }
               - { label: Bride side, name: bride, widget: object, fields: [{ label: Sum of single events, name: sum, widget: number, value_type: int }, { label: Package price, name: price, widget: number, value_type: int }] }
               - { label: Groom side, name: groom, widget: object, fields: [{ label: Sum of single events, name: sum, widget: number, value_type: int }, { label: Package price, name: price, widget: number, value_type: int }] }
-              - { label: What's included, name: includes, widget: list }
-          - label: Sampurna (both families)
-            name: sampurna
-            widget: object
-            fields:
-              - { label: Name, name: name, widget: string }
-              - { label: Name in Devanagari, name: deva, widget: string }
-              - { label: Label, name: label, widget: string }
-              - { label: Sum of single events, name: sum, widget: number, value_type: int }
-              - { label: Package price, name: price, widget: number, value_type: int }
-              - { label: What's included, name: includes, widget: list }
+              - { label: Both families (two teams on the wedding day), name: both, widget: object, fields: [{ label: Sum of single events, name: sum, widget: number, value_type: int }, { label: Package price, name: price, widget: number, value_type: int }] }
+              - { label: "What's included (bride or groom side)", name: includes, widget: list }
+              - { label: "What's included (both families)", name: bothIncludes, widget: list }
           - label: Heritage tier
             name: heritage
             widget: object

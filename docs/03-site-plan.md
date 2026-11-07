@@ -138,29 +138,28 @@ Two-column: the form on the left, with WhatsApp, Viber, Instagram DM, a call boo
 **Recommendation:** on the website, round to **40,000** and **45,000**. Round numbers read as premium and are easier to compare. The flyer-style 39,999 is fine for Instagram sale posts.
 
 ### 5.2 Wedding packages (bundles of the events above)
-Each bundle is the sum of its events minus a bundle discount. The more events, the bigger the saving (about 7% for 2 events, about 9% for 4, about 12% for 5, about 13.5% for both sides). Names use Nepali words with clear English sub-labels.
+Each bundle is the sum of its events minus a bundle discount. The more events, the bigger the saving (about 7% for 2 events, about 9% for 4, about 12–13.5% for 5). Names use Nepali words with clear English sub-labels.
 
-| | **Saath** · Essential | **Mangal** · Signature ★ Most popular | **Shubha** · Grand | **Sampurna** · Both families |
-|---|---|---|---|---|
-| Events | Wedding day + Reception | Haldi/Mehendi + Pre-wedding shoot + Wedding day + Reception | Engagement + Haldi/Mehendi + Pre-wedding + Wedding + Reception | Engagement + Haldi/Mehendi + Pre-wedding + **Both-side wedding (2 teams)** + Reception |
-| Team per event | 1 photographer + 1 videographer | 1 + 1 | 1 + 1 | 1 + 1, and **2 + 2 on the wedding day** |
-| Photos | All edited, pendrive + Drive | Same | Same | Same |
-| Films | A highlight film per event | A highlight per event + a **combined wedding film (4–6 min)** | Same as Mangal + an engagement film | Two wedding films (one per side) + all event highlights |
-| Albums (250+ photos) | 1 | 1 | 2 (wedding + engagement) | 3 (bride side, groom side, engagement) |
-| 12×18 frames | 1 | 1 | 2 | 3 |
-| Sneak peek in 48 h | ✓ | ✓ | ✓ | ✓ |
-| **Bride side: sum of events** | 75,000 | 130,000 | 168,000 | — |
-| **Bride side: package price** | **70,000** | **118,000** | **148,000** | — |
-| **Groom side: sum of events** | 80,000 | 135,000 | 173,000 | — |
-| **Groom side: package price** | **75,000** | **123,000** | **153,000** | — |
-| **Both families: sum / price** | — | — | — | 208,000 / **180,000** |
-| You save | 5,000 | 12,000 | 20,000 | 28,000 |
+Every package comes in three versions, chosen with a **Bride side / Groom side / Both families** switch. "Both families" sends two teams on the wedding day (2 photographers + 2 videographers), one with each family. The former "Sampurna" package is now **Shubha · Both families**, at the same price.
 
-How the sums were built (bride side; the groom side uses 45,000 for the wedding day):
-- Saath = 40,000 wedding + 35,000 reception = 75,000.
-- Mangal = 30,000 haldi + 25,000 pre-wedding + 40,000 wedding + 35,000 reception = 130,000.
-- Shubha = Mangal + 38,000 engagement = 168,000.
-- Sampurna = 38,000 + 30,000 + 25,000 + 80,000 both-side wedding + 35,000 reception = 208,000.
+| | **Saath** · Essential | **Mangal** · Signature ★ Most popular | **Shubha** · Grand |
+|---|---|---|---|
+| Events | Wedding day + Reception | Haldi/Mehendi + Pre-wedding shoot + Wedding day + Reception | Engagement + Haldi/Mehendi + Pre-wedding + Wedding + Reception |
+| Team per event | 1 photographer + 1 videographer (2 + 2 on the wedding day for both families) | Same | Same |
+| Photos | All edited, pendrive + Drive | Same | Same |
+| Films | A highlight film per event (two wedding films for both families) | Highlights + a **combined wedding film (4–6 min)** | Same as Mangal + an engagement film |
+| Albums (250+ photos) | 1 (2 for both families) | 1 (2 for both families) | 2 (3 for both families) |
+| 12×18 frames | 1 (2 for both families) | 1 (2 for both families) | 2 (3 for both families) |
+| **Bride side: sum → price** | 75,000 → **70,000** | 130,000 → **118,000** | 168,000 → **148,000** |
+| **Groom side: sum → price** | 80,000 → **75,000** | 135,000 → **123,000** | 173,000 → **153,000** |
+| **Both families: sum → price** | 115,000 → **107,000** | 170,000 → **155,000** | 208,000 → **180,000** |
+
+How the sums were built (bride side uses 40,000 for the wedding day, groom side 45,000, both families 80,000):
+- Saath = wedding + 35,000 reception. Both families: 80,000 + 35,000 = 115,000.
+- Mangal = 30,000 haldi + 25,000 pre-wedding + wedding + 35,000 reception. Both families: 170,000.
+- Shubha = Mangal + 38,000 engagement. Both families: 208,000.
+
+The Both-families prices for Saath (107,000) and Mangal (155,000) were added on 7 Nov 2026 and follow the same discount pattern. Shubha · Both families keeps the confirmed 180,000.
 
 ### 5.3 Vibeshots Heritage (premium, by application)
 This is a fine-art tier for a few weddings each season, in the style of House on the Clouds' sub-brand.
@@ -238,7 +237,7 @@ Prices above cover **Zone A**. Outside the Valley, the coverage price rises by a
 | Which side do we cover? | Bride side / Groom side / Both | ✓ |
 | Events and dates | checkboxes (Engagement, Haldi/Mehendi, Pre-wedding, Wedding, Reception, Other), each with a date picker in **BS or AD** | ✓ |
 | Venue or city | text | ✓ |
-| Package of interest | Saath / Mangal / Shubha / Sampurna / Heritage / Not sure | |
+| Package of interest | Saath / Mangal / Shubha / Heritage / Not sure | |
 | Budget range | Under 75k / 75–125k / 125–175k / 175k+ | |
 | How did you hear about us? | Instagram / Facebook / TikTok / Google / Friend / Venue / Other | |
 | Anything else? | textarea | |

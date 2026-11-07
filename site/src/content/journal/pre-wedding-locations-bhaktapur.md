@@ -2,8 +2,8 @@
 title: "Pre-wedding shoot locations in and around Bhaktapur"
 date: "2026-10-20"
 excerpt: "Our favourite corners of Bhaktapur and the Valley for a pre-wedding shoot, and when to go."
-cover: ""
-coverAlt: ""
+cover: "/uploads/journal/01-dsc05158.webp"
+coverAlt: "Couple in the old streets of Bhaktapur"
 coverTone: "temple"
 coverLabel: "Pre-wedding at Bhaktapur Durbar Square"
 draft: false

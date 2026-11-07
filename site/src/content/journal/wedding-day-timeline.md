@@ -2,8 +2,8 @@
 title: "How to plan a wedding timeline so photos are never rushed"
 date: "2026-09-15"
 excerpt: "A simple timeline that leaves room for rituals, family photos and golden-hour portraits."
-cover: ""
-coverAlt: ""
+cover: "/uploads/journal/03-dsc02517.webp"
+coverAlt: "Bride getting ready by the window"
 coverTone: "ivory"
 coverLabel: "Timeline planning"
 draft: false

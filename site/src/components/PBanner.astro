@@ -17,7 +17,7 @@ interface Props {
 const { title, text, deva, src, video, tone = 'night', label = '', variant = 'strip', bw = false, as: Tag = 'h2', eager = false } = Astro.props;
 ---
 <section class:list={['pbanner', variant, { bw }]} data-parallax>
-  <div class="pmedia"><Media src={src} video={video} tone={tone} label={label} alt="" eager={eager} /></div>
+  <div class="pmedia"><Media src={src} video={video} tone={tone} label={label} alt="" eager={eager} sizes="100vw" /></div>
   <div class="veil"></div>
   <div class="in rv">
     {deva && <span class="deva" lang="ne">{deva}</span>}
