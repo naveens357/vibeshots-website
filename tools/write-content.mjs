@@ -1,6 +1,8 @@
-// One-off: writes real stories, pre-weddings, projects, films, home, images
-// wall, ceremony and journal covers from out/processed.json.
-// Sample entries that these replace are deleted.
+// One-off (7 Nov 2026): wrote the first real stories, pre-weddings, projects,
+// films, home, images wall, ceremony and journal covers from out/processed.json.
+// DO NOT RERUN: content has since been edited by hand (Langtang replaced
+// "himalaya-on-foot", Dirt Temple, Samsara, Chiya Bar, Jack & Guddu and the
+// extra Images-wall photos were added separately) and would be overwritten.
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
