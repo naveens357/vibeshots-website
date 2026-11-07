@@ -140,6 +140,12 @@ body.dark .top .btn-dot .dot{background:#000}
 .on-dark .eyebrow,.on-dark .lead,.on-dark .muted{color:var(--steel)}
 .comm{font:900 clamp(44px,8vw,128px)/.9 var(--wide);font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em}
 .comm-m{font:900 clamp(32px,4.4vw,60px)/.95 var(--wide);font-stretch:125%;text-transform:uppercase}
+/* phones: the wide display face must scale with the screen so long words
+   like "BHAKTAPUR." fit; !important beats inline sizes on project titles */
+@media (max-width:560px){
+  .comm{font-size:min(10vw,44px)!important;overflow-wrap:break-word}
+  .comm-m{font-size:min(8.6vw,32px)!important;overflow-wrap:break-word}
+}
 .accent{color:var(--orange)}
 .sec{position:relative;padding:150px 0}
 .sec.tight{padding-top:0}
@@ -314,6 +320,8 @@ body.dark .top .btn-dot .dot{background:#000}
 [data-side-scope]:not([data-side=both]) .s-both,
 [data-side-scope][data-side=both] .s-one{display:none}
 @media (max-width:420px){.seg button{padding:0 12px;font-size:12px}}
+.tier .eb{margin-top:14px}
+.tier-more{display:none}
 .tier-dots{display:none}
 /* phones/tablets: swipeable card carousel with the next card peeking in */
 @media (max-width:980px){
@@ -322,6 +330,25 @@ body.dark .top .btn-dot .dot{background:#000}
   .tiers .tier{scroll-snap-align:center;transition:transform .45s var(--ease),opacity .45s var(--ease)}
   .tiers .tier:hover{transform:none;box-shadow:none}
   .tiers .tier.off{transform:scale(.94);opacity:.6}
+  /* compact cards on phones: about half the height */
+  .tiers .tier{padding:22px 20px 20px;gap:12px;border-radius:14px}
+  .tier .deva{font-size:15px!important}
+  .tier .nm{font-size:30px}
+  .tier .sub{margin-top:4px}
+  .tier .price{font-size:36px}
+  .tier .price small{top:5px}
+  .tier .was{margin-top:4px;font-size:12px}
+  .tier .eb{margin-top:8px;padding:6px 10px;font-size:11.5px}
+  .tier ul{gap:6px;font-size:13px;line-height:1.45}
+  .tier li::before{margin-top:6px}
+  .tier:not(.open) ul li:nth-child(n+4){display:none}
+  .tier-more{display:inline-flex;align-self:flex-start;font:400 10px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:inherit;opacity:.75;padding:4px 0;border-bottom:1px solid currentColor}
+  .tier.open .tier-more{display:none}
+  .tier .ctas{grid-template-columns:1fr auto;gap:8px;margin-top:4px}
+  .tier .ctas .btn{--h:46px}
+  .tier .ctas .btn-wa{padding:0;width:46px;justify-content:center}
+  .tier .ctas .btn-wa svg{width:20px;height:20px}
+  .tier .wa-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .tier-dots{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:14px}
   .tier-dots button{width:8px;height:8px;border-radius:999px;background:var(--line);transition:width .35s var(--ease),background .35s}
   .tier-dots button[aria-current=true]{width:26px;background:var(--ink)}
@@ -679,7 +706,24 @@ footer.site .icons{display:flex;gap:10px;margin-top:20px}
 footer.site .bye{font-family:var(--deva);font-size:64px;color:#2c2a28;margin-top:64px;line-height:1}
 footer.site .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid #222;margin-top:24px;padding-top:24px;font-size:12px}
 @media (max-width:860px){footer.site .grid{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){footer.site .grid{grid-template-columns:1fr}}
+/* phones: centred, two link columns side by side, big tap targets,
+   and room at the bottom for the sticky WhatsApp / Call / Check date bar */
+@media (max-width:760px){
+  footer.site{padding:64px 0 112px;text-align:center}
+  footer.site .grid{grid-template-columns:1fr 1fr;gap:40px 12px}
+  footer.site .grid>div:first-child,footer.site .grid>div:last-child{grid-column:1/-1}
+  footer.site .logo{width:180px;margin:0 auto 16px}
+  footer.site .grid>div:first-child p{max-width:32ch;margin:0 auto}
+  footer.site .icons{justify-content:center;margin-top:22px}
+  footer.site .icons .icon-btn{width:48px;height:48px}
+  footer.site h2{margin-bottom:14px}
+  footer.site li{margin-bottom:4px}
+  footer.site li a{display:inline-block;padding:8px 4px}
+  footer.site .grid>div:last-child ul{display:grid;gap:2px}
+  footer.site .minimap--footer{max-width:none;margin:18px auto 0}
+  footer.site .bye{font-size:44px;margin-top:44px}
+  footer.site .legal{flex-direction:column;align-items:center;gap:6px;border-top-color:#2a2826}
+}
 
 /* mobile action bar */
 .mbar{display:none}

@@ -83,6 +83,8 @@ function placePill(seg: HTMLElement) {
 const segs = $$('.seg');
 segs.forEach(placePill);
 addEventListener('resize', () => segs.forEach(placePill));
+// re-place the pill when web fonts swap in and change the button widths
+if ('ResizeObserver' in window) segs.forEach((s) => new ResizeObserver(() => placePill(s)).observe(s));
 document.fonts?.ready.then(() => segs.forEach(placePill));
 
 /* bride / groom side: one choice syncs every package block on the page */
@@ -94,6 +96,12 @@ function setSide(side: string) {
   });
 }
 $$('[data-seg=side] button').forEach((b) => b.addEventListener('click', () => setSide(b.dataset.side!)));
+
+/* ---- package cards (phones): reveal the full list of inclusions ---- */
+$$('[data-tier-more]').forEach((b) => b.addEventListener('click', () => {
+  b.closest('.tier')?.classList.add('open');
+  b.setAttribute('aria-expanded', 'true');
+}));
 
 /* ---- package carousel (phones): dots follow the swipe, opens on "Most popular" ---- */
 $$('.tiers').forEach((track) => {
