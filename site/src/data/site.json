@@ -24,9 +24,9 @@
   "replyPromise": "We reply within 2 hours, 9am–8pm.",
   "heroWeddingVideo": "",
   "heroWeddingPoster": "",
-  "heroCommercialVideo": "",
-  "heroCommercialPoster": "/uploads/home/06--dsc1320.webp",
-  "showreelUrl": "",
+  "heroCommercialVideo": "/uploads/commercial/hero-loop.mp4",
+  "heroCommercialPoster": "/uploads/commercial/hero-poster.webp",
+  "showreelUrl": "/uploads/films/samsara-restro-promo.mp4",
   "officialLine": "Motorsport · Travel · Brands",
   "stats": [
     {
@@ -58,6 +58,9 @@
     }
   ],
   "clients": [
-    "Motor Sports Nepal Club"
+    "Nepal Road Racing Championship",
+    "Motor Sports Nepal Club",
+    "Samsara Restro",
+    "Chiya Bar"
   ]
 }

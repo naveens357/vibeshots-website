@@ -120,6 +120,21 @@ $$('.tiers').forEach((track) => {
   sync();
 });
 
+/* ---- Images page: weddings / commercial switch (also opens from #commercial) ---- */
+const wall = $('[data-cat-scope]');
+if (wall) {
+  const setCat = (cat: string) => {
+    wall.dataset.catScope = cat;
+    $$('[data-seg=imgcat] button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
+    $$('[data-seg=imgcat]').forEach(placePill);
+  };
+  $$('[data-seg=imgcat] button').forEach((b) => b.addEventListener('click', () => {
+    setCat(b.dataset.cat!);
+    history.replaceState(null, '', b.dataset.cat === 'commercial' ? '#commercial' : location.pathname);
+  }));
+  if (location.hash === '#commercial') setCat('commercial');
+}
+
 /* ---- commercial filters ---- */
 let mode = 'all';
 let sector = 'all';
@@ -245,9 +260,10 @@ if (banners.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
 /* ---- lightbox for the image wall ---- */
 const lb = $('#lightbox');
-const lbImgs = $$<HTMLImageElement>('[data-lightbox] img');
-if (lb && lbImgs.length) {
+const allImgs = $$<HTMLImageElement>('[data-lightbox] img');
+if (lb && allImgs.length) {
   let i = 0;
+  let lbImgs = allImgs;
   const img = $<HTMLImageElement>('img', lb)!;
   const cap = $('.lb-c', lb)!;
   const show = (n: number) => {
@@ -256,7 +272,12 @@ if (lb && lbImgs.length) {
     img.alt = lbImgs[i].alt;
     cap.textContent = `${i + 1} / ${lbImgs.length}`;
   };
-  lbImgs.forEach((im, n) => im.closest('.media')?.addEventListener('click', () => { show(n); lb.classList.add('on'); }));
+  // only cycle through the photos currently shown (the selected category)
+  allImgs.forEach((im) => im.closest('.media')?.addEventListener('click', () => {
+    lbImgs = allImgs.filter((x) => x.offsetParent !== null);
+    show(lbImgs.indexOf(im));
+    lb.classList.add('on');
+  }));
   $('.lb-x', lb)?.addEventListener('click', () => lb.classList.remove('on'));
   $('.lb-p', lb)?.addEventListener('click', () => show(i - 1));
   $('.lb-n', lb)?.addEventListener('click', () => show(i + 1));

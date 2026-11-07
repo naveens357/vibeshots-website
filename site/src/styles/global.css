@@ -176,6 +176,33 @@ body.dark .top .btn-dot .dot{background:#000}
 .t-travel{--g:linear-gradient(160deg,#5c8e94,#2a5158 60%,#0f272b)}
 .t-product{--g:linear-gradient(160deg,#5c5c60,#2a2a2d 60%,#111)}
 
+/* Abstract artwork for empty image slots, built from the site's motifs:
+   Bhaktapur-window arches, a toran garland, the logo's orange dot and a
+   faint dhaka diamond weave. Commercial tones get speed lines instead. */
+.ph{
+  --arch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 240' fill='none' stroke='%23fff' stroke-width='1.1'%3E%3Cpath stroke-opacity='.38' d='M28 240V122a72 72 0 0 1 144 0v118'/%3E%3Cpath stroke-opacity='.26' d='M47 240V126a53 53 0 0 1 106 0v114'/%3E%3Cpath stroke-opacity='.18' d='M66 240V130a34 34 0 0 1 68 0v110'/%3E%3Cpath stroke-opacity='.22' d='M0 26q25 16 50 0q25 16 50 0q25 16 50 0q25 16 50 0'/%3E%3Cg fill='%23fff' fill-opacity='.3' stroke='none'%3E%3Ccircle cx='25' cy='36' r='2.2'/%3E%3Ccircle cx='75' cy='36' r='2.2'/%3E%3Ccircle cx='125' cy='36' r='2.2'/%3E%3Ccircle cx='175' cy='36' r='2.2'/%3E%3C/g%3E%3Ccircle cx='100' cy='94' r='6' fill='%23F15A2B' stroke='none'/%3E%3C/svg%3E");
+  --weave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M14 1L27 14L14 27L1 14Z' fill='none' stroke='%23fff' stroke-opacity='.07'/%3E%3C/svg%3E");
+  --motif:var(--arch);
+  background-image:var(--motif),var(--weave),var(--g,linear-gradient(160deg,#cdbda3,#a8957a));
+  background-repeat:no-repeat,repeat,no-repeat;
+  background-size:auto 82%,28px 28px,cover;
+  background-position:center bottom,0 0,center;
+}
+/* light tones: ink lines instead of white */
+.t-ivory,.t-haldi,.t-gold{
+  --arch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 240' fill='none' stroke='%231C1A19' stroke-width='1.1'%3E%3Cpath stroke-opacity='.28' d='M28 240V122a72 72 0 0 1 144 0v118'/%3E%3Cpath stroke-opacity='.2' d='M47 240V126a53 53 0 0 1 106 0v114'/%3E%3Cpath stroke-opacity='.14' d='M66 240V130a34 34 0 0 1 68 0v110'/%3E%3Cpath stroke-opacity='.18' d='M0 26q25 16 50 0q25 16 50 0q25 16 50 0q25 16 50 0'/%3E%3Cg fill='%231C1A19' fill-opacity='.22' stroke='none'%3E%3Ccircle cx='25' cy='36' r='2.2'/%3E%3Ccircle cx='75' cy='36' r='2.2'/%3E%3Ccircle cx='125' cy='36' r='2.2'/%3E%3Ccircle cx='175' cy='36' r='2.2'/%3E%3C/g%3E%3Ccircle cx='100' cy='94' r='6' fill='%23F15A2B' stroke='none'/%3E%3C/svg%3E");
+  --weave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M14 1L27 14L14 27L1 14Z' fill='none' stroke='%231C1A19' stroke-opacity='.06'/%3E%3C/svg%3E");
+}
+/* commercial tones: speed lines and an orange ring */
+.t-moto,.t-moto2,.t-travel,.t-product{
+  --motif:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200' fill='none'%3E%3Cg stroke='%23fff' stroke-opacity='.16' stroke-width='1'%3E%3Cpath d='M-40 200L160 0'/%3E%3Cpath d='M0 200L200 0'/%3E%3Cpath d='M40 200L240 0'/%3E%3Cpath d='M80 200L280 0'/%3E%3Cpath d='M120 200L320 0'/%3E%3C/g%3E%3Ccircle cx='222' cy='62' r='26' stroke='%23F15A2B' stroke-opacity='.85' stroke-width='2'/%3E%3Ccircle cx='222' cy='62' r='5' fill='%23F15A2B'/%3E%3C/svg%3E");
+}
+.t-moto,.t-moto2,.t-travel,.t-product{background-size:cover,28px 28px,cover;background-position:center,0 0,center}
+/* arches read best in tall frames; in very wide frames keep them modest */
+.r169.ph,.r219.ph,.r32.ph{background-size:auto 90%,28px 28px,cover}
+/* the label is an editor's hint, not for visitors */
+.ph::after{content:none}
+
 /* ---------- home: split hero ---------- */
 .hero{margin-top:calc(var(--header) * -1);height:min(100svh,920px);min-height:640px;display:flex;background:#000;color:#fff}
 .door{position:relative;flex:1.5;overflow:hidden;transition:flex .8s var(--ease);display:flex;align-items:flex-end}
@@ -593,6 +620,7 @@ div.fcard{cursor:default}
 .wall{columns:3 300px;column-gap:14px;max-width:1240px;margin:0 auto}
 .wall .media{break-inside:avoid;margin-bottom:14px;cursor:zoom-in}
 .wall .media.ph{cursor:default}
+.wall[data-cat-scope=wedding] .cat-commercial,.wall[data-cat-scope=commercial] .cat-wedding{display:none}
 .lightbox{position:fixed;inset:0;z-index:220;background:rgba(12,10,9,.94);display:none;align-items:center;justify-content:center;padding:40px 64px}
 .lightbox.on{display:flex}
 .lightbox img{max-width:100%;max-height:100%;object-fit:contain;animation:rise .4s var(--ease)}
@@ -602,7 +630,7 @@ div.fcard{cursor:default}
 .lightbox .lb-n{right:12px;top:50%;transform:translateY(-50%)}
 .lightbox .lb-c{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#bbb;font:400 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase}
 
-/* albums & pre-weddings lists */
+/* pre-weddings list */
 .plist{display:grid;grid-template-columns:repeat(2,1fr);gap:64px 40px;max-width:1100px;margin:0 auto}
 .pitem{display:block;text-align:center}
 .pitem .media{aspect-ratio:3/2}

@@ -17,32 +17,371 @@
     "bikash": "media-inbox/bikash",
     "ricky": "photo/ricky",
     "bandana": "media-inbox/bandana",
-    "maternity": "photo/2025-12-19-maternity-studio",
-    "raceaug": "photo/2025-08-30-bike-race",
-    "raceapr": "photo/2026-04-19-bike-race",
-    "lake": "photo/2026-09-28-lake-trek",
-    "himalaya": "photo/2026-02-14-himalaya-trek",
-    "mlakes": "photo/2025-06-09-mountain-lakes"
+    "maternity": "photo/jack and samikshya",
+    "raceaug": "photo/nepal road racing championship 2",
+    "raceapr": "photo/nepal road racing championship",
+    "lake": "photo/phoksundo lake trek",
+    "himalaya": "photo/langtang",
+    "mlakes": "photo/pachpokhari",
+    "samsara": "media-inbox/samsara food",
+    "jack": "media-inbox/jack painting"
   },
   "groups": {
-    "stories/biwash-swastika": { "items": ["biwash1:1","biwash1:4","biwash1:3","biwash1:6","biwash1:8","biwash1:9","biwash1:11","biwash1:13","biwash2:1","biwash2:2","biwash2:3","biwash2:6","biwash2:7","biwash2:8","biwash2:9","biwash1:14","biwash3:1","biwash3:3","biwash3:5","biwash3:6","biwash3:7","biwash3:8","biwash3:11","biwash3:12"], "cover": "biwash1:9", "hero": "biwash2:2" },
-    "stories/nick-ganga": { "items": ["ganga:3","ganga:4","ganga:5","ganga:7","ganga:8","ganga:9","ganga:10","ganga:11","ganga:12","ganga:14","ganga:15","ganga:16","ganga:18","ganga:19","ganga:20"], "cover": "ganga:5", "hero": "ganga:10" },
-    "stories/sonam-rina": { "items": ["sonam:1","sonam:3","sonam:7","sonam:9","sonam:11","sonam:14","sonam:16","sonam:17","sonam:21","sonam:23","sonam:26","sonam:27","sonam:31","sonam:32","sonam:34","sonam:35","sonam:37","sonam:38"], "cover": "sonam:9", "hero": "sonam:7" },
-    "stories/manish": { "items": ["manish:2","manish:5","manish:7","manish:8","manish:10","manish:11","manish:12","manish:13","manish2:1","manish2:2","manish2:4","manish2:7","manish2:5","manish2:8","manish2:10","manish2:11","manish2:12","manish2:14"], "cover": "manish:12", "hero": "manish2:4" },
-    "prewedding/sumnima-patan": { "items": ["sumnima:1","sumnima:2","sumnima:3","sumnima:4","sumnima:6","sumnima:7","sumnima:8","sumnima:9","sumnima:10","sumnima:11","sumnima:12","sumnima:13","sumnima:14","sumnima:15"], "cover": "sumnima:7" },
-    "prewedding/sabin-patan": { "items": ["sabin:1","sabin:3","sabin:4","sabin:5","sabin:6","sabin:7","sabin:8","sabin:10","sabin:11","sabin:12","sabin:13"], "cover": "sabin:13" },
-    "prewedding/abhisek-bhaktapur": { "items": ["abhisek:1","abhisek:2","abhisek:3","abhisek:4","abhisek:5","abhisek:6","abhisek:7","abhisek:8","abhisek:9","abhisek:10","abhisek:11","abhisek:12","abhisek:13","abhisek:15","abhisek:16"], "cover": "abhisek:16" },
-    "prewedding/anu-bhaktapur": { "items": ["anu2:1","anu2:2","anu2:3","anu2:4","anu2:6","anu2:7","anu2:8","anu2:9","anu2:11","anu2:12"], "cover": "anu2:9" },
-    "prewedding/bikash-garden": { "items": ["bikash:1","bikash:2","bikash:3","bikash:5","bikash:9","bikash:10","bikash:11","bikash:12","bikash:13","bikash:15","bikash:16","bikash:18","bikash:21"], "cover": "bikash:13" },
-    "prewedding/ricky": { "items": ["ricky:1","ricky:2","ricky:3","ricky:4","ricky:5","ricky:6","ricky:7","ricky:9"], "cover": "ricky:6" },
-    "prewedding/bandana-engagement": { "items": ["bandana:1","bandana:2","bandana:3","bandana:4","bandana:9","bandana:10","bandana:11","bandana:12","bandana:14","bandana:15"], "cover": "bandana:14" },
-    "projects/race-day-august-2025": { "items": ["raceaug:1","raceaug:2","raceaug:3","raceaug:5","raceaug:6"], "cover": "raceaug:1" },
-    "projects/motor-sports-nepal-april-2026": { "items": ["raceapr:1","raceapr:2","raceapr:3","raceapr:4","raceapr:5"], "cover": "raceapr:4" },
-    "projects/phoksundo-lake-trek": { "items": ["lake:17","lake:2","lake:3","lake:4","lake:5","lake:6","lake:7","lake:8","lake:9","lake:11","lake:12","lake:13","lake:15","lake:16","lake:18","lake:19","lake:21","lake:22"], "cover": "lake:17" },
-    "projects/himalaya-on-foot": { "items": ["himalaya:1","himalaya:2","himalaya:3","mlakes:1"], "cover": "himalaya:1" },
-    "images": { "items": ["anu:4","sumnima:7","anu:1","maternity:4","ganga:9","biwash1:3","anu:5","sabin:12","abhisek:13","sabinx:2","maternity:6","sonam:31","anu2:3","biwash2:9","lake:13","manish2:10","sumnima:10","ricky:6","maternity:7","abhisek:14","bikash:20","anu2:11","lake:22","raceaug:1","manish:8","himalaya:2","sabinx:1","sabin:3"] },
-    "home": { "items": ["sumnima:7","ganga:9","sabin:13","biwash2:2","ganga:10","raceaug:1"] },
-    "ceremonies": { "items": ["manish2:11","bandana:14","sonam:35","abhisek:13","biwash2:5"] },
-    "journal": { "items": ["anu2:11","manish2:14","biwash1:1"] }
+    "stories/biwash-swastika": {
+      "items": [
+        "biwash1:1",
+        "biwash1:4",
+        "biwash1:3",
+        "biwash1:6",
+        "biwash1:8",
+        "biwash1:9",
+        "biwash1:11",
+        "biwash1:13",
+        "biwash2:1",
+        "biwash2:2",
+        "biwash2:3",
+        "biwash2:6",
+        "biwash2:7",
+        "biwash2:8",
+        "biwash2:9",
+        "biwash1:14",
+        "biwash3:1",
+        "biwash3:3",
+        "biwash3:5",
+        "biwash3:6",
+        "biwash3:7",
+        "biwash3:8",
+        "biwash3:11",
+        "biwash3:12"
+      ],
+      "cover": "biwash1:9",
+      "hero": "biwash2:2"
+    },
+    "stories/nick-ganga": {
+      "items": [
+        "ganga:3",
+        "ganga:4",
+        "ganga:5",
+        "ganga:7",
+        "ganga:8",
+        "ganga:9",
+        "ganga:10",
+        "ganga:11",
+        "ganga:12",
+        "ganga:14",
+        "ganga:15",
+        "ganga:16",
+        "ganga:18",
+        "ganga:19",
+        "ganga:20"
+      ],
+      "cover": "ganga:5",
+      "hero": "ganga:10"
+    },
+    "stories/sonam-rina": {
+      "items": [
+        "sonam:1",
+        "sonam:3",
+        "sonam:7",
+        "sonam:9",
+        "sonam:11",
+        "sonam:14",
+        "sonam:16",
+        "sonam:17",
+        "sonam:21",
+        "sonam:23",
+        "sonam:26",
+        "sonam:27",
+        "sonam:31",
+        "sonam:32",
+        "sonam:34",
+        "sonam:35",
+        "sonam:37",
+        "sonam:38"
+      ],
+      "cover": "sonam:9",
+      "hero": "sonam:7"
+    },
+    "stories/manish": {
+      "items": [
+        "manish:2",
+        "manish:5",
+        "manish:7",
+        "manish:8",
+        "manish:10",
+        "manish:11",
+        "manish:12",
+        "manish:13",
+        "manish2:1",
+        "manish2:2",
+        "manish2:4",
+        "manish2:7",
+        "manish2:5",
+        "manish2:8",
+        "manish2:10",
+        "manish2:11",
+        "manish2:12",
+        "manish2:14"
+      ],
+      "cover": "manish:12",
+      "hero": "manish2:4"
+    },
+    "prewedding/sumnima-patan": {
+      "items": [
+        "sumnima:1",
+        "sumnima:2",
+        "sumnima:3",
+        "sumnima:4",
+        "sumnima:6",
+        "sumnima:7",
+        "sumnima:8",
+        "sumnima:9",
+        "sumnima:10",
+        "sumnima:11",
+        "sumnima:12",
+        "sumnima:13",
+        "sumnima:14",
+        "sumnima:15"
+      ],
+      "cover": "sumnima:7"
+    },
+    "prewedding/sabin-patan": {
+      "items": [
+        "sabin:1",
+        "sabin:3",
+        "sabin:4",
+        "sabin:5",
+        "sabin:6",
+        "sabin:7",
+        "sabin:8",
+        "sabin:10",
+        "sabin:11",
+        "sabin:12",
+        "sabin:13"
+      ],
+      "cover": "sabin:13"
+    },
+    "prewedding/abhisek-bhaktapur": {
+      "items": [
+        "abhisek:1",
+        "abhisek:2",
+        "abhisek:3",
+        "abhisek:4",
+        "abhisek:5",
+        "abhisek:6",
+        "abhisek:7",
+        "abhisek:8",
+        "abhisek:9",
+        "abhisek:10",
+        "abhisek:11",
+        "abhisek:12",
+        "abhisek:13",
+        "abhisek:15",
+        "abhisek:16"
+      ],
+      "cover": "abhisek:16"
+    },
+    "prewedding/anu-bhaktapur": {
+      "items": [
+        "anu2:1",
+        "anu2:2",
+        "anu2:3",
+        "anu2:4",
+        "anu2:6",
+        "anu2:7",
+        "anu2:8",
+        "anu2:9",
+        "anu2:11",
+        "anu2:12"
+      ],
+      "cover": "anu2:9"
+    },
+    "prewedding/bikash-garden": {
+      "items": [
+        "bikash:1",
+        "bikash:2",
+        "bikash:3",
+        "bikash:5",
+        "bikash:9",
+        "bikash:10",
+        "bikash:11",
+        "bikash:12",
+        "bikash:13",
+        "bikash:15",
+        "bikash:16",
+        "bikash:18",
+        "bikash:21"
+      ],
+      "cover": "bikash:13"
+    },
+    "prewedding/ricky": {
+      "items": [
+        "ricky:1",
+        "ricky:2",
+        "ricky:3",
+        "ricky:4",
+        "ricky:5",
+        "ricky:6",
+        "ricky:7",
+        "ricky:9"
+      ],
+      "cover": "ricky:6"
+    },
+    "prewedding/bandana-engagement": {
+      "items": [
+        "bandana:1",
+        "bandana:2",
+        "bandana:3",
+        "bandana:4",
+        "bandana:9",
+        "bandana:10",
+        "bandana:11",
+        "bandana:12",
+        "bandana:14",
+        "bandana:15"
+      ],
+      "cover": "bandana:14"
+    },
+    "projects/race-day-august-2025": {
+      "items": [
+        "raceaug:1",
+        "raceaug:2",
+        "raceaug:3",
+        "raceaug:5",
+        "raceaug:6"
+      ],
+      "cover": "raceaug:1"
+    },
+    "projects/motor-sports-nepal-april-2026": {
+      "items": [
+        "raceapr:1",
+        "raceapr:2",
+        "raceapr:3",
+        "raceapr:4",
+        "raceapr:5"
+      ],
+      "cover": "raceapr:4"
+    },
+    "projects/phoksundo-lake-trek": {
+      "items": [
+        "lake:17",
+        "lake:2",
+        "lake:3",
+        "lake:4",
+        "lake:5",
+        "lake:6",
+        "lake:7",
+        "lake:8",
+        "lake:9",
+        "lake:11",
+        "lake:12",
+        "lake:13",
+        "lake:15",
+        "lake:16",
+        "lake:18",
+        "lake:19",
+        "lake:21",
+        "lake:22"
+      ],
+      "cover": "lake:17"
+    },
+    "projects/himalaya-on-foot": {
+      "items": [
+        "himalaya:1",
+        "himalaya:2",
+        "himalaya:3",
+        "mlakes:1"
+      ],
+      "cover": "himalaya:1"
+    },
+    "images": {
+      "items": [
+        "anu:4",
+        "sumnima:7",
+        "anu:1",
+        "maternity:4",
+        "ganga:9",
+        "biwash1:3",
+        "anu:5",
+        "sabin:12",
+        "abhisek:13",
+        "sabinx:2",
+        "maternity:6",
+        "sonam:31",
+        "anu2:3",
+        "biwash2:9",
+        "lake:13",
+        "manish2:10",
+        "sumnima:10",
+        "ricky:6",
+        "maternity:7",
+        "abhisek:14",
+        "bikash:20",
+        "anu2:11",
+        "lake:22",
+        "raceaug:1",
+        "manish:8",
+        "himalaya:2",
+        "sabinx:1",
+        "sabin:3"
+      ]
+    },
+    "home": {
+      "items": [
+        "sumnima:7",
+        "ganga:9",
+        "sabin:13",
+        "biwash2:2",
+        "ganga:10",
+        "raceaug:1"
+      ]
+    },
+    "ceremonies": {
+      "items": [
+        "manish2:11",
+        "bandana:14",
+        "sonam:35",
+        "abhisek:13",
+        "biwash2:5"
+      ]
+    },
+    "journal": {
+      "items": [
+        "anu2:11",
+        "manish2:14",
+        "biwash1:1"
+      ]
+    },
+    "projects/samsara-restro": {
+      "items": [
+        "samsara:12",
+        "samsara:2",
+        "samsara:3",
+        "samsara:1",
+        "samsara:4",
+        "samsara:6",
+        "samsara:10",
+        "samsara:11",
+        "samsara:13",
+        "samsara:14",
+        "samsara:15",
+        "samsara:5",
+        "samsara:7",
+        "samsara:9"
+      ],
+      "cover": "samsara:12"
+    },
+    "projects/jack-paintings": {
+      "items": [
+        "jack:3",
+        "jack:1",
+        "jack:2",
+        "jack:4",
+        "jack:5",
+        "jack:6",
+        "jack:7"
+      ],
+      "cover": "jack:3"
+    }
   }
 }

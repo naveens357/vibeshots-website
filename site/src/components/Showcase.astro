@@ -1,9 +1,9 @@
 ---
-/** List and detail views shared by Albums and Pre-weddings. */
+/** List and detail views for Pre-weddings. */
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import Media from './Media.astro';
-type Entry = CollectionEntry<'albums'> | CollectionEntry<'prewedding'>;
+type Entry = CollectionEntry<'prewedding'>;
 interface Props { base: string; items?: Entry[]; entry?: Entry }
 const { base, items = [], entry } = Astro.props;
 const Content = entry ? (await render(entry)).Content : null;

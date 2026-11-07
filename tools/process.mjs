@@ -1,7 +1,7 @@
 // Turns the picks in selection.json into web-ready WebP files under
 // site/public/uploads/<group>/, and writes out/processed.json with the
 // published path, size and orientation of every photo.
-// Usage: node process.mjs
+// Usage: node process.mjs [group …]   (no groups = all; results merge into out/processed.json)
 import sharp from 'sharp';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -21,24 +21,26 @@ async function list(dir) {
   return out.sort();
 }
 
+const only = process.argv.slice(2);
+const groups = Object.entries(sel.groups).filter(([g]) => !only.length || only.includes(g));
 const setFiles = {};
-for (const [k, dir] of Object.entries(sel.sets)) setFiles[k] = await list(path.join(root, dir));
-const resolve = (ref) => {
+const resolve = async (ref) => {
   const [set, n] = ref.split(':');
+  setFiles[set] ??= await list(path.join(root, sel.sets[set]));
   const f = setFiles[set]?.[Number(n) - 1];
   if (!f) throw new Error(`No photo for ${ref}`);
   return f;
 };
 
-const result = {};
-const done = new Map(); // same source + size → reuse
-for (const [group, g] of Object.entries(sel.groups)) {
+let result = {};
+try { result = JSON.parse(await fs.readFile('out/processed.json', 'utf8')); } catch {}
+for (const [group, g] of groups) {
   const outDir = path.join(root, 'site/public/uploads', group);
   await fs.mkdir(outDir, { recursive: true });
   const heroRefs = new Set([g.hero, g.cover].filter(Boolean));
   const entries = [];
   for (const [i, ref] of g.items.entries()) {
-    const src = resolve(ref);
+    const src = await resolve(ref);
     const long = heroRefs.has(ref) || group === 'home' ? HERO_LONG : LONG;
     const name = `${String(i + 1).padStart(2, '0')}-${path.basename(src).replace(/\.[^.]+$/, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.webp`;
     const out = path.join(outDir, name);
@@ -51,7 +53,6 @@ for (const [group, g] of Object.entries(sel.groups)) {
       orient: info.width > info.height * 1.1 ? 'land' : info.height > info.width * 1.1 ? 'port' : 'square',
       kb: Math.round(info.size / 1024),
     });
-    done.set(ref, entries.at(-1));
   }
   result[group] = { entries, cover: g.cover, hero: g.hero };
   const total = entries.reduce((s, e) => s + e.kb, 0);

@@ -128,7 +128,8 @@ collections:
       - { label: Cover alt text, name: coverAlt, widget: string, required: false }
       - { label: Cover placeholder colour, name: coverTone, widget: select, default: moto, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
       - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
-      - { label: Film link (YouTube or Vimeo), name: film, widget: string, required: false }
+      - { label: Film link (YouTube, Vimeo or an uploaded MP4), name: film, widget: string, required: false }
+      - { label: Film poster image, name: filmPoster, widget: image, required: false, choose_url: false }
       - *gallery
       - { label: Feature on home page, name: featured, widget: boolean, default: false }
       - { label: Sample content (untick when real), name: sample, widget: boolean, default: false }
@@ -159,29 +160,7 @@ collections:
       - { label: Linked wedding story (its file name), name: story, widget: string, required: false, hint: "e.g. aashma-rohan-bhaktapur" }
       - { label: Sample content (untick when real), name: sample, widget: boolean, default: false }
 
-  # ------------------------------------------------------- Albums & pre-weddings
-  - name: albums
-    label: Albums
-    label_singular: Album
-    folder: site/src/content/albums
-    create: true
-    slug: "{{slug}}"
-    summary: "{{title}} · {{location}}"
-    sortable_fields: [date, title]
-    fields:
-      - { label: Couple names, name: title, widget: string }
-      - { label: Location, name: location, widget: string, required: false }
-      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
-      - { label: Short summary, name: excerpt, widget: text, required: false }
-      - { label: Cover photo, name: cover, widget: image, required: false, choose_url: false }
-      - { label: Cover alt text, name: coverAlt, widget: string, required: false }
-      - { label: Cover placeholder colour, name: coverTone, widget: select, default: ivory, options: [bride, sindoor, haldi, mehendi, ivory, night, gold, temple, moto, moto2, travel, product] }
-      - { label: Cover placeholder label, name: coverLabel, widget: string, required: false }
-      - *gallery
-      - { label: Sample content (untick when real), name: sample, widget: boolean, default: false }
-      - { label: SEO title, name: seoTitle, widget: string, required: false }
-      - { label: SEO description, name: seoDescription, widget: text, required: false }
-      - { label: Text, name: body, widget: markdown }
+  # ------------------------------------------------------------ Pre-weddings
   - name: prewedding
     label: Pre-weddings
     label_singular: Pre-wedding shoot
@@ -265,6 +244,7 @@ collections:
               - { label: Photo, name: src, widget: image, required: false, choose_url: false }
               - { label: Alt text, name: alt, widget: string, required: false }
               - { label: Shape, name: ratio, widget: select, default: "45", options: [{ label: Portrait 4:5, value: "45" }, { label: Tall 2:3, value: "23" }, { label: Landscape 3:2, value: "32" }, { label: Square, value: "11" }] }
+              - { label: Section, name: category, widget: select, default: wedding, options: [{ label: Weddings & portraits, value: wedding }, { label: Commercial, value: commercial }] }
               - { label: Placeholder label, name: label, widget: string, required: false }
               - *tone
       - name: faq

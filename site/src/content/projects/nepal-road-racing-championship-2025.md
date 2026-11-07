@@ -1,7 +1,7 @@
 ---
-title: "Race day, August"
-client: "Bike race"
-credit: "Track coverage: corners, line-ups and pit lane"
+title: "Race day, August 2025"
+client: "Nepal Road Racing Championship"
+credit: "Nepal Road Racing Championship: corners, line-ups and the pit lane"
 sector: "moto"
 types:
   - "stills"

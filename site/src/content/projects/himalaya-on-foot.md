@@ -1,12 +1,12 @@
 ---
 title: "Himalaya, on foot"
-client: "Langtang trek"
-credit: "Trekkers, porters and prayer flags"
+client: "Langtang & Panch Pokhari"
+credit: "Trekkers, porters, prayer flags and lakes above the clouds"
 sector: "travel"
 types:
   - "stills"
 date: "2026-02-17"
-location: "Langtang"
+location: "Langtang and Panch Pokhari"
 deliverables: "Travel stills"
 results: ""
 cover: "/uploads/projects/himalaya-on-foot/01--dsc3799.webp"

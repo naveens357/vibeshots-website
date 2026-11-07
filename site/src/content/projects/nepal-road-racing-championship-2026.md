@@ -1,7 +1,7 @@
 ---
-title: "Bike race, April"
-client: "Motor Sports Nepal Club"
-credit: "Motor Sports Nepal Club × Vibeshots"
+title: "Chequered flag, April 2026"
+client: "Nepal Road Racing Championship"
+credit: "Nepal Road Racing Championship × Motor Sports Nepal Club"
 sector: "moto"
 types:
   - "stills"

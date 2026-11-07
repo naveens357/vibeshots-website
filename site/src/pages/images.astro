@@ -2,13 +2,25 @@
 import Base from '../layouts/Base.astro';
 import Media from '../components/Media.astro';
 import data from '../data/images.json';
+const cats = [
+  { id: 'wedding', label: 'Weddings & portraits' },
+  { id: 'commercial', label: 'Commercial' },
+];
 ---
-<Base title="Images" description="A wall of our favourite wedding photographs from Nepal: rituals, portraits and families, photographed by Vibeshots Nepal.">
+<Base title="Images" description="Our favourite photographs from Nepal: weddings and portraits, plus commercial work for restaurants, motorsport, travel and artists, by Vibeshots Nepal.">
   <section class="sec" style="padding-top:96px">
     <div class="wrap">
       <div class="stitle"><span class="deva" lang="ne">तस्बिरहरू</span><h1>Images</h1>{data.intro && <p>{data.intro}</p>}</div>
-      <div class="wall" data-lightbox>
-        {data.images.map((im) => <Media class="rv" src={im.src} alt={im.alt} tone={im.tone} label={im.label} ratio={im.ratio} sizes="(max-width: 760px) 100vw, 33vw" />)}
+      <div class="center" style="margin:-24px 0 40px">
+        <div class="seg" data-seg="imgcat" role="group" aria-label="Show images">
+          <span class="pill" aria-hidden="true"></span>
+          {cats.map((c, i) => <button type="button" aria-pressed={i === 0 ? 'true' : 'false'} data-cat={c.id}>{c.label}</button>)}
+        </div>
+      </div>
+      <div class="wall" data-lightbox data-cat-scope="wedding">
+        {data.images.map((im) => (
+          <Media class={`rv cat-${im.category || 'wedding'}`} src={im.src} alt={im.alt} tone={im.tone} label={im.label} ratio={im.ratio} sizes="(max-width: 760px) 100vw, 33vw" />
+        ))}
       </div>
     </div>
   </section>

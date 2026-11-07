@@ -71,6 +71,7 @@ const projects = defineCollection({
     results: z.string().optional().default(''),
     ...cover,
     film: z.string().optional().default(''),
+    filmPoster: z.string().optional().default(''),
     gallery: z.array(galleryItem).default([]),
     featured: z.boolean().default(false),
     sample: z.boolean().default(false),
@@ -120,7 +121,7 @@ const films = defineCollection({
   }),
 });
 
-// Albums (photobooks) and pre-wedding shoots share one shape.
+// Pre-wedding shoots: cover, gallery and a short text.
 const showcase = (base: string) => defineCollection({
   loader: glob({ pattern: '**/*.md', base }),
   schema: z.object({
@@ -137,6 +138,5 @@ const showcase = (base: string) => defineCollection({
 
 export const collections = {
   stories, projects, ceremonies, journal, films,
-  albums: showcase('./src/content/albums'),
   prewedding: showcase('./src/content/prewedding'),
 };
