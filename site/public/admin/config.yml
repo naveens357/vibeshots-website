@@ -290,6 +290,7 @@ collections:
           - { label: YouTube link, name: youtube, widget: string, required: false }
           - { label: Call booking link (Cal.com / Calendly), name: callBookingUrl, widget: string, required: false }
           - { label: Form service endpoint (optional), name: formEndpoint, widget: string, required: false, hint: "e.g. https://api.web3forms.com/submit — leave empty and forms open WhatsApp with the details filled in" }
+          - { label: Google Search Console verification code, name: googleVerification, widget: string, required: false, hint: "Only the content value from the google-site-verification meta tag" }
           - { label: Form service access key (optional), name: formAccessKey, widget: string, required: false, hint: "Public key from Web3Forms (safe to show on the site)" }
           - { label: Reply promise, name: replyPromise, widget: string }
           - { label: Home hero — wedding video (MP4/WebM), name: heroWeddingVideo, widget: file, required: false, choose_url: false }

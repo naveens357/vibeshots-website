@@ -91,6 +91,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
   <title>{fullTitle}</title>
   <meta name="description" content={description}>
   <link rel="canonical" href={canonical}>
+  {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification}>}
   <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}>
   <meta name="geo.region" content="NP-P3">
   <meta name="geo.placename" content="Bhaktapur">
