@@ -5,8 +5,11 @@ backend:
   name: github
   repo: naveens357/vibeshots-website
   branch: main
-  # On Netlify, GitHub sign-in works once you add a GitHub OAuth app under
-  # Site configuration → Access & security → OAuth.
+  # GitHub sign-in runs through the site's own Cloudflare Worker (site/worker/index.js):
+  # the pop-up opens https://vibeshotsnepal.com/auth and returns via /callback.
+  base_url: https://vibeshotsnepal.com
+  auth_endpoint: auth
+  auth_scope: public_repo
 
 # Paths are relative to the git repo root (the folder above site/).
 # Lets you edit locally with `npm run cms` + `npm run dev`, then open http://localhost:4321/admin/index.html

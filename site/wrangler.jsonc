@@ -1,13 +1,19 @@
-// Cloudflare Workers static-assets deploy for the built Astro site.
+// Cloudflare Worker for vibeshotsnepal.com: the built Astro site (static assets)
+// plus /auth and /callback for the content manager's GitHub sign-in (worker/index.js).
 // Cloudflare build settings: root directory "site", build command "npm run build",
 // deploy command "npx wrangler deploy", build variable SITE_URL=https://vibeshotsnepal.com.
+// Runtime secrets (set in the dashboard, never in this file): GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "vibeshotsnepal",
+  "main": "./worker/index.js",
   "compatibility_date": "2026-11-01",
+  "keep_vars": true,
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/auth", "/auth/", "/callback", "/callback/"]
   }
 }
