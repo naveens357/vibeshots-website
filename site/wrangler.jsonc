@@ -3,7 +3,7 @@
 // deploy command "npx wrangler deploy", build variable SITE_URL=https://vibeshotsnepal.com.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "vibeshots-website",
+  "name": "vibeshotsnepal",
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./dist",
