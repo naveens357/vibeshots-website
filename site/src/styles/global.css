@@ -365,6 +365,9 @@ body.dark .top .btn-dot .dot{background:#000}
 .wide-card .body{padding:40px;display:flex;flex-direction:column;gap:16px}
 .wide-card.heritage{background:#140f0c;color:var(--ivory);border-color:#2a211b}
 .wide-card.heritage .muted,.wide-card.heritage li{color:#c4b9aa}
+.wide-card.heritage .h2{color:var(--ivory)}
+.wide-card.heritage .h2 .it{color:#F0C27A}
+.wide-card .media img{position:absolute;inset:0}
 .wide-card ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:14px;color:var(--ink-soft)}
 .wide-card li::before{content:"— ";color:var(--marigold)}
 @media (max-width:860px){.wide-card{grid-template-columns:1fr}.wide-card .media{min-height:280px}.wide-card ul{grid-template-columns:1fr}.wide-card .body{padding:28px}}
@@ -397,7 +400,12 @@ details p{color:var(--ink-soft);margin-top:10px;max-width:70ch}
 .step .n{font:italic 500 56px/1 var(--serif);color:var(--marigold)}
 .step h3{font:600 24px/1.3 var(--serif);margin:16px 0 8px}
 .step p{font-size:14px;color:var(--ink-soft)}
+.steps.svc-list{grid-template-columns:repeat(3,1fr);row-gap:40px}
+.steps.svc-list .step{display:flex;flex-direction:column;align-items:flex-start}
+.steps.svc-list .link-caps{margin-top:auto;padding-top:18px}
 @media (max-width:860px){.steps{grid-template-columns:1fr 1fr;gap:24px}}
+@media (max-width:860px){.steps.svc-list{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps.svc-list{grid-template-columns:1fr}}
 .testi .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:center}
 .testi blockquote{font:italic 500 clamp(28px,3vw,42px)/1.25 var(--serif)}
 .testi cite{display:block;font:600 12px/1.4 var(--sans);letter-spacing:.18em;text-transform:uppercase;font-style:normal;margin-top:24px;color:var(--ink-soft)}
@@ -410,6 +418,11 @@ details p{color:var(--ink-soft);margin-top:10px;max-width:70ch}
 .final p{color:rgba(255,255,255,.82);margin-bottom:36px}
 .final .deva{color:#F0C27A}
 .final .row-btns{justify-content:center}
+.final.has-img{position:relative;overflow:hidden;isolation:isolate;padding-block:clamp(120px,16vw,200px)}
+.final-bg{position:absolute;inset:0;z-index:-1}
+.final-bg .media{height:100%;border-radius:0}
+.final-bg .media img{position:absolute;inset:0;object-position:50% 40%}
+.final-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(90,14,20,.78),rgba(60,8,12,.88))}
 
 /* ---------- page heroes ---------- */
 .phero{padding:96px 0 48px;text-align:center}

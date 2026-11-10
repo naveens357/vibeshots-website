@@ -10,7 +10,7 @@ import { waLink, igDm, sectors } from '../lib/format';
       <div class="chan" style="margin-top:28px">
         <a href={waLink('Hi Vibeshots, we have a commercial project.', site.whatsappCommercial)} target="_blank" rel="noopener"><span class="ic" style="background:var(--wa)"><svg width="22" height="22"><use href="#i-wa"/></svg></span><span><b>WhatsApp</b><small>{site.phoneSecondary}</small></span></a>
         <a href={igDm(site.instagramCommercial)} target="_blank" rel="noopener"><span class="ic" style="background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)"><svg width="22" height="22"><use href="#i-ig"/></svg></span><span><b>Instagram</b><small>@{site.instagramCommercial}</small></span></a>
-        <a href={`mailto:${site.email}?subject=Commercial%20project`}><span class="ic" style="background:#333"><svg width="22" height="22"><use href="#i-mail"/></svg></span><span><b>Email</b><small>{site.email}</small></span></a>
+        {site.email && <a href={`mailto:${site.email}?subject=Commercial%20project`}><span class="ic" style="background:#333"><svg width="22" height="22"><use href="#i-mail"/></svg></span><span><b>Email</b><small>{site.email}</small></span></a>}
       </div>
     </div>
     <form class="form" name="commercial-brief" method="POST" action="/thank-you/" data-form="Commercial brief" data-thanks="/thank-you/" data-endpoint={site.formEndpoint} data-wa={site.whatsappCommercial}>

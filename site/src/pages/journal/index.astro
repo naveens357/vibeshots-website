@@ -5,7 +5,7 @@ import Media from '../../components/Media.astro';
 const posts = (await getCollection('journal', (p) => !p.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
 const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<Base title="Journal" description="Wedding planning tips, pre-wedding locations, ceremony guides and behind-the-scenes from Vibeshots Nepal in Bhaktapur.">
+<Base title="Journal: Nepali Wedding Planning Tips" description="Wedding planning tips, pre-wedding locations, ceremony guides and behind-the-scenes from Vibeshots Nepal in Bhaktapur.">
   <section class="phero">
     <div class="wrap">
       <span class="deva" lang="ne">लेखहरू</span>

@@ -111,7 +111,7 @@ Submit `https://naveens357.github.io/vibeshots-website/sitemap-index.xml` in Goo
 - [ ] Replace the sample stories, projects, testimonial, team and founder note.
 - [ ] Put real numbers in the stats bar (Site settings).
 - [ ] Replace the placeholder client names with real ones you have permission to show.
-- [ ] Set up a real `hello@` email address, or change the email in Site settings.
+- [ ] Email is hidden for now. Once a real address works, add it in Site settings (Email) and it shows in the footer and commercial brief.
 - [ ] Add a call-booking link (Cal.com or Calendly) in Site settings. Without one, "Book a call" opens WhatsApp.
 - [ ] Get the logo as an SVG and replace `public/images/logo-*.png`.
 - [ ] Test both forms on the live site.

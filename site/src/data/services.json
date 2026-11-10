@@ -1,0 +1,78 @@
+{
+  "intro": "Wedding photography, wedding films and commercial shoots from our studio in Sallaghari, Bhaktapur. We cover the whole Kathmandu Valley and travel anywhere in Nepal.",
+  "areas": ["Bhaktapur", "Kathmandu", "Lalitpur", "Kathmandu Valley", "Nagarkot", "Pokhara", "Nepal"],
+  "groups": [
+    {
+      "title": "Weddings & portraits",
+      "deva": "विवाह",
+      "items": [
+        {
+          "name": "Wedding photography",
+          "text": "Hindu and Newari weddings photographed from mehendi and haldi to janti, kanyadan, sindoor pote and bidaai, for the bride side, the groom side or both families.",
+          "link": "/weddings/",
+          "linkText": "See wedding stories"
+        },
+        {
+          "name": "Wedding films & videography",
+          "text": "Cinematic highlight films, full wedding films and Instagram reels, filmed by the same team that takes your photographs.",
+          "link": "/films/",
+          "linkText": "Watch our films"
+        },
+        {
+          "name": "Pre-wedding & engagement shoots",
+          "text": "Relaxed couple shoots in Bhaktapur Durbar Square, Patan, gardens and across Nepal, plus engagement and ring ceremony coverage.",
+          "link": "/pre-weddings/",
+          "linkText": "See pre-wedding shoots"
+        },
+        {
+          "name": "Maternity & family portraits",
+          "text": "Natural maternity and family portraits that feel like you, not a pose.",
+          "link": "/weddings/jack-guddu/",
+          "linkText": "See Jack & Guddu"
+        },
+        {
+          "name": "Single ceremonies",
+          "text": "Book just one event, such as a mehendi, haldi, reception or Newari ritual, at our single-event prices.",
+          "link": "/packages/",
+          "linkText": "See packages & prices"
+        }
+      ]
+    },
+    {
+      "title": "Commercial",
+      "deva": "व्यावसायिक",
+      "items": [
+        {
+          "name": "Food & restaurant photography",
+          "text": "Dishes, interiors and short promo films for restaurants and cafés, like our work for Samsara Restro.",
+          "link": "/commercial/samsara-restro/",
+          "linkText": "See Samsara Restro"
+        },
+        {
+          "name": "Motorsport & automotive",
+          "text": "Race-day photography and films for the Nepal Road Racing Championship and Dirt Temple MX.",
+          "link": "/commercial/nepal-road-racing-championship-2025/",
+          "linkText": "See the championship"
+        },
+        {
+          "name": "Travel & trekking",
+          "text": "Expedition and trek photography from Phoksundo Lake in Dolpa to the Langtang valley.",
+          "link": "/commercial/phoksundo-lake-trek/",
+          "linkText": "See Phoksundo Lake"
+        },
+        {
+          "name": "Events & workshops",
+          "text": "Classes, launches and gatherings, like the Chiya Bar coffee class.",
+          "link": "/commercial/chiya-bar-coffee-class/",
+          "linkText": "See the coffee class"
+        },
+        {
+          "name": "Brand, product & artist shoots",
+          "text": "Brand photography, product shots and promo films for launches, social media and campaigns, plus portfolios for artists.",
+          "link": "/commercial/",
+          "linkText": "See commercial work"
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Media from '../components/Media.astro';
+import { videoSchema } from '../lib/seo';
 
 const films = (await getCollection('films')).sort((a, b) => +b.data.date - +a.data.date);
 const groups = [
@@ -9,11 +10,15 @@ const groups = [
   { kind: 'highlight', title: 'Highlight films', deva: 'हाइलाइट', note: 'The whole wedding in four to six minutes' },
   { kind: 'full', title: 'Full films', deva: 'पूर्ण फिल्म', note: 'Every ritual, every speech, every dance' },
 ] as const;
+const videos = films.filter((f) => f.data.url && f.data.poster).map((f) => videoSchema({
+  name: `${f.data.title}: ${f.data.subtitle || 'wedding film'}`,
+  description: `${f.data.subtitle || 'Wedding film'} of ${f.data.title}${f.data.venue ? ` at ${f.data.venue}` : ''}, filmed by Vibeshots Nepal.`,
+  url: f.data.url, poster: f.data.poster, date: f.data.date, length: f.data.length,
+}, Astro.site));
 ---
-<Base title="Wedding Films" description="Cinematic wedding films by Vibeshots Nepal: Instagram reels, highlight films and full wedding films from Bhaktapur, Kathmandu and across Nepal.">
-  {groups.map((g, gi) => {
+<Base title="Wedding Videography & Cinematic Films in Nepal" description="Wedding videography by Vibeshots Nepal: cinematic highlight films, full wedding films and Instagram reels from Bhaktapur, Kathmandu and across Nepal." schema={videos}>
+  {groups.filter((g) => films.some((f) => f.data.kind === g.kind)).map((g, gi) => {
     const list = films.filter((f) => f.data.kind === g.kind);
-    if (!list.length) return null;
     return (
       <section class="sec" style={gi === 0 ? 'padding-top:96px' : 'padding-top:24px'} id={g.kind}>
         <div class="wrap">

@@ -1,0 +1,13 @@
+// Cloudflare Workers static-assets deploy for the built Astro site.
+// Cloudflare build settings: root directory "site", build command "npm run build",
+// deploy command "npx wrangler deploy", build variable SITE_URL=https://vibeshotsnepal.com.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vibeshots-website",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
