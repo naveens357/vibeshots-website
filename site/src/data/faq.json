@@ -84,6 +84,31 @@
           "a": "We share selected moments on our website and Instagram only with your consent. You can opt out in the contract at any time."
         }
       ]
+    },
+    {
+      "title": "Services & areas",
+      "items": [
+        {
+          "q": "Do you offer both wedding photography and videography?",
+          "a": "Yes. Our wedding photographers and cinematographers work as one team, so your photos and films tell the same story. We make cinematic highlight films of 4–6 minutes, full wedding films and Instagram reels. Need more cover? Add a photographer for NPR 12,000 or a videographer for NPR 15,000."
+        },
+        {
+          "q": "Which areas do you cover?",
+          "a": "Travel is included in Kathmandu, Lalitpur, Bhaktapur and Kirtipur. Banepa, Dhulikhel, Panauti, Nagarkot and Chitlang add NPR 4,000 a day for transport. Places up to about six hours by road, like Pokhara, Chitwan and Gorkha, add 15%, and the family covers transport, rooms and meals. Farther places such as Biratnagar or Nepalgunj add 25%, and weddings outside Nepal get a custom quote."
+        },
+        {
+          "q": "How much does a wedding photographer cost in Nepal?",
+          "a": "With us, one wedding day costs NPR 40,000 for the bride side, NPR 45,000 for the groom side or NPR 80,000 for both sides. Packages start at NPR 70,000 (Saath, bride side) and cost less than adding events up one by one. Book 90 or more days ahead for 5% off."
+        },
+        {
+          "q": "Do you have a photo studio in Bhaktapur?",
+          "a": "Yes. Our photo studio is in Sallaghari, Bhaktapur, open Sunday to Friday, 10am to 6pm, and Saturdays by appointment. Families meet us there to plan their wedding, and we use it for studio shoots such as maternity portraits. Call 9862185128 or 9808807033 before you come."
+        },
+        {
+          "q": "विवाहको फोटो र भिडियोको मूल्य कति पर्छ, र बुकिङ कसरी गर्ने?",
+          "a": "हाम्रा विवाह प्याकेजहरू रु. ७०,००० (साथ, बेहुलीपक्ष) बाट सुरु हुन्छन्। विवाहको एक दिन मात्र चाहिएमा बेहुलीपक्षलाई रु. ४०,०००, बेहुलापक्षलाई रु. ४५,००० र दुवै पक्षलाई रु. ८०,००० पर्छ। ९० दिनअगावै बुक गर्नुभयो भने ५% छुट पाउनुहुन्छ। मिति पक्का गर्न 9862185128 वा 9808807033 मा फोन गर्नुहोस्।"
+        }
+      ]
     }
   ]
 }

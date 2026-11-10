@@ -427,6 +427,7 @@ details p{color:var(--ink-soft);margin-top:10px;max-width:70ch}
 /* ---------- page heroes ---------- */
 .phero{padding:96px 0 48px;text-align:center}
 .phero .lead{margin:18px auto 32px}
+.phero .lead.ne{font-family:var(--deva-body);margin-top:-18px;line-height:1.7}
 .phero.left{text-align:left}
 .phero.left .lead{margin-left:0}
 .shero{position:relative;height:min(88svh,820px);min-height:540px;color:#fff;display:flex;align-items:flex-end}
