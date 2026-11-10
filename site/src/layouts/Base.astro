@@ -6,39 +6,82 @@ import Footer from '../components/Footer.astro';
 import Overlays from '../components/Overlays.astro';
 import site from '../data/site.json';
 import packages from '../data/packages.json';
+import services from '../data/services.json';
+import { absUrl } from '../lib/seo';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   dark?: boolean;
   headerOver?: boolean;
   noindex?: boolean;
+  /** Extra schema.org nodes for this page (FAQ, videos, offers…), added to the JSON-LD graph. */
+  schema?: Record<string, unknown>[];
 }
-const { title, description = site.description, image = '/images/logo-dark.png', dark = false, headerOver = false, noindex = false } = Astro.props;
-const fullTitle = title === site.name ? `${site.name} · Wedding & Commercial Photography, Bhaktapur` : `${title} · ${site.name}`;
+const { title, description = site.description, image = '/images/logo-dark.png', imageAlt = site.name, dark = false, headerOver = false, noindex = false, schema = [] } = Astro.props;
+const fullTitle = title === site.name ? `${site.name} · Wedding Photographer & Filmmaker in Bhaktapur, Nepal` : `${title} · ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const ogImage = new URL(image.startsWith('/') ? `${baseUrl}${image}` : image, Astro.site);
-const homeUrl = new URL(`${baseUrl}/`, Astro.site).toString();
+const abs = (p: string) => absUrl(p, Astro.site);
+const ogImage = abs(image);
+const homeUrl = abs('/');
 const prices = packages.tiers.flatMap((t) => [t.bride.price, t.groom.price, t.both.price]);
 
-const schema = {
-  '@context': 'https://schema.org',
+// Breadcrumbs from the URL: Home › Section › Page (sections without their own page are skipped).
+const sectionNames: Record<string, string> = {
+  weddings: 'Wedding Stories',
+  'pre-weddings': 'Pre-wedding Shoots',
+  commercial: 'Commercial',
+  journal: 'Journal',
+};
+const segs = Astro.url.pathname.slice(baseUrl.length).split('/').filter(Boolean);
+const crumbs = [{ name: 'Home', url: homeUrl }];
+if (segs.length > 1 && sectionNames[segs[0]]) crumbs.push({ name: sectionNames[segs[0]], url: abs(`/${segs[0]}/`) });
+if (segs.length) crumbs.push({ name: title, url: canonical.toString() });
+
+const business = {
   '@type': 'ProfessionalService',
+  '@id': `${homeUrl}#business`,
   name: site.name,
+  alternateName: ['Vibeshots', 'Vibe Shots Nepal'],
   description: site.description,
+  slogan: site.tagline,
   url: homeUrl,
-  image: ogImage.toString(),
+  logo: abs('/images/logo-dark.png'),
+  image: ogImage,
   telephone: `+977${site.phonePrimary}`,
-  email: site.email,
+  ...(site.email ? { email: site.email } : {}),
   priceRange: `NPR ${Math.min(...prices).toLocaleString('en-IN')}–${Math.max(...prices).toLocaleString('en-IN')}`,
-  address: { '@type': 'PostalAddress', streetAddress: 'Sallaghari', addressLocality: 'Bhaktapur', addressCountry: 'NP' },
+  currenciesAccepted: 'NPR',
+  address: { '@type': 'PostalAddress', streetAddress: 'Sallaghari', addressLocality: 'Bhaktapur', postalCode: '44800', addressRegion: 'Bagmati Province', addressCountry: 'NP' },
   geo: { '@type': 'GeoCoordinates', latitude: site.mapLat, longitude: site.mapLng },
   hasMap: site.mapUrl,
-  areaServed: ['Kathmandu Valley', 'Nepal'],
-  sameAs: [`https://www.instagram.com/${site.instagramWeddings}/`, `https://www.instagram.com/${site.instagramCommercial}/`],
+  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '10:00', closes: '18:00' }],
+  areaServed: services.areas.map((name) => ({ '@type': name === 'Nepal' ? 'Country' : 'Place', name })),
+  knowsAbout: services.groups.flatMap((g) => g.items.map((i) => i.name)).concat(['Hindu weddings', 'Newari weddings', 'Wedding videography', 'Commercial photography']),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Photography and film services',
+    itemListElement: services.groups.map((g) => ({
+      '@type': 'OfferCatalog',
+      name: g.title,
+      itemListElement: g.items.map((i) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: i.name, description: i.text, url: abs(i.link) } })),
+    })),
+  },
+  sameAs: [`https://www.instagram.com/${site.instagramWeddings}/`, `https://www.instagram.com/${site.instagramCommercial}/`, site.facebook, site.youtube, site.tiktok].filter(Boolean),
 };
+
+const graph = [
+  business,
+  { '@type': 'WebSite', '@id': `${homeUrl}#website`, name: site.name, url: homeUrl, inLanguage: 'en', publisher: { '@id': `${homeUrl}#business` } },
+  ...(crumbs.length > 1
+    ? [{ '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })) }]
+    : []),
+  ...schema,
+];
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
 ---
 <!doctype html>
 <html lang="en" class="no-js">
@@ -48,13 +91,22 @@ const schema = {
   <title>{fullTitle}</title>
   <meta name="description" content={description}>
   <link rel="canonical" href={canonical}>
-  {noindex && <meta name="robots" content="noindex">}
+  <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}>
+  <meta name="geo.region" content="NP-P3">
+  <meta name="geo.placename" content="Bhaktapur">
+  <meta name="geo.position" content={`${site.mapLat};${site.mapLng}`}>
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content={site.name}>
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content={fullTitle}>
   <meta property="og:description" content={description}>
   <meta property="og:image" content={ogImage}>
+  <meta property="og:image:alt" content={imageAlt}>
   <meta property="og:url" content={canonical}>
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={fullTitle}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
   <meta name="theme-color" content={dark ? '#0A0A0B' : '#F6F0E6'}>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -64,7 +116,7 @@ const schema = {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Mukta:wght@400;500&family=Rozha+One&display=swap" rel="stylesheet">
   <script is:inline>document.documentElement.classList.remove('no-js')</script>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={jsonLd} />
 </head>
 <body class:list={{ dark }}>
   <Icons />

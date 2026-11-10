@@ -7,7 +7,7 @@ import StoryCard from '../../components/StoryCard.astro';
 const stories = (await getCollection('stories')).sort((a, b) => +b.data.date - +a.data.date);
 const ceremonies = (await getCollection('ceremonies')).sort((a, b) => a.data.order - b.data.order);
 ---
-<Base title="Wedding Stories" description="Hindu and Newari wedding stories photographed and filmed by Vibeshots Nepal in Bhaktapur, Kathmandu, Lalitpur and across Nepal.">
+<Base title="Wedding Photography in Nepal: Real Wedding Stories" description="Hindu and Newari wedding photography and films in Bhaktapur, Kathmandu, Lalitpur and across Nepal. Real wedding stories by Vibeshots Nepal.">
   <section class="sec" style="padding-top:96px">
     <div class="wrap">
       <div class="stitle"><span class="deva" lang="ne">विवाह कथाहरू</span><h1>Stories</h1><p>Delve deeper into our world of storytelling.</p></div>

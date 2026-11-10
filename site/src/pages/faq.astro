@@ -2,8 +2,12 @@
 import Base from '../layouts/Base.astro';
 import faq from '../data/faq.json';
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z]+/g, '-');
+const faqSchema = [{
+  '@type': 'FAQPage',
+  mainEntity: faq.groups.flatMap((g) => g.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))),
+}];
 ---
-<Base title="Frequently Asked Questions" description="Answers to common questions about booking Vibeshots Nepal: dates, travel, rituals, delivery times, films, payments and usage.">
+<Base title="Frequently Asked Questions" schema={faqSchema} description="Answers to common questions about booking Vibeshots Nepal: dates, travel, rituals, delivery times, films, payments and usage.">
   <section class="sec" style="padding-top:96px">
     <div class="wrap narrow">
       <div class="stitle"><span class="deva" lang="ne">प्रश्नहरू</span><h1>Frequently asked questions</h1><p>{faq.intro}</p></div>

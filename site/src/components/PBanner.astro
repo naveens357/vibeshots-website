@@ -13,15 +13,17 @@ interface Props {
   bw?: boolean;
   as?: 'h1' | 'h2';
   eager?: boolean;
+  /** Extra heading text for search engines and screen readers only. */
+  srTitle?: string;
 }
-const { title, text, deva, src, video, tone = 'night', label = '', variant = 'strip', bw = false, as: Tag = 'h2', eager = false } = Astro.props;
+const { title, text, deva, src, video, tone = 'night', label = '', variant = 'strip', bw = false, as: Tag = 'h2', eager = false, srTitle } = Astro.props;
 ---
 <section class:list={['pbanner', variant, { bw }]} data-parallax>
   <div class="pmedia"><Media src={src} video={video} tone={tone} label={label} alt="" eager={eager} sizes="100vw" /></div>
   <div class="veil"></div>
   <div class="in rv">
     {deva && <span class="deva" lang="ne">{deva}</span>}
-    <Tag class="ttl">{title}</Tag>
+    <Tag class="ttl">{title}{srTitle && <span class="sr-only"> {srTitle}</span>}</Tag>
     <svg class="flour" viewBox="0 0 120 14" aria-hidden="true"><path d="M0 7h48M72 7h48" stroke="currentColor" stroke-width=".8"/><path d="M60 1l6 6-6 6-6-6z" fill="none" stroke="currentColor" stroke-width=".8"/></svg>
     {text && text.split('\n').map((line) => <p>{line}</p>)}
     <slot />

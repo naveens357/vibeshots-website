@@ -29,6 +29,7 @@ const year = new Date().getFullYear();
       <div>
         <h2>Studio</h2>
         <ul>
+          <li><a href="/services/">Services</a></li>
           <li><a href="/packages/">Packages</a></li>
           <li><a href="/commercial/">Commercial</a></li>
           <li><a href="/about/">About</a></li>
@@ -42,7 +43,7 @@ const year = new Date().getFullYear();
         <ul>
           <li><a href={site.mapUrl} target="_blank" rel="noopener">{site.address}</a></li>
           <li><a href={tel(site.phonePrimary)}>{site.phonePrimary}</a> / <a href={tel(site.phoneSecondary)}>{site.phoneSecondary}</a></li>
-          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          {site.email && <li><a href={`mailto:${site.email}`}>{site.email}</a></li>}
           <li><a href={igProfile(site.instagramWeddings)} target="_blank" rel="noopener">@{site.instagramWeddings}</a> · <a href={igProfile(site.instagramCommercial)} target="_blank" rel="noopener">@{site.instagramCommercial}</a></li>
         </ul>
         <MiniMap variant="footer" />

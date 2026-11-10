@@ -5,11 +5,25 @@ import PackageTiers from '../components/PackageTiers.astro';
 import SideToggle from '../components/SideToggle.astro';
 import p from '../data/packages.json';
 import { np } from '../lib/format';
+import { absUrl } from '../lib/seo';
 const eb = p.earlyBird;
 const showBanner = new Date(`${eb.deadline}T23:59:59+05:45`) > new Date();
 const zoneClass: Record<string, string> = { B: 'b', C: 'c', '✈': 'i' };
+const sideNames = { bride: 'bride side', groom: 'groom side', both: 'both families' } as const;
+const offers = [{
+  '@type': 'OfferCatalog',
+  name: 'Wedding photography and film packages',
+  itemListElement: p.tiers.flatMap((t) => (['bride', 'groom', 'both'] as const).map((s) => ({
+    '@type': 'Offer',
+    name: `${t.name} wedding package (${sideNames[s]})`,
+    price: t[s].price,
+    priceCurrency: 'NPR',
+    itemOffered: { '@type': 'Service', name: `${t.name} wedding photography and film`, serviceType: 'Wedding photography' },
+    seller: { '@id': `${absUrl('/', Astro.site)}#business` },
+  }))),
+}];
 ---
-<Base title="Wedding Packages & Prices" description="Wedding photography and film packages in NPR for the Kathmandu Valley: Saath, Mangal and Shubha for the bride side, groom side or both families, plus single events, add-ons and outside-Valley travel pricing.">
+<Base title="Wedding Photography Packages & Prices in Nepal" schema={offers} description="Wedding photography and film packages in NPR for the Kathmandu Valley: Saath, Mangal and Shubha for the bride side, groom side or both families, plus single events, add-ons and outside-Valley travel pricing.">
   <section class="phero">
     <div class="wrap">
       <span class="deva" lang="ne">प्याकेज र मूल्य</span>
@@ -36,7 +50,7 @@ const zoneClass: Record<string, string> = { B: 'b', C: 'c', '✈': 'i' };
       )}
 
       <div class="wide-card heritage rv">
-        <Media tone="temple" label="Fine-art portrait, Bhaktapur heritage location" />
+        <Media src={p.heritage.image} alt={p.heritage.imageAlt} tone="temple" label="Fine-art portrait, Bhaktapur heritage location" />
         <div class="body">
           <p class="eyebrow" style="color:var(--marigold)">{p.heritage.note}</p>
           <h2 class="h2">Vibeshots <span class="it">{p.heritage.name}</span></h2>
@@ -97,7 +111,8 @@ const zoneClass: Record<string, string> = { B: 'b', C: 'c', '✈': 'i' };
     </div>
   </section>
 
-  <section class="sec final">
+  <section class:list={["sec final", { "has-img": p.finalImage }]}>
+    {p.finalImage && <div class="final-bg" aria-hidden="true"><Media src={p.finalImage} alt="" sizes="100vw" /></div>}
     <div class="wrap">
       <h2 class="h-l">Found your package? <span class="it">Let's check the date.</span></h2>
       <div class="row-btns">

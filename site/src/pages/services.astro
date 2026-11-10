@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import services from '../data/services.json';
+import site from '../data/site.json';
+import { waLink } from '../lib/format';
+---
+<Base title="Photography & Film Services in Bhaktapur, Nepal" description="Wedding photography, wedding videography, pre-wedding, maternity and commercial photography services by Vibeshots Nepal in Bhaktapur, Kathmandu and across Nepal.">
+  <section class="phero">
+    <div class="wrap">
+      <span class="deva" lang="ne">सेवाहरू</span>
+      <h1 class="h-l">Photography &amp; film services</h1>
+      <p class="lead">{services.intro}</p>
+    </div>
+  </section>
+
+  {services.groups.map((g) => (
+    <section class="sec tight">
+      <div class="wrap">
+        <div class="stitle rv"><span class="deva" lang="ne">{g.deva}</span><h2>{g.title}</h2></div>
+        <div class="steps svc-list">
+          {g.items.map((s, i) => (
+            <div class="step rv">
+              <div class="n">{String(i + 1).padStart(2, '0')}</div>
+              <h3>{s.name}</h3>
+              <p>{s.text}</p>
+              <a class="link-caps" href={s.link}>{s.linkText} <span aria-hidden="true">→</span></a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="sec tight">
+    <div class="wrap narrow center">
+      <p class="eyebrow">Where we shoot</p>
+      <p class="h3 it" style="margin:16px auto 24px;max-width:36ch">Based in {site.address}. We cover {services.areas.slice(0, -1).join(', ')} and anywhere else in Nepal.</p>
+      <div class="row-btns" style="justify-content:center">
+        <a class="btn btn-dot" href="/contact/"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></a>
+        <a class="btn btn-line" href={waLink()} target="_blank" rel="noopener"><span class="lbl">WhatsApp us</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

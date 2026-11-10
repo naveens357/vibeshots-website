@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Media from '../../components/Media.astro';
 import ProjectTile from '../../components/ProjectTile.astro';
 import { sectors } from '../../lib/format';
+import { videoSchema } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const projects = (await getCollection('projects')).sort((a, b) => +b.data.date - +a.data.date);
@@ -15,9 +16,10 @@ export async function getStaticPaths() {
 const { project, more } = Astro.props;
 const d = project.data;
 const { Content } = await render(project);
+const videos = d.film ? [videoSchema({ name: `${d.client}: ${d.title}`, description: d.credit || `${d.client}: ${d.title}. ${sectors[d.sector]} film by Vibeshots Nepal.`, url: d.film, poster: d.filmPoster || d.cover, date: d.date }, Astro.site)] : [];
 const type = d.types.map((t) => (t === 'motion' ? 'Film' : 'Stills')).join(' + ');
 ---
-<Base title={d.seoTitle || `${d.client} · ${d.title}`} description={d.seoDescription || d.credit || `${d.client}: ${d.title}. ${sectors[d.sector]} work by Vibeshots Nepal.`} image={d.cover || undefined} dark headerOver>
+<Base title={d.seoTitle || `${d.client} · ${d.title}`} description={d.seoDescription || d.credit || `${d.client}: ${d.title}. ${sectors[d.sector]} work by Vibeshots Nepal.`} image={d.cover || undefined} schema={videos} dark headerOver>
   <div class="on-dark">
     <section class="chero" style="min-height:min(78svh,720px)">
       <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager sizes="100vw" />

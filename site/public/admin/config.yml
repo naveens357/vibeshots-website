@@ -282,7 +282,7 @@ collections:
           - { label: Second phone (no +977), name: phoneSecondary, widget: string }
           - { label: WhatsApp for weddings (with 977, digits only), name: whatsapp, widget: string }
           - { label: WhatsApp for commercial (with 977, digits only), name: whatsappCommercial, widget: string }
-          - { label: Email, name: email, widget: string }
+          - { label: Email, name: email, widget: string, required: false, hint: "Leave empty to hide email on the site" }
           - { label: Instagram (weddings) handle, name: instagramWeddings, widget: string }
           - { label: Instagram (commercial) handle, name: instagramCommercial, widget: string }
           - { label: Facebook link, name: facebook, widget: string, required: false }
@@ -356,6 +356,9 @@ collections:
               - { label: Note, name: note, widget: string }
               - { label: Intro, name: intro, widget: text }
               - { label: What's included, name: includes, widget: list }
+              - { label: Photo, name: image, widget: image, required: false }
+              - { label: Photo description (for screen readers and Google), name: imageAlt, widget: string, required: false }
+          - { label: Closing banner photo (Found your package?), name: finalImage, widget: image, required: false }
           - label: Single events
             name: singles
             widget: list
