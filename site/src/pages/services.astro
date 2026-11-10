@@ -2,7 +2,10 @@
 import Base from '../layouts/Base.astro';
 import services from '../data/services.json';
 import site from '../data/site.json';
+import packages from '../data/packages.json';
 import { waLink } from '../lib/format';
+const zoneText = (z: { travel: string; coverage: string }) =>
+  (z.travel === 'Included' ? 'Travel included in every package.' : z.travel.replace(/([^.…])$/, '$1.')) + (z.coverage.startsWith('+') ? ` Coverage ${z.coverage}.` : '');
 ---
 <Base title="Photography & Film Services in Bhaktapur, Nepal" description="Wedding photography, wedding videography, pre-wedding, maternity and commercial photography services by Vibeshots Nepal in Bhaktapur, Kathmandu and across Nepal.">
   <section class="phero">
@@ -10,6 +13,7 @@ import { waLink } from '../lib/format';
       <span class="deva" lang="ne">सेवाहरू</span>
       <h1 class="h-l">Photography &amp; film services</h1>
       <p class="lead">{services.intro}</p>
+      {services.introNe && <p class="lead ne" lang="ne">{services.introNe}</p>}
     </div>
   </section>
 
@@ -31,10 +35,24 @@ import { waLink } from '../lib/format';
     </section>
   ))}
 
+  <section class="sec tight" id="areas">
+    <div class="wrap">
+      <div class="stitle rv"><span class="deva" lang="ne">कहाँ कहाँ</span><h2>Where we shoot</h2><p>Studio in {site.address}. Weddings and shoots across Nepal and beyond.</p></div>
+      <div class="steps svc-list">
+        {packages.zones.map((z) => (
+          <div class="step rv">
+            <div class="n">{z.code}</div>
+            <h3>{z.name}</h3>
+            <p><b>{z.places}</b></p>
+            <p>{zoneText(z)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="sec tight">
     <div class="wrap narrow center">
-      <p class="eyebrow">Where we shoot</p>
-      <p class="h3 it" style="margin:16px auto 24px;max-width:36ch">Based in {site.address}. We cover {services.areas.slice(0, -1).join(', ')} and anywhere else in Nepal.</p>
       <div class="row-btns" style="justify-content:center">
         <a class="btn btn-dot" href="/contact/"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></a>
         <a class="btn btn-line" href={waLink()} target="_blank" rel="noopener"><span class="lbl">WhatsApp us</span></a>

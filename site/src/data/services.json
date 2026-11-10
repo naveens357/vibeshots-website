@@ -1,5 +1,6 @@
 {
-  "intro": "Wedding photography, wedding films and commercial shoots from our studio in Sallaghari, Bhaktapur. We cover the whole Kathmandu Valley and travel anywhere in Nepal.",
+  "intro": "Vibeshots Nepal is a photo studio in Sallaghari, Bhaktapur. Our wedding photographers, videographers and cinematographers cover Hindu and Newari weddings, pre-wedding shoots and commercial work across Kathmandu, Lalitpur and the whole Kathmandu Valley, and travel anywhere in Nepal.",
+  "introNe": "Vibeshots Nepal भक्तपुरको सल्लाघारीमा रहेको फोटो स्टुडियो हो। हामी काठमाडौं उपत्यका र नेपालभरि विवाह फोटोग्राफी, भिडियोग्राफी र सिनेमाटोग्राफी, प्रि-वेडिङ सुट तथा व्यावसायिक फोटो खिच्ने काम गर्छौं।",
   "areas": ["Bhaktapur", "Kathmandu", "Lalitpur", "Kathmandu Valley", "Nagarkot", "Pokhara", "Nepal"],
   "groups": [
     {
@@ -14,13 +15,13 @@
         },
         {
           "name": "Wedding films & videography",
-          "text": "Cinematic highlight films, full wedding films and Instagram reels, filmed by the same team that takes your photographs.",
+          "text": "Cinematic highlight films, full wedding films and Instagram reels, made by our own cinematographers and videographers, the same team that takes your photographs.",
           "link": "/films/",
           "linkText": "Watch our films"
         },
         {
           "name": "Pre-wedding & engagement shoots",
-          "text": "Relaxed couple shoots in Bhaktapur Durbar Square, Patan, gardens and across Nepal, plus engagement and ring ceremony coverage.",
+          "text": "Relaxed couple shoots at Bhaktapur Durbar Square, Pottery Square, Changu Narayan, Nagarkot, Patan Durbar Square and gardens around the Kathmandu Valley, plus engagement and ring ceremony coverage.",
           "link": "/pre-weddings/",
           "linkText": "See pre-wedding shoots"
         },
