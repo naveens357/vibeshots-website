@@ -413,10 +413,6 @@ collections:
         fields:
           - { label: Heading, name: heading, widget: string }
           - { label: Intro, name: intro, widget: text }
-          - { label: Founder note, name: founderNote, widget: text }
-          - { label: Founder name, name: founderName, widget: string }
-          - { label: Founder role, name: founderRole, widget: string }
-          - { label: Founder photo, name: founderImage, widget: image, required: false, choose_url: false }
           - label: Values
             name: values
             widget: list
@@ -431,7 +427,7 @@ collections:
             summary: "{{fields.name}} · {{fields.role}} · {{fields.experience}}"
             fields:
               - { label: Name, name: name, widget: string }
-              - { label: Role, name: role, widget: string, hint: "e.g. Founder & Lead Photographer" }
+              - { label: Role, name: role, widget: string, hint: "e.g. Lead Photographer & Photo Editor" }
               - { label: Experience, name: experience, widget: string, hint: "Number first, e.g. 8 years. Shown in the round badge." }
               - { label: Track record, name: weddings, widget: string, required: false, hint: "e.g. 200+ weddings" }
               - { label: Specialties, name: specialties, widget: list, required: false, hint: "Up to 3, e.g. Drone, Haldi & Mehendi" }
