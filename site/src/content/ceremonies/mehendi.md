@@ -11,10 +11,14 @@ seoTitle: "Mehendi photography in Bhaktapur & Kathmandu"
 seoDescription: "Mehendi photography and film by Vibeshots Nepal, Bhaktapur. Henna, songs and cousins."
 ---
 
-**Sample text — replace it.** Write two or three short paragraphs about how you photograph the mehendi: what happens, the moments families care about, and how you stay out of the way. Real detail ranks better on Google than generic copy.
+Mehendi is the loosest, loudest day of the wedding, and we shoot it that way. We arrive before the henna artists start, so we catch the first patterns going on, the cousins crowding in, the dholak and the songs. Through the afternoon we move around quietly and photograph everyone, not only the bride: the aunties dancing, the grandparents watching, the friends who never sit still.
+
+Before we start, we talk to the family about who matters most in the photos and when the bride will be free. Once the henna is dry enough, we take her aside for 15 to 20 minutes of calm portraits with her hands, her outfit and the light. If the groom's name is hidden in the design, we make sure you see it in the gallery.
 
 ## What we capture
-- The setting and the people arriving
-- Close-ups of hands, faces and details
-- Wide family moments
-- A short highlight film
+- The henna being drawn, close up, from first line to finished hands
+- Songs, dholak and dancing with cousins and friends
+- Every family member, including the ones who stay in the background
+- Quiet portraits of the bride once the henna is set
+- Décor, outfits and small details
+- A short highlight film (in film packages)
