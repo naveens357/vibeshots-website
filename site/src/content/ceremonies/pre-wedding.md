@@ -11,10 +11,13 @@ seoTitle: "Pre-wedding photography in Bhaktapur & Kathmandu"
 seoDescription: "Pre-wedding photography and film by Vibeshots Nepal, Bhaktapur. Durbar Square, Nagarkot, Pokhara."
 ---
 
-**Sample text — replace it.** Write two or three short paragraphs about how you photograph the pre-wedding: what happens, the moments families care about, and how you stay out of the way. Real detail ranks better on Google than generic copy.
+A pre-wedding shoot is the one day that is only about the two of you, so we plan it together. We help you pick a location that suits you, whether it is Bhaktapur Durbar Square, Patan, Nagarkot or a trip to Pokhara, and we time the shoot for the best light, usually early morning or the golden hour before sunset.
+
+We talk through outfits, the feel you want and anything you would rather avoid. On the day we guide you into natural poses, give you small things to do and keep it relaxed, so you look like yourselves and not like a catalogue. Most couples tell us they forget the camera after the first half hour.
 
 ## What we capture
-- The setting and the people arriving
-- Close-ups of hands, faces and details
-- Wide family moments
-- A short highlight film
+- Planned locations and outfit changes
+- Guided couple portraits and candid moments
+- Wide shots that show the place, and close-ups that show the two of you
+- A short pre-wedding film or reel (in film packages)
+- Photos ready for your invitation card and wedding display

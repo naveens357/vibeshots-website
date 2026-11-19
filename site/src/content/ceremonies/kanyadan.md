@@ -11,10 +11,14 @@ seoTitle: "Kanyadan photography in Bhaktapur & Kathmandu"
 seoDescription: "Kanyadan photography and film by Vibeshots Nepal, Bhaktapur. The quietest, heaviest moment."
 ---
 
-**Sample text — replace it.** Write two or three short paragraphs about how you photograph the kanyadan: what happens, the moments families care about, and how you stay out of the way. Real detail ranks better on Google than generic copy.
+Kanyadan is the quietest and most emotional part of a Hindu wedding, and we treat it that way. We talk with the priest before the ritual so we know the order and where we can stand. Then we use longer lenses, keep the flash off where we can, and stay out of the family's line of sight.
+
+We photograph the father and mother giving their daughter's hand, the washing of feet, and the faces around the mandap: parents, grandparents and siblings who are often in tears. Those faces are what families tell us they value most years later, so we make sure every close relative is in the story.
 
 ## What we capture
-- The setting and the people arriving
-- Close-ups of hands, faces and details
-- Wide family moments
-- A short highlight film
+- The mandap, the priest and the ritual items
+- The hand-giving and the blessing by the parents
+- The washing of feet and other key rituals in order
+- Close family reactions around the mandap
+- Details of hands, jewellery and offerings
+- Film coverage of the full ritual (in film packages)

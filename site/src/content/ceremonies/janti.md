@@ -11,10 +11,14 @@ seoTitle: "Janti photography in Bhaktapur & Kathmandu"
 seoDescription: "Janti photography and film by Vibeshots Nepal, Bhaktapur. Band baja and the grand arrival."
 ---
 
-**Sample text — replace it.** Write two or three short paragraphs about how you photograph the janti: what happens, the moments families care about, and how you stay out of the way. Real detail ranks better on Google than generic copy.
+The janti is the groom's grand arrival: the band, the dancing on the road and the bride's family waiting at the gate. We split our team when we can, so one of us is with the groom as he leaves home and another is ready at the venue for the welcome.
+
+We stay with the procession the whole way, through the panche baja, the dancing friends and the slow walk in. At the gate we cover the welcome rituals and the first meeting of both families, then the garlands and the moment the groom steps inside. We talk with the groom's side in advance about timings and the route, so nothing is missed when the schedule moves, which it usually does.
 
 ## What we capture
-- The setting and the people arriving
-- Close-ups of hands, faces and details
-- Wide family moments
-- A short highlight film
+- The groom getting ready and leaving home
+- The band, the dancing and the procession on the road
+- The welcome at the gate by the bride's family
+- Garlands and the first meeting of both families
+- A quick portrait of the groom in his wedding outfit
+- Highlight film footage of the arrival (in film packages)
