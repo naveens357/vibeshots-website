@@ -2,23 +2,35 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+/** Optional text field that is '' when left empty. */
+const text = () => z.string().optional().default('');
+/** Marks example content that should be replaced. */
+const sample = { sample: z.boolean().default(false) };
+/** Self-hosted or YouTube/Vimeo film and its poster image. */
+const film = { film: text(), filmPoster: text() };
+
 // Placeholder tones used when no photo is uploaded yet (see .t-* in global.css).
 const tone = z.enum(['bride', 'sindoor', 'haldi', 'mehendi', 'ivory', 'night', 'gold', 'temple', 'moto', 'moto2', 'travel', 'product']).default('ivory');
 
 const galleryItem = z.object({
-  src: z.string().optional().default(''),
-  alt: z.string().optional().default(''),
+  src: text(),
+  alt: text(),
   tone,
-  label: z.string().optional().default(''),
+  label: text(),
   layout: z.enum(['full', 'half', 'third', 'center']).default('half'),
 });
+/** Photos shown in a grid on the detail page. */
+const gallery = () => z.array(galleryItem).default([]);
 
 const cover = {
-  cover: z.string().optional().default(''),
-  coverAlt: z.string().optional().default(''),
+  cover: text(),
+  coverAlt: text(),
   coverTone: tone,
-  coverLabel: z.string().optional().default(''),
+  coverLabel: text(),
 };
+
+/** Markdown files in src/content/<folder>. */
+const markdown = (folder: string) => glob({ pattern: '**/*.md', base: `./src/content/${folder}` });
 
 const seo = {
   seoTitle: z.string().optional(),
@@ -26,64 +38,62 @@ const seo = {
 };
 
 const stories = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/stories' }),
+  loader: markdown('stories'),
   schema: z.object({
     title: z.string(),
     /** Short phrase used as the story's title, e.g. "Meant to Be". */
-    headline: z.string().optional().default(''),
+    headline: text(),
     date: z.coerce.date(),
-    dateBS: z.string().optional().default(''),
+    dateBS: text(),
     venue: z.string(),
-    city: z.string().optional().default(''),
-    community: z.string().optional().default(''),
+    city: text(),
+    community: text(),
     ceremonies: z.array(z.string()).default([]),
-    package: z.string().optional().default(''),
-    team: z.string().optional().default(''),
-    excerpt: z.string().optional().default(''),
+    package: text(),
+    team: text(),
+    excerpt: text(),
     ...cover,
     /** Wide photo for the top of the story page (falls back to the cover). */
-    hero: z.string().optional().default(''),
+    hero: text(),
     /** Which side the title sits on, so it doesn't cover faces in the hero photo. */
     heroAlign: z.enum(['left', 'right']).default('left'),
-    film: z.string().optional().default(''),
-    filmPoster: z.string().optional().default(''),
-    filmLength: z.string().optional().default(''),
-    quote: z.string().optional().default(''),
-    gallery: z.array(galleryItem).default([]),
-    vendors: z.array(z.object({ role: z.string(), name: z.string(), url: z.string().optional().default('') })).default([]),
+    ...film,
+    filmLength: text(),
+    quote: text(),
+    gallery: gallery(),
+    vendors: z.array(z.object({ role: z.string(), name: z.string(), url: text() })).default([]),
     featured: z.boolean().default(false),
-    sample: z.boolean().default(false),
+    ...sample,
     ...seo,
   }),
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  loader: markdown('projects'),
   schema: z.object({
     title: z.string(),
     client: z.string(),
-    credit: z.string().optional().default(''),
+    credit: text(),
     sector: z.enum(['moto', 'auto', 'travel', 'brand', 'event']),
     types: z.array(z.enum(['stills', 'motion'])).min(1),
     date: z.coerce.date(),
-    location: z.string().optional().default(''),
-    deliverables: z.string().optional().default(''),
-    results: z.string().optional().default(''),
+    location: text(),
+    deliverables: text(),
+    results: text(),
     ...cover,
-    film: z.string().optional().default(''),
-    filmPoster: z.string().optional().default(''),
-    gallery: z.array(galleryItem).default([]),
+    ...film,
+    gallery: gallery(),
     featured: z.boolean().default(false),
-    sample: z.boolean().default(false),
+    ...sample,
     ...seo,
   }),
 });
 
 const ceremonies = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/ceremonies' }),
+  loader: markdown('ceremonies'),
   schema: z.object({
     title: z.string(),
-    deva: z.string().optional().default(''),
+    deva: text(),
     tagline: z.string(),
     order: z.number().default(0),
     ...cover,
@@ -92,7 +102,7 @@ const ceremonies = defineCollection({
 });
 
 const journal = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/journal' }),
+  loader: markdown('journal'),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -104,39 +114,39 @@ const journal = defineCollection({
 });
 
 const films = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/films' }),
+  loader: markdown('films'),
   schema: z.object({
     title: z.string(),
-    subtitle: z.string().optional().default(''),
+    subtitle: text(),
     kind: z.enum(['reel', 'highlight', 'full']),
-    url: z.string().optional().default(''),
-    poster: z.string().optional().default(''),
+    url: text(),
+    poster: text(),
     posterTone: tone,
     date: z.coerce.date(),
-    dateBS: z.string().optional().default(''),
-    venue: z.string().optional().default(''),
-    length: z.string().optional().default(''),
-    story: z.string().optional().default(''),
-    sample: z.boolean().default(false),
+    dateBS: text(),
+    venue: text(),
+    length: text(),
+    story: text(),
+    ...sample,
   }),
 });
 
 // Pre-wedding shoots: cover, gallery and a short text.
-const showcase = (base: string) => defineCollection({
-  loader: glob({ pattern: '**/*.md', base }),
+const showcase = (folder: string) => defineCollection({
+  loader: markdown(folder),
   schema: z.object({
     title: z.string(),
-    location: z.string().optional().default(''),
+    location: text(),
     date: z.coerce.date(),
-    excerpt: z.string().optional().default(''),
+    excerpt: text(),
     ...cover,
-    gallery: z.array(galleryItem).default([]),
-    sample: z.boolean().default(false),
+    gallery: gallery(),
+    ...sample,
     ...seo,
   }),
 });
 
 export const collections = {
   stories, projects, ceremonies, journal, films,
-  prewedding: showcase('./src/content/prewedding'),
+  prewedding: showcase('prewedding'),
 };

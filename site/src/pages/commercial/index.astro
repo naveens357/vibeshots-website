@@ -6,7 +6,8 @@ import ProjectTile from '../../components/ProjectTile.astro';
 import CommercialBrief from '../../components/CommercialBrief.astro';
 import site from '../../data/site.json';
 import { sectors } from '../../lib/format';
-const projects = (await getCollection('projects')).sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || +b.data.date - +a.data.date);
+import { featuredFirst } from '../../lib/content';
+const projects = (await getCollection('projects')).sort(featuredFirst);
 const services = [
   ['Campaign stills', 'Hero images for ads, billboards and launches.'],
   ['Brand films & TVC', 'Concept to colour grade. 4K, drone, gimbal and car rigs.'],

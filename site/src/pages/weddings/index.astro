@@ -3,14 +3,18 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Media from '../../components/Media.astro';
 import StoryCard from '../../components/StoryCard.astro';
+import { newestFirst } from '../../lib/content';
+import { coverProps } from '../../lib/media';
+import SectionTitle from '../../components/SectionTitle.astro';
+import ArrowLink from '../../components/ArrowLink.astro';
 
-const stories = (await getCollection('stories')).sort((a, b) => +b.data.date - +a.data.date);
+const stories = await newestFirst('stories');
 const ceremonies = (await getCollection('ceremonies')).sort((a, b) => a.data.order - b.data.order);
 ---
 <Base title="Wedding Photography in Nepal: Real Wedding Stories" description="Hindu and Newari wedding photography and films in Bhaktapur, Kathmandu, Lalitpur and across Nepal. Real wedding stories by Vibeshots Nepal.">
   <section class="sec" style="padding-top:96px">
     <div class="wrap">
-      <div class="stitle"><span class="deva" lang="ne">विवाह कथाहरू</span><h1>Stories</h1><p>Delve deeper into our world of storytelling.</p></div>
+      <SectionTitle as="h1" deva="विवाह कथाहरू" title="Stories" text="Delve deeper into our world of storytelling." />
       <div class="sgrid">{stories.map((s) => <StoryCard story={s} />)}</div>
     </div>
   </section>
@@ -19,11 +23,11 @@ const ceremonies = (await getCollection('ceremonies')).sort((a, b) => a.data.ord
 
   <section class="sec" id="ceremonies">
     <div class="wrap">
-      <div class="stitle"><span class="deva" lang="ne">संस्कार</span><h2>Ceremonies</h2><p>From the first mehendi to the last bidaai.</p></div>
+      <SectionTitle deva="संस्कार" title="Ceremonies" text="From the first mehendi to the last bidaai." />
       <div class="cgrid-cer">
         {ceremonies.map((c) => (
           <a class="cer rv" href={`/weddings/ceremonies/${c.id}/`} style="text-align:center">
-            <Media src={c.data.cover} alt={c.data.coverAlt} tone={c.data.coverTone} label={c.data.coverLabel} ratio="34" arch />
+            <Media {...coverProps(c.data)} ratio="34" arch />
             <span class="deva" lang="ne">{c.data.deva}</span>
             <h3>{c.data.title}</h3>
             <p>{c.data.tagline}</p>
@@ -35,8 +39,8 @@ const ceremonies = (await getCollection('ceremonies')).sort((a, b) => a.data.ord
 
   <section class="sec tight center">
     <div class="wrap row-btns" style="justify-content:center;gap:40px">
-      <a class="link-caps" href="/films/">Watch our films <span aria-hidden="true">→</span></a>
-      <a class="link-caps" href="/packages/">See packages <span aria-hidden="true">→</span></a>
+      <ArrowLink href="/films/">Watch our films</ArrowLink>
+      <ArrowLink href="/packages/">See packages</ArrowLink>
     </div>
   </section>
 </Base>

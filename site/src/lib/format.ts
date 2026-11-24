@@ -1,5 +1,6 @@
 import site from '../data/site.json';
 import packages from '../data/packages.json';
+import { waUrl } from './whatsapp';
 
 /** Nepali/Indian digit grouping: 118000 -> "1,18,000". */
 export const np = (n: number) => Number(n).toLocaleString('en-IN');
@@ -8,8 +9,7 @@ export const np = (n: number) => Number(n).toLocaleString('en-IN');
 export const earlyBird = (price: number) =>
   Math.round((price * (100 - packages.earlyBird.percent)) / 100 / 50) * 50;
 
-export const waLink = (text = '', number = site.whatsapp) =>
-  `https://wa.me/${number}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
+export const waLink = (text = '', number = site.whatsapp) => waUrl(number, text);
 
 export const waPackage = (pkg: string) =>
   waLink(`Namaste Vibeshots, I'm interested in the ${pkg} package.`);
@@ -32,3 +32,7 @@ export const sectors: Record<string, string> = {
   brand: 'Brands & Product',
   event: 'Events',
 };
+
+/** "Stills", "Film" or "Stills + Film" for a commercial project's media types. */
+export const projectType = (types: string[]) =>
+  [types.includes('stills') && 'Stills', types.includes('motion') && 'Film'].filter(Boolean).join(' + ');

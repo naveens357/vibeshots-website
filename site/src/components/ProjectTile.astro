@@ -1,13 +1,14 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Media from './Media.astro';
+import { coverProps } from '../lib/media';
+import { projectType } from '../lib/format';
 interface Props { project: CollectionEntry<'projects'>; big?: boolean; filterable?: boolean }
 const { project, big = false, filterable = false } = Astro.props;
 const d = project.data;
-const type = d.types.includes('stills') && d.types.includes('motion') ? 'Stills + Film' : d.types.includes('motion') ? 'Film' : 'Stills';
 ---
 <a class:list={['ctile', { big }]} href={`/commercial/${project.id}/`} data-project={filterable ? '' : undefined} data-s={d.sector} data-t={d.types.join(' ')}>
-  <Media src={d.cover} alt={d.coverAlt || d.title} tone={d.coverTone} label={d.coverLabel} />
-  <span class="ty">{type}</span>
+  <Media {...coverProps(d, d.title)} />
+  <span class="ty">{projectType(d.types)}</span>
   <div class="cap"><p class="cl">{d.client}</p><p class="nm">{d.title}</p></div>
 </a>

@@ -2,15 +2,16 @@
 /** Story card: square photo, phrase title, couple names, month · city, short teaser. */
 import type { CollectionEntry } from 'astro:content';
 import Media from './Media.astro';
+import { coverProps } from '../lib/media';
+import { formatDate } from '../lib/dates';
 interface Props { story: CollectionEntry<'stories'> }
 const { story } = Astro.props;
 const d = story.data;
-const when = d.date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
 ---
 <a class="scard bw rv" href={`/weddings/${story.id}/`}>
-  <Media src={d.cover} alt={d.coverAlt || `${d.title} wedding`} tone={d.coverTone} label={d.coverLabel} />
+  <Media {...coverProps(d, `${d.title} wedding`)} />
   <h3>{d.headline || d.title}</h3>
   {d.headline && <p class="who">{d.title}</p>}
-  <p class="where">{[d.dateBS || when, d.city || d.venue].filter(Boolean).join(' · ')}</p>
+  <p class="where">{[d.dateBS || formatDate(d.date, 'monthYear'), d.city || d.venue].filter(Boolean).join(' · ')}</p>
   {d.excerpt && <p>{d.excerpt}</p>}
 </a>

@@ -1,0 +1,6 @@
+---
+/** Small-caps text link with a trailing arrow, e.g. "All stories →". */
+interface Props { href: string }
+const { href } = Astro.props;
+---
+<a class="link-caps" href={href}><slot /> <span aria-hidden="true">→</span></a>

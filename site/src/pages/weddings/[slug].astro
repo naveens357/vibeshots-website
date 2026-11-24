@@ -1,10 +1,16 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Media from '../../components/Media.astro';
+import Button from '../../components/Button.astro';
+import Gallery from '../../components/Gallery.astro';
+import FilmBox from '../../components/FilmBox.astro';
+import { newestFirst } from '../../lib/content';
+import { formatDate } from '../../lib/dates';
+import { coverProps } from '../../lib/media';
 
 export async function getStaticPaths() {
-  const stories = (await getCollection('stories')).sort((a, b) => +b.data.date - +a.data.date);
+  const stories = await newestFirst('stories');
   return stories.map((story, i) => ({
     params: { slug: story.id },
     props: { story, prev: stories[i - 1] ?? stories.at(-1), next: stories[i + 1] ?? stories[0] },
@@ -13,11 +19,11 @@ export async function getStaticPaths() {
 const { story, prev, next } = Astro.props;
 const d = story.data;
 const { Content } = await render(story);
-const dateAD = d.date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+const dateAD = formatDate(d.date, 'monthShortYear');
 ---
 <Base title={d.seoTitle || `${d.headline ? `${d.headline}: ` : ''}${d.title} · ${d.venue}`} description={d.seoDescription || d.excerpt} image={d.cover || undefined}>
   <section class="shero">
-    <Media src={d.hero || d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager sizes="100vw" />
+    <Media {...coverProps(d)} src={d.hero || d.cover} eager sizes="100vw" />
     <div class="shade"></div>
     <div class:list={['wrap in', { right: d.heroAlign === 'right' }]}>
       <span class="deva gold" lang="ne">शुभ विवाह</span>
@@ -40,19 +46,9 @@ const dateAD = d.date.toLocaleDateString('en-GB', { month: 'short', year: 'numer
     <div class="wrap"><div class="prose drop"><Content /></div></div>
   </section>
 
-  <div class="wrap gal">
-    {d.gallery.map((g, i) => (
-      <>
-        <Media class={g.layout} sizes={g.layout === 'full' ? '100vw' : g.layout === 'half' ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 100vw, 33vw'} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={g.layout === 'full' ? '32' : '23'} />
-        {i === 2 && d.film && (
-          <div class="filmbox full">
-            <Media src={d.filmPoster || d.cover} tone="night" label="Highlight film" ratio="169" />
-            <button class="btn btn-shutter" type="button" data-film={d.film} aria-label="Play film"><svg><use href="#i-aperture"/></svg></button>
-          </div>
-        )}
-      </>
-    ))}
-  </div>
+  <Gallery items={d.gallery} insertAfter={2}>
+    {d.film && <FilmBox slot="insert" class="full" film={d.film} poster={d.filmPoster || d.cover} label="Highlight film" />}
+  </Gallery>
 
   {d.quote && (
     <section class="sec">
@@ -79,7 +75,7 @@ const dateAD = d.date.toLocaleDateString('en-GB', { month: 'short', year: 'numer
   <section class="sec tight center">
     <div class="wrap">
       <p class="lead" style="margin:0 auto 20px">Planning something like this?</p>
-      <div class="row-btns"><button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button><a class="btn btn-line" href="/packages/"><span class="lbl">See packages</span></a></div>
+      <div class="row-btns"><Button check>Check your date</Button><Button variant="line" href="/packages/">See packages</Button></div>
     </div>
   </section>
 

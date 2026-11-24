@@ -4,6 +4,9 @@ import services from '../data/services.json';
 import site from '../data/site.json';
 import packages from '../data/packages.json';
 import { waLink } from '../lib/format';
+import Button from '../components/Button.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import ArrowLink from '../components/ArrowLink.astro';
 const zoneText = (z: { travel: string; coverage: string }) =>
   (z.travel === 'Included' ? 'Travel included in every package.' : z.travel.replace(/([^.…])$/, '$1.')) + (z.coverage.startsWith('+') ? ` Coverage ${z.coverage}.` : '');
 ---
@@ -20,14 +23,14 @@ const zoneText = (z: { travel: string; coverage: string }) =>
   {services.groups.map((g) => (
     <section class="sec tight">
       <div class="wrap">
-        <div class="stitle rv"><span class="deva" lang="ne">{g.deva}</span><h2>{g.title}</h2></div>
+        <SectionTitle reveal deva={g.deva} title={g.title} />
         <div class="steps svc-list">
           {g.items.map((s, i) => (
             <div class="step rv">
               <div class="n">{String(i + 1).padStart(2, '0')}</div>
               <h3>{s.name}</h3>
               <p>{s.text}</p>
-              <a class="link-caps" href={s.link}>{s.linkText} <span aria-hidden="true">→</span></a>
+              <ArrowLink href={s.link}>{s.linkText}</ArrowLink>
             </div>
           ))}
         </div>
@@ -37,7 +40,7 @@ const zoneText = (z: { travel: string; coverage: string }) =>
 
   <section class="sec tight" id="areas">
     <div class="wrap">
-      <div class="stitle rv"><span class="deva" lang="ne">कहाँ कहाँ</span><h2>Where we shoot</h2><p>Studio in {site.address}. Weddings and shoots across Nepal and beyond.</p></div>
+      <SectionTitle reveal deva="कहाँ कहाँ" title="Where we shoot" text={`Studio in ${site.address}. Weddings and shoots across Nepal and beyond.`} />
       <div class="steps svc-list">
         {packages.zones.map((z) => (
           <div class="step rv">
@@ -54,8 +57,8 @@ const zoneText = (z: { travel: string; coverage: string }) =>
   <section class="sec tight">
     <div class="wrap narrow center">
       <div class="row-btns" style="justify-content:center">
-        <a class="btn btn-dot" href="/contact/"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></a>
-        <a class="btn btn-line" href={waLink()} target="_blank" rel="noopener"><span class="lbl">WhatsApp us</span></a>
+        <Button href="/contact/">Check your date</Button>
+        <Button variant="line" href={waLink()} external>WhatsApp us</Button>
       </div>
     </div>
   </section>

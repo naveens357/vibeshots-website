@@ -1,13 +1,17 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Media from '../../components/Media.astro';
 import ProjectTile from '../../components/ProjectTile.astro';
-import { sectors } from '../../lib/format';
+import Gallery from '../../components/Gallery.astro';
+import FilmBox from '../../components/FilmBox.astro';
+import { newestFirst } from '../../lib/content';
+import { coverProps } from '../../lib/media';
+import { sectors, projectType } from '../../lib/format';
 import { videoSchema } from '../../lib/seo';
 
 export async function getStaticPaths() {
-  const projects = (await getCollection('projects')).sort((a, b) => +b.data.date - +a.data.date);
+  const projects = await newestFirst('projects');
   return projects.map((project, i) => ({
     params: { slug: project.id },
     props: { project, more: projects.filter((p) => p.id !== project.id).slice(0, 3) },
@@ -17,12 +21,12 @@ const { project, more } = Astro.props;
 const d = project.data;
 const { Content } = await render(project);
 const videos = d.film ? [videoSchema({ name: `${d.client}: ${d.title}`, description: d.credit || `${d.client}: ${d.title}. ${sectors[d.sector]} film by Vibeshots Nepal.`, url: d.film, poster: d.filmPoster || d.cover, date: d.date }, Astro.site)] : [];
-const type = d.types.map((t) => (t === 'motion' ? 'Film' : 'Stills')).join(' + ');
+const type = projectType(d.types);
 ---
 <Base title={d.seoTitle || `${d.client} · ${d.title}`} description={d.seoDescription || d.credit || `${d.client}: ${d.title}. ${sectors[d.sector]} work by Vibeshots Nepal.`} image={d.cover || undefined} schema={videos} dark headerOver>
   <div class="on-dark">
     <section class="chero" style="min-height:min(78svh,720px)">
-      <Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} eager sizes="100vw" />
+      <Media {...coverProps(d)} eager sizes="100vw" />
       <div class="shade"></div>
       <div class="wrap in">
         <p class="official"><i></i>{d.client} · {sectors[d.sector]}</p>
@@ -44,16 +48,11 @@ const type = d.types.map((t) => (t === 'motion' ? 'Film' : 'Stills')).join(' + '
 
     {d.film && (
       <div class="wrap" style="margin-bottom:12px;max-width:1100px">
-        <div class="filmbox">
-          <Media src={d.filmPoster || d.cover} alt={`${d.client} film`} tone="moto" label="Film" ratio="169" sizes="100vw" />
-          <button class="btn btn-shutter" type="button" data-film={d.film} aria-label="Play film"><svg><use href="#i-aperture"/></svg></button>
-        </div>
+        <FilmBox film={d.film} poster={d.filmPoster || d.cover} alt={`${d.client} film`} tone="moto" sizes="100vw" />
       </div>
     )}
 
-    <div class="wrap gal">
-      {d.gallery.map((g) => <Media class={g.layout} sizes={g.layout === 'full' ? '100vw' : g.layout === 'half' ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 100vw, 33vw'} src={g.src} alt={g.alt} tone={g.tone} label={g.label} ratio={g.layout === 'full' ? '32' : '23'} />)}
-    </div>
+    <Gallery items={d.gallery} />
 
     {d.results && (
       <section class="sec tight" style="padding-top:72px">

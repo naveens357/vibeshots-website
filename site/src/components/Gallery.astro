@@ -1,0 +1,21 @@
+---
+/**
+ * Photo gallery grid. Each photo's layout (full / half / third / center) sets
+ * its width and shape. Content in the "insert" slot is placed after photo
+ * number `insertAfter` (e.g. a film between photos).
+ */
+import Media from './Media.astro';
+import { galleryLayout } from '../lib/media';
+interface Item { src: string; alt: string; tone: string; label: string; layout: 'full' | 'half' | 'third' | 'center' }
+interface Props { items: Item[]; insertAfter?: number; style?: string }
+const { items, insertAfter = -1, style } = Astro.props;
+const insert = Astro.slots.has('insert') ? await Astro.slots.render('insert') : '';
+---
+<div class="wrap gal" style={style}>
+  {items.map((g, i) => (
+    <>
+      <Media class={g.layout} {...galleryLayout(g.layout)} src={g.src} alt={g.alt} tone={g.tone} label={g.label} />
+      {i === insertAfter && insert && <Fragment set:html={insert} />}
+    </>
+  ))}
+</div>

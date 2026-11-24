@@ -1,0 +1,26 @@
+---
+/**
+ * Site button. "dot" has the round arrow badge, "line" is outlined.
+ * With `href` it renders a link, otherwise a <button>. `check` opens the
+ * check-your-date modal (see scripts/features/modals.ts).
+ */
+interface Props {
+  variant?: 'dot' | 'line';
+  href?: string;
+  check?: boolean;
+  type?: 'button' | 'submit';
+  light?: boolean;
+  sm?: boolean;
+  block?: boolean;
+  /** Open in a new tab. */
+  external?: boolean;
+}
+const { variant = 'dot', href, check = false, type = 'button', light = false, sm = false, block = false, external = false } = Astro.props;
+const Tag = href ? 'a' : 'button';
+const attrs = href
+  ? { href, ...(external ? { target: '_blank', rel: 'noopener' } : {}) }
+  : { type, 'data-check': check ? '' : undefined };
+---
+<Tag class:list={['btn', `btn-${variant}`, { light, sm, block }]} {...attrs}>
+  {variant === 'dot' && <span class="dot"><svg><use href="#i-arrow"/></svg></span>}<span class="lbl"><slot /></span>
+</Tag>

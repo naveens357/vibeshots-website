@@ -5,9 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Overlays from '../components/Overlays.astro';
 import site from '../data/site.json';
-import packages from '../data/packages.json';
-import services from '../data/services.json';
-import { absUrl } from '../lib/seo';
+import { absUrl, pageJsonLd } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -24,64 +22,8 @@ const { title, description = site.description, image = '/images/logo-dark.png', 
 const fullTitle = title === site.name ? `${site.name} · Wedding Photographer & Filmmaker in Bhaktapur, Nepal` : `${title} · ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const abs = (p: string) => absUrl(p, Astro.site);
-const ogImage = abs(image);
-const homeUrl = abs('/');
-const prices = packages.tiers.flatMap((t) => [t.bride.price, t.groom.price, t.both.price]);
-
-// Breadcrumbs from the URL: Home › Section › Page (sections without their own page are skipped).
-const sectionNames: Record<string, string> = {
-  weddings: 'Wedding Stories',
-  'pre-weddings': 'Pre-wedding Shoots',
-  commercial: 'Commercial',
-  journal: 'Journal',
-};
-const segs = Astro.url.pathname.slice(baseUrl.length).split('/').filter(Boolean);
-const crumbs = [{ name: 'Home', url: homeUrl }];
-if (segs.length > 1 && sectionNames[segs[0]]) crumbs.push({ name: sectionNames[segs[0]], url: abs(`/${segs[0]}/`) });
-if (segs.length) crumbs.push({ name: title, url: canonical.toString() });
-
-const business = {
-  '@type': 'ProfessionalService',
-  '@id': `${homeUrl}#business`,
-  name: site.name,
-  alternateName: ['Vibeshots', 'Vibe Shots Nepal'],
-  description: site.description,
-  slogan: site.tagline,
-  url: homeUrl,
-  logo: abs('/images/logo-dark.png'),
-  image: ogImage,
-  telephone: `+977${site.phonePrimary}`,
-  ...(site.email ? { email: site.email } : {}),
-  priceRange: `NPR ${Math.min(...prices).toLocaleString('en-IN')}–${Math.max(...prices).toLocaleString('en-IN')}`,
-  currenciesAccepted: 'NPR',
-  address: { '@type': 'PostalAddress', streetAddress: 'Sallaghari', addressLocality: 'Bhaktapur', postalCode: '44800', addressRegion: 'Bagmati Province', addressCountry: 'NP' },
-  geo: { '@type': 'GeoCoordinates', latitude: site.mapLat, longitude: site.mapLng },
-  hasMap: site.mapUrl,
-  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '10:00', closes: '18:00' }],
-  areaServed: services.areas.map((name) => ({ '@type': name === 'Nepal' ? 'Country' : 'Place', name })),
-  knowsAbout: services.groups.flatMap((g) => g.items.map((i) => i.name)).concat(['Hindu weddings', 'Newari weddings', 'Wedding videography', 'Commercial photography']),
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Photography and film services',
-    itemListElement: services.groups.map((g) => ({
-      '@type': 'OfferCatalog',
-      name: g.title,
-      itemListElement: g.items.map((i) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: i.name, description: i.text, url: abs(i.link) } })),
-    })),
-  },
-  sameAs: [`https://www.instagram.com/${site.instagramWeddings}/`, `https://www.instagram.com/${site.instagramCommercial}/`, site.facebook, site.youtube, site.tiktok].filter(Boolean),
-};
-
-const graph = [
-  business,
-  { '@type': 'WebSite', '@id': `${homeUrl}#website`, name: site.name, url: homeUrl, inLanguage: 'en', publisher: { '@id': `${homeUrl}#business` } },
-  ...(crumbs.length > 1
-    ? [{ '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })) }]
-    : []),
-  ...schema,
-];
-const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+const ogImage = absUrl(image, Astro.site);
+const jsonLd = pageJsonLd({ title, pathname: Astro.url.pathname, image: ogImage, extra: schema }, Astro.site);
 ---
 <!doctype html>
 <html lang="en" class="no-js">

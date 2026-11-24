@@ -1,0 +1,24 @@
+---
+/** Closing red band: big question, "Check your date" and one more link; optional photo behind. */
+import Media from './Media.astro';
+import Button from './Button.astro';
+interface Props {
+  title: string;
+  /** Italic second half of the heading. */
+  accent: string;
+  linkHref: string;
+  linkLabel: string;
+  image?: string;
+}
+const { title, accent, linkHref, linkLabel, image } = Astro.props;
+---
+<section class:list={['sec final', { 'has-img': image }]}>
+  {image && <div class="final-bg" aria-hidden="true"><Media src={image} alt="" sizes="100vw" /></div>}
+  <div class="wrap">
+    <h2 class="h-l">{title} <span class="it">{accent}</span></h2>
+    <div class="row-btns">
+      <Button light check>Check your date</Button>
+      <Button variant="line" light href={linkHref}>{linkLabel}</Button>
+    </div>
+  </div>
+</section>

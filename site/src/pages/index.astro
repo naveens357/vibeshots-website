@@ -10,8 +10,12 @@ import Team from '../components/Team.astro';
 import site from '../data/site.json';
 import home from '../data/home.json';
 import { waLink } from '../lib/format';
+import Button from '../components/Button.astro';
+import { featuredFirst } from '../lib/content';
+import SectionTitle from '../components/SectionTitle.astro';
+import ArrowLink from '../components/ArrowLink.astro';
 
-const stories = (await getCollection('stories')).sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || +b.data.date - +a.data.date).slice(0, 3);
+const stories = (await getCollection('stories')).sort(featuredFirst).slice(0, 3);
 const t = site.testimonials[0];
 ---
 <Base title={site.name} headerOver>
@@ -40,9 +44,9 @@ const t = site.testimonials[0];
 
   <section class="sec">
     <div class="wrap">
-      <div class="stitle rv"><span class="deva" lang="ne">विवाह कथाहरू</span><h2>Stories</h2><p>Delve into the weddings we've been part of.</p></div>
+      <SectionTitle reveal deva="विवाह कथाहरू" title="Stories" text="Delve into the weddings we've been part of." />
       <div class="sgrid">{stories.map((s) => <StoryCard story={s} />)}</div>
-      <p class="center" style="margin-top:56px"><a class="link-caps" href="/weddings/">All stories <span aria-hidden="true">→</span></a></p>
+      <p class="center" style="margin-top:56px"><ArrowLink href="/weddings/">All stories</ArrowLink></p>
     </div>
   </section>
 
@@ -61,10 +65,10 @@ const t = site.testimonials[0];
 
   <section class="sec" style="background:var(--paper)">
     <div class="wrap">
-      <div class="stitle rv"><span class="deva" lang="ne">प्याकेजहरू</span><h2>Packages</h2><p>Kathmandu Valley prices in NPR · 5% early-bird when booked 90+ days ahead</p></div>
+      <SectionTitle reveal deva="प्याकेजहरू" title="Packages" text="Kathmandu Valley prices in NPR · 5% early-bird when booked 90+ days ahead" />
       <div class="center" style="margin:-24px 0 40px"><SideToggle /></div>
       <PackageTiers />
-      <p class="center" style="margin-top:48px"><a class="link-caps" href="/packages/">All packages, add-ons &amp; travel <span aria-hidden="true">→</span></a></p>
+      <p class="center" style="margin-top:48px"><ArrowLink href="/packages/">All packages, add-ons &amp; travel</ArrowLink></p>
     </div>
   </section>
 
@@ -82,9 +86,9 @@ const t = site.testimonials[0];
 
   <section class="sec" style="border-top:1px solid var(--line)">
     <div class="wrap center rv">
-      <div class="stitle" style="margin-bottom:28px"><span class="deva" lang="ne">साइत तय भयो?</span><h2>Let's talk</h2><p>Tell us your date, and we'll reply within 2 hours.</p></div>
+      <SectionTitle deva="साइत तय भयो?" title="Let's talk" text="Tell us your date, and we'll reply within 2 hours." style="margin-bottom:28px" />
       <div class="row-btns">
-        <button class="btn btn-dot" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
+        <Button check>Check your date</Button>
         <a class="btn btn-wa" href={waLink("Namaste Vibeshots, we'd like to check our wedding date")} target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
       </div>
     </div>

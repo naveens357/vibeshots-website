@@ -1,10 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Media from '../components/Media.astro';
 import { videoSchema } from '../lib/seo';
+import { newestFirst } from '../lib/content';
+import SectionTitle from '../components/SectionTitle.astro';
+import ArrowLink from '../components/ArrowLink.astro';
 
-const films = (await getCollection('films')).sort((a, b) => +b.data.date - +a.data.date);
+const films = await newestFirst('films');
 const groups = [
   { kind: 'reel', title: 'Reels', deva: 'रिल्स', note: 'Short edits for Instagram and TikTok' },
   { kind: 'highlight', title: 'Highlight films', deva: 'हाइलाइट', note: 'The whole wedding in four to six minutes' },
@@ -22,7 +24,7 @@ const videos = films.filter((f) => f.data.url && f.data.poster).map((f) => video
     return (
       <section class="sec" style={gi === 0 ? 'padding-top:96px' : 'padding-top:24px'} id={g.kind}>
         <div class="wrap">
-          <div class="stitle rv"><span class="deva" lang="ne">{g.deva}</span>{gi === 0 ? <h1>{g.title}</h1> : <h2>{g.title}</h2>}<p>{g.note}</p></div>
+          <SectionTitle reveal as={gi === 0 ? 'h1' : 'h2'} deva={g.deva} title={g.title} text={g.note} />
           <div class:list={['fgrid', { reels: g.kind === 'reel' }]}>
             {list.map((f) => {
               const d = f.data;
@@ -46,6 +48,6 @@ const videos = films.filter((f) => f.data.url && f.data.poster).map((f) => video
     );
   })}
   <section class="sec tight center">
-    <div class="wrap"><a class="link-caps" href="/contact/">Plan your wedding film <span aria-hidden="true">→</span></a></div>
+    <div class="wrap"><ArrowLink href="/contact/">Plan your wedding film</ArrowLink></div>
   </section>
 </Base>
