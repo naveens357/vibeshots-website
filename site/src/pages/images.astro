@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Media from '../components/Media.astro';
+import SectionTitle from '../components/SectionTitle.astro';
 import data from '../data/images.json';
 const cats = [
   { id: 'wedding', label: 'Weddings & portraits' },
@@ -10,7 +11,7 @@ const cats = [
 <Base title="Photography Portfolio: Weddings & Commercial" description="Wedding, pre-wedding, maternity and commercial photography portfolio from Nepal: restaurants, motorsport, travel and artists, by Vibeshots Nepal in Bhaktapur.">
   <section class="sec" style="padding-top:96px">
     <div class="wrap">
-      <div class="stitle"><span class="deva" lang="ne">तस्बिरहरू</span><h1>Images</h1>{data.intro && <p>{data.intro}</p>}</div>
+      <SectionTitle as="h1" deva="तस्बिरहरू" title="Images" text={data.intro} />
       <div class="center" style="margin:-24px 0 40px">
         <div class="seg" data-seg="imgcat" role="group" aria-label="Show images">
           <span class="pill" aria-hidden="true"></span>

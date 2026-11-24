@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import faq from '../data/faq.json';
+import SectionTitle from '../components/SectionTitle.astro';
+import ArrowLink from '../components/ArrowLink.astro';
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z]+/g, '-');
 const faqSchema = [{
   '@type': 'FAQPage',
@@ -10,7 +12,7 @@ const faqSchema = [{
 <Base title="Frequently Asked Questions" schema={faqSchema} description="Answers to common questions about booking Vibeshots Nepal: dates, travel, rituals, delivery times, films, payments and usage.">
   <section class="sec" style="padding-top:96px">
     <div class="wrap narrow">
-      <div class="stitle"><span class="deva" lang="ne">प्रश्नहरू</span><h1>Frequently asked questions</h1><p>{faq.intro}</p></div>
+      <SectionTitle as="h1" deva="प्रश्नहरू" title="Frequently asked questions" text={faq.intro} />
       <nav class="faq-nav" aria-label="FAQ topics">{faq.groups.map((g) => <a href={`#${slug(g.title)}`}>{g.title}</a>)}</nav>
       {faq.groups.map((g) => (
         <div class="faq-group" id={slug(g.title)}>
@@ -18,7 +20,7 @@ const faqSchema = [{
           {g.items.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
         </div>
       ))}
-      <p class="center" style="margin-top:64px"><a class="link-caps" href="/contact/">Still wondering? Ask us <span aria-hidden="true">→</span></a></p>
+      <p class="center" style="margin-top:64px"><ArrowLink href="/contact/">Still wondering? Ask us</ArrowLink></p>
     </div>
   </section>
 </Base>

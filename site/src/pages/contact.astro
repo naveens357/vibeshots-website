@@ -4,6 +4,7 @@ import MiniMap from '../components/MiniMap.astro';
 import site from '../data/site.json';
 import packages from '../data/packages.json';
 import { waLink, viberLink, igDm, tel, mapDirections } from '../lib/format';
+import Button from '../components/Button.astro';
 const events = ['Engagement', 'Haldi / Mehendi', 'Pre-wedding', 'Wedding', 'Reception'];
 const pkgNames = [...packages.tiers.map((t) => t.name), packages.heritage.name];
 const faq = packages.faq.slice(0, 4);
@@ -64,7 +65,7 @@ const codes = [['+977', 'Nepal'], ['+91', 'India'], ['+61', 'Australia'], ['+1',
           {['WhatsApp', 'Viber', 'Call', 'Email'].map((v, i) => <label class="opt"><input type="radio" name="reply-via" value={v} checked={i === 0}><span>{v}</span></label>)}
         </div></fieldset>
         <div class="full row-btns">
-          <button class="btn btn-dot" type="submit"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Send inquiry</span></button>
+          <Button type="submit">Send inquiry</Button>
           <span class="muted" style="font-size:13px">We never share your number.</span>
         </div>
       </form>

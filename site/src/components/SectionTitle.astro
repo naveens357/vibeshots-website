@@ -1,0 +1,16 @@
+---
+/** Centred section title: small Nepali word, heading, optional line of text. */
+interface Props {
+  title: string;
+  deva?: string;
+  text?: string;
+  as?: 'h1' | 'h2';
+  /** Fade in on scroll. */
+  reveal?: boolean;
+  style?: string;
+}
+const { title, deva, text, as: Tag = 'h2', reveal = false, style } = Astro.props;
+---
+<div class:list={['stitle', { rv: reveal }]} style={style}>
+  {deva && <span class="deva" lang="ne">{deva}</span>}<Tag>{title}</Tag>{text && <p>{text}</p>}<slot />
+</div>

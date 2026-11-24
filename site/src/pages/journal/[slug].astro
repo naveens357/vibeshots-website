@@ -2,7 +2,10 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Media from '../../components/Media.astro';
-import { absUrl } from '../../lib/seo';
+import { absUrl, businessRef } from '../../lib/seo';
+import FinalCta from '../../components/FinalCta.astro';
+import { formatDate } from '../../lib/dates';
+import { coverProps } from '../../lib/media';
 
 export async function getStaticPaths() {
   const posts = await getCollection('journal', (p) => !p.data.draft);
@@ -17,11 +20,11 @@ const article = [{
   description: d.excerpt,
   datePublished: d.date.toISOString(),
   ...(d.cover ? { image: absUrl(d.cover, Astro.site) } : {}),
-  author: { '@id': `${absUrl('/', Astro.site)}#business` },
-  publisher: { '@id': `${absUrl('/', Astro.site)}#business` },
+  author: businessRef(Astro.site),
+  publisher: businessRef(Astro.site),
   mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
 }];
-const date = d.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const date = formatDate(d.date);
 ---
 <Base title={d.seoTitle || d.title} description={d.seoDescription || d.excerpt} image={d.cover || undefined} schema={article}>
   <article>
@@ -32,16 +35,8 @@ const date = d.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long',
         <p class="lead">{d.excerpt}</p>
       </div>
     </header>
-    <div class="wrap" style="max-width:1100px"><Media src={d.cover} alt={d.coverAlt} tone={d.coverTone} label={d.coverLabel} ratio="219" eager /></div>
+    <div class="wrap" style="max-width:1100px"><Media {...coverProps(d)} ratio="219" eager /></div>
     <section class="sec"><div class="wrap"><div class="prose"><Content /></div></div></section>
   </article>
-  <section class="sec final">
-    <div class="wrap">
-      <h2 class="h-l">Planning your wedding? <span class="it">Let's talk.</span></h2>
-      <div class="row-btns">
-        <button class="btn btn-dot light" type="button" data-check><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check your date</span></button>
-        <a class="btn btn-line light" href="/journal/"><span class="lbl">More from the journal</span></a>
-      </div>
-    </div>
-  </section>
+  <FinalCta title="Planning your wedding?" accent="Let's talk." linkHref="/journal/" linkLabel="More from the journal" />
 </Base>

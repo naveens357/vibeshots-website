@@ -5,6 +5,7 @@ import Team from '../components/Team.astro';
 import MiniMap from '../components/MiniMap.astro';
 import a from '../data/about.json';
 import site from '../data/site.json';
+import Button from '../components/Button.astro';
 ---
 <Base title="About Us: Wedding Photographers in Bhaktapur" description={a.intro}>
   <section class="phero">
@@ -36,7 +37,7 @@ import site from '../data/site.json';
         <p class="muted">{site.hours}</p>
         <p class="muted" style="margin-top:16px">{a.gear}</p>
         <div class="row-btns" style="margin-top:24px">
-          <a class="btn btn-line" href="/contact/"><span class="lbl">Contact us</span></a>
+          <Button variant="line" href="/contact/">Contact us</Button>
         </div>
       </div>
       <MiniMap class="rv" />

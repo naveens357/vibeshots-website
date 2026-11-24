@@ -2,6 +2,7 @@
 /** Small Google map of the studio with a name card and directions buttons. Loads lazily. */
 import site from '../data/site.json';
 import { mapEmbed, mapDirections } from '../lib/format';
+import Button from './Button.astro';
 interface Props { variant?: 'card' | 'footer'; class?: string; style?: string }
 const { variant = 'card', class: cls = '', style } = Astro.props;
 ---
@@ -21,7 +22,7 @@ const { variant = 'card', class: cls = '', style } = Astro.props;
         <small>{site.address}</small>
       </div>
       <div class="minimap-acts">
-        <a class="btn btn-dot sm" href={mapDirections()} target="_blank" rel="noopener"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Directions</span></a>
+        <Button sm href={mapDirections()} external>Directions</Button>
         <a class="btn btn-wa sm" href={site.mapUrl} target="_blank" rel="noopener">Open in Maps</a>
       </div>
     </div>

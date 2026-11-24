@@ -3,16 +3,14 @@
 import Media from './Media.astro';
 import a from '../data/about.json';
 import { igProfile } from '../lib/format';
+import SectionTitle from './SectionTitle.astro';
+import ArrowLink from './ArrowLink.astro';
 interface Props { link?: boolean; bio?: boolean }
 const { link = false, bio = true } = Astro.props;
 ---
 <section class="sec team-sec" id="team">
   <div class="wrap">
-    <div class="stitle rv">
-      <span class="deva" lang="ne">हाम्रो टोली</span>
-      <h2>{a.teamHeading}</h2>
-      {a.teamIntro && <p>{a.teamIntro}</p>}
-    </div>
+    <SectionTitle reveal deva="हाम्रो टोली" title={a.teamHeading} text={a.teamIntro} />
     <div class="team4">
       {a.team.map((m) => (
         <article class="member rv">
@@ -33,6 +31,6 @@ const { link = false, bio = true } = Astro.props;
         </article>
       ))}
     </div>
-    {link && <p class="center" style="margin-top:56px"><a class="link-caps" href="/about/#team">Meet the team <span aria-hidden="true">→</span></a></p>}
+    {link && <p class="center" style="margin-top:56px"><ArrowLink href="/about/#team">Meet the team</ArrowLink></p>}
   </div>
 </section>

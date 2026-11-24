@@ -1,6 +1,7 @@
 ---
 import { waLink, tel } from '../lib/format';
 import site from '../data/site.json';
+import Button from './Button.astro';
 ---
 <nav class="mbar" aria-label="Quick actions">
   <a href={waLink()} target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-wa"/></svg>WhatsApp</a>
@@ -17,7 +18,7 @@ import site from '../data/site.json';
     <form class="form" style="grid-template-columns:1fr" data-checkform data-wa={site.whatsapp}>
       <div class="fld"><label for="m1">Wedding date</label><input id="m1" name="date" placeholder="e.g. 18 Mangsir 2083 or 4 Dec 2026" required></div>
       <div class="fld"><label for="m2">City / venue</label><input id="m2" name="city" placeholder="e.g. Bhaktapur" required></div>
-      <button class="btn btn-dot block" type="submit"><span class="dot"><svg><use href="#i-arrow"/></svg></span><span class="lbl">Check availability</span></button>
+      <Button block type="submit">Check availability</Button>
     </form>
     <div class="result" id="mRes" aria-live="polite"></div>
   </div>
