@@ -1,0 +1,22 @@
+---
+// Private studio dashboard (bookings, crew, calendar). The Worker only serves
+// this page to people signed in through Cloudflare Access (worker/studio/).
+import App from '../../studio/App';
+import '../../studio/studio.css';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Vibeshots Studio</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <App client:only="preact" />
+</body>
+</html>

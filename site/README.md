@@ -74,6 +74,30 @@ Open `/admin/` on the live site, sign in with GitHub, edit, and click **Publish*
 - Export at 2400 px on the long edge, JPG quality about 80, under 600 KB each.
 - Always fill in **alt text**, for example "Bride in red saree during sindoor ceremony at Bhaktapur". It helps Google and screen readers.
 
+## Studio dashboard (private)
+
+`/studio` is the team's private dashboard: bookings and their events, crew
+assignments, a Bikram Sambat calendar and one-click WhatsApp briefs. Code:
+`src/studio/` (Preact pages) and `worker/studio/` (API, login check, database).
+
+- **Login:** "Sign in with Google" (`worker/studio/google.ts`). The Worker then
+  keeps a signed session cookie (`session.ts`) and checks on every request that
+  the email belongs to an active owner or staff member on the People page.
+- **Who sees what:** owners see everything; staff see only the events they are
+  crew on, with partners' names and phones, and no money.
+- **Data:** Cloudflare D1 database `vibeshots-studio` (binding `DB` in
+  `wrangler.jsonc`). Tables are created and upgraded automatically on the first
+  request after a deploy (`worker/studio/migrations.ts`). Nothing is in GitHub.
+- **Worker settings** (Cloudflare → Worker → Settings → Variables and Secrets):
+  variables `GOOGLE_CLIENT_ID`, `OWNER_EMAILS`; secrets `GOOGLE_CLIENT_SECRET`,
+  `SESSION_SECRET` (a random string of 32+ characters).
+
+Run it locally with a throwaway database:
+
+1. Create `site/.dev.vars` (never committed) with
+   `STUDIO_DEV_EMAIL=owner@vibeshots.test` and `OWNER_EMAILS=owner@vibeshots.test`.
+2. `npm run studio`, then open http://localhost:8787/studio/.
+
 ## Hosting: GitHub Pages
 
 **Live at https://naveens357.github.io/vibeshots-website/**
