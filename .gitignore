@@ -23,3 +23,8 @@ media-inbox/
 tools/node_modules/
 tools/.npm-cache/
 tools/out/
+
+# local Worker dev: studio database, wrangler settings and secrets (see site/scripts/studio-dev.mjs)
+.wrangler/
+.wrangler-home/
+.dev.vars

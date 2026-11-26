@@ -1,8 +1,12 @@
 // Cloudflare Worker for vibeshotsnepal.com: the built Astro site (static assets)
-// plus /auth and /callback for the content manager's GitHub sign-in (worker/index.js).
+// plus /auth and /callback for the content manager's GitHub sign-in
+// (worker/cms-auth.js) and the private studio dashboard at /studio
+// (worker/studio/, behind Cloudflare Access).
 // Cloudflare build settings: root directory "site", build command "npm run build",
 // deploy command "npx wrangler deploy", build variable SITE_URL=https://vibeshotsnepal.com.
-// Runtime secrets (set in the dashboard, never in this file): GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET.
+// Runtime settings (set in the dashboard, never in this file):
+//   secrets GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
+//   variables ACCESS_TEAM_DOMAIN, ACCESS_AUD, OWNER_EMAILS
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "vibeshotsnepal",
@@ -14,6 +18,10 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": ["/auth", "/auth/", "/callback", "/callback/"]
-  }
+    "run_worker_first": ["/auth", "/auth/", "/callback", "/callback/", "/studio", "/studio/*"]
+  },
+  // Studio data (bookings, clients, crew). Create it in Cloudflare → Storage & Databases → D1.
+  "d1_databases": [
+    { "binding": "DB", "database_name": "vibeshots-studio", "database_id": "REPLACE_WITH_D1_DATABASE_ID" }
+  ]
 }

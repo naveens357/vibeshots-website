@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import preact from '@astrojs/preact';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -47,6 +48,7 @@ function baseLinks() {
 export default defineConfig({
   site,
   base,
-  integrations: [sitemap({ filter: (page) => !page.includes('/thank-you') }), baseLinks()],
+  // Preact powers the private studio dashboard (src/studio) only; public pages ship no framework.
+  integrations: [preact(), sitemap({ filter: (page) => !page.includes('/thank-you') && !page.includes('/studio') }), baseLinks()],
   devToolbar: { enabled: false },
 });
