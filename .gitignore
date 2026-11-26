@@ -28,3 +28,6 @@ tools/out/
 .wrangler/
 .wrangler-home/
 .dev.vars
+
+# OAuth client files downloaded from Google Cloud: secrets, never commit
+client_secret_*.json
