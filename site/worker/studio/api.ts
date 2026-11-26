@@ -8,6 +8,7 @@ import * as v from './validate';
 import * as people from './repos/people';
 import * as clients from './repos/clients';
 import * as bookings from './repos/bookings';
+import * as finance from './repos/finance';
 
 export interface StudioEnv extends AuthEnv {
   ASSETS: Fetcher;
@@ -47,6 +48,31 @@ const routes: Route[] = [
   route('PUT', '/events/:id', true, async (ctx) => bookings.updateEvent(ctx.env.DB, pid(ctx), await body(ctx))),
   route('DELETE', '/events/:id', true, async (ctx) => bookings.deleteEvent(ctx.env.DB, pid(ctx))),
   route('PUT', '/events/:id/crew', true, async (ctx) => bookings.setCrew(ctx.env.DB, pid(ctx), await body(ctx))),
+
+  // Money (owners). Client payments and shoot expenses return the updated booking.
+  route('POST', '/bookings/:id/payments', true, async (ctx) =>
+    bookings.getBooking(ctx.env.DB, await finance.addPayment(ctx.env.DB, pid(ctx), await body(ctx)))),
+  route('DELETE', '/payments/:id', true, async (ctx) => bookings.getBooking(ctx.env.DB, await finance.deletePayment(ctx.env.DB, pid(ctx)))),
+  route('POST', '/expenses', true, async (ctx) => {
+    const bookingId = await finance.addExpense(ctx.env.DB, await body(ctx));
+    return bookingId ? bookings.getBooking(ctx.env.DB, bookingId) : { ok: true };
+  }),
+  route('DELETE', '/expenses/:id', true, async (ctx) => {
+    const bookingId = await finance.deleteExpense(ctx.env.DB, pid(ctx));
+    return bookingId ? bookings.getBooking(ctx.env.DB, bookingId) : { ok: true };
+  }),
+  route('GET', '/studio-costs', true, async ({ env }) => finance.listStudioCosts(env.DB)),
+  route('POST', '/studio-costs', true, async (ctx) => finance.saveStudioCost(ctx.env.DB, null, await body(ctx))),
+  route('PUT', '/studio-costs/:id', true, async (ctx) => finance.saveStudioCost(ctx.env.DB, pid(ctx), await body(ctx))),
+  route('POST', '/staff-payments', true, async (ctx) => { await finance.addStaffPayment(ctx.env.DB, await body(ctx)); return finance.payData(ctx.env.DB); }),
+  route('DELETE', '/staff-payments/:id', true, async (ctx) => { await finance.deleteStaffPayment(ctx.env.DB, pid(ctx)); return finance.payData(ctx.env.DB); }),
+  route('GET', '/finance', true, async ({ env, url }) => {
+    const range = { from: url.searchParams.get('from'), to: url.searchParams.get('to') };
+    return finance.financeData(env.DB, v.date(range, 'from', { required: true })!, v.date(range, 'to', { required: true })!);
+  }),
+  route('GET', '/outstanding', true, async ({ env }) => finance.outstanding(env.DB)),
+  // Team pay: owners see everyone, staff only their own.
+  route('GET', '/pay', false, async ({ env, user }) => finance.payData(env.DB, user.access === 'owner' ? undefined : user.personId)),
 
   // Calendar: owners see every event, staff only the ones they are crew on.
   route('GET', '/events', false, async ({ env, url, user }) => {

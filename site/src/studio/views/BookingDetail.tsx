@@ -6,6 +6,7 @@ import { clientConfirmation } from '../lib/messages';
 import { npr } from '../lib/money';
 import type { Booking, Client, StudioEvent } from '../lib/types';
 import { BookingFields, KIND_LABEL, STATUS_LABEL, bookingDefaults } from '../ui/BookingFields';
+import { BookingMoney } from '../ui/BookingMoney';
 import { CrewEditor } from '../ui/CrewEditor';
 import { EventCard } from '../ui/EventCard';
 import { EventForm } from '../ui/EventForm';
@@ -98,6 +99,8 @@ export function BookingDetail({ id }: { id: number }) {
           </div>
         ))}
       </section>
+
+      <BookingMoney b={b} onChange={setData} />
 
       <ErrorNote error={del.error} />
       <p><button class="link danger" onClick={remove} disabled={del.busy}>Delete booking</button></p>

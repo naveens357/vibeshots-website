@@ -5,6 +5,7 @@ import { HttpError } from '../http';
 import * as v from '../validate';
 import { ROLES, type Role } from './people';
 import { createClient, getClient } from './clients';
+import { expensesFor, paymentsFor } from './finance';
 
 export const KINDS = ['wedding', 'prewedding', 'commercial', 'other'] as const;
 export const STATUSES = ['tentative', 'confirmed', 'completed', 'cancelled'] as const;
@@ -21,13 +22,14 @@ type CrewRow = { event_id: number; person_id: number; role: Role; fee: number | 
 
 /* ---------- bookings ---------- */
 
-export const listBookings = (db: D1Database) => all<BookingRow & { client_name: string; client_phone: string | null; first_date: string | null; last_date: string | null; event_count: number }>(db,
+export const listBookings = (db: D1Database) => all<BookingRow & { client_name: string; client_phone: string | null; first_date: string | null; last_date: string | null; event_count: number; paid: number }>(db,
   `SELECT b.*, c.name AS client_name, c.phone AS client_phone,
-          MIN(e.date) AS first_date, MAX(e.date) AS last_date, COUNT(e.id) AS event_count
+          MIN(e.date) AS first_date, MAX(e.date) AS last_date, COUNT(e.id) AS event_count,
+          COALESCE((SELECT SUM(CASE kind WHEN 'refund' THEN -amount ELSE amount END) FROM payments WHERE booking_id = b.id), 0) AS paid
    FROM bookings b JOIN clients c ON c.id = b.client_id LEFT JOIN events e ON e.booking_id = b.id
    GROUP BY b.id ORDER BY first_date IS NULL, first_date DESC, b.id DESC`);
 
-/** A booking with its client and events (each with crew). Fees included: owners only. */
+/** A booking with its client, events (each with crew), payments and expenses. Owners only. */
 export async function getBooking(db: D1Database, id: number) {
   const booking = await mustFind<BookingRow>(db, 'SELECT * FROM bookings WHERE id = ?', id);
   const events = await all<EventRow>(db, 'SELECT * FROM events WHERE booking_id = ? ORDER BY date, call_time', id);
@@ -36,6 +38,8 @@ export async function getBooking(db: D1Database, id: number) {
     ...booking,
     client: await getClient(db, booking.client_id),
     events: events.map((e) => ({ ...e, crew: crew.filter((c) => c.event_id === e.id) })),
+    payments: await paymentsFor(db, id),
+    expenses: await expensesFor(db, id),
   };
 }
 

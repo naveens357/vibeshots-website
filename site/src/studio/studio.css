@@ -88,7 +88,7 @@ dl.kv dd { margin: 0; }
 /* dashboard */
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 8px; }
 .stats div { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; }
-.stats b { font: 600 32px/1 var(--serif); }
+.stats b { font: 600 clamp(20px, 2.3vw, 32px)/1.1 var(--serif); white-space: nowrap; }
 .stats span { color: var(--muted); font-size: 13px; }
 .stats .alert { border-color: var(--warn); }
 .stats .alert b { color: var(--warn); }
@@ -125,6 +125,19 @@ dl.kv dd { margin: 0; }
 .chip.k-commercial { background: #DDE8F4; color: #1E4A7A; }
 .chip.k-other { background: #EEE6DA; color: var(--muted); }
 .more { font-size: 11px; color: var(--muted); }
+
+/* money */
+.num.neg, td.neg { color: #B00020; }
+.stats .good b { color: var(--ok); }
+.stats .bad { border-color: #B00020; }
+.stats .bad b { color: #B00020; }
+h3.sub { font: 600 17px var(--serif); margin: 0 0 8px; }
+.money .bars { width: 28%; }
+.bar { display: block; height: 6px; border-radius: 3px; margin: 2px 0; min-width: 2px; }
+.bar.in { background: var(--ok); }
+.bar.out { background: var(--red); opacity: .7; }
+tr.detail > td { background: #fff; cursor: default; }
+tr.detail .cols { margin: 0; }
 
 @media (max-width: 900px) {
   .shell { grid-template-columns: 1fr; }

@@ -8,6 +8,8 @@ import { Calendar } from './views/Calendar';
 import { Bookings, NewBooking } from './views/Bookings';
 import { BookingDetail } from './views/BookingDetail';
 import { People } from './views/People';
+import { Money } from './views/Money';
+import { Pay } from './views/Pay';
 
 function useHash() {
   const [hash, setHash] = useState(location.hash || '#/');
@@ -27,6 +29,8 @@ const pages: Page[] = [
   { path: /^\/bookings$/, nav: { label: 'Bookings', href: '#/bookings' }, owner: true, render: () => <Bookings /> },
   { path: /^\/bookings\/new$/, owner: true, render: () => <NewBooking /> },
   { path: /^\/bookings\/(\d+)$/, owner: true, render: (_, m) => <BookingDetail id={Number(m[1])} /> },
+  { path: /^\/money$/, nav: { label: 'Money', href: '#/money' }, owner: true, render: () => <Money /> },
+  { path: /^\/pay$/, nav: { label: 'Pay', href: '#/pay' }, render: (me) => <Pay me={me} /> },
   { path: /^\/people$/, nav: { label: 'People', href: '#/people' }, owner: true, render: (me) => <People myId={me.personId} /> },
 ];
 

@@ -69,4 +69,58 @@ export const migrations: { id: number; name: string; sql: string[] }[] = [
       `CREATE INDEX IF NOT EXISTS event_crew_person ON event_crew(person_id)`,
     ],
   },
+  {
+    id: 2,
+    name: 'finances: client payments, expenses, staff payments, monthly studio costs',
+    sql: [
+      // Money received from (or refunded to) a client for a booking.
+      `CREATE TABLE IF NOT EXISTS payments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        booking_id INTEGER NOT NULL REFERENCES bookings(id) ON DELETE CASCADE,
+        date TEXT NOT NULL,
+        amount INTEGER NOT NULL CHECK (amount > 0),
+        kind TEXT NOT NULL DEFAULT 'payment' CHECK (kind IN ('payment', 'refund')),
+        method TEXT NOT NULL DEFAULT 'cash' CHECK (method IN ('cash', 'esewa', 'khalti', 'fonepay', 'bank', 'cheque', 'other')),
+        note TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      )`,
+      `CREATE INDEX IF NOT EXISTS payments_booking ON payments(booking_id)`,
+      `CREATE INDEX IF NOT EXISTS payments_date ON payments(date)`,
+      // One-off costs: for a booking (shoot expense) or for the studio (booking_id NULL).
+      `CREATE TABLE IF NOT EXISTS expenses (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        booking_id INTEGER REFERENCES bookings(id) ON DELETE CASCADE,
+        date TEXT NOT NULL,
+        amount INTEGER NOT NULL CHECK (amount > 0),
+        category TEXT NOT NULL DEFAULT 'other',
+        note TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      )`,
+      `CREATE INDEX IF NOT EXISTS expenses_date ON expenses(date)`,
+      // Money paid out to team members (salary, event fees, advances, bonuses).
+      `CREATE TABLE IF NOT EXISTS staff_payments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        person_id INTEGER NOT NULL REFERENCES people(id),
+        date TEXT NOT NULL,
+        amount INTEGER NOT NULL CHECK (amount > 0),
+        kind TEXT NOT NULL DEFAULT 'event' CHECK (kind IN ('salary', 'event', 'advance', 'bonus')),
+        method TEXT NOT NULL DEFAULT 'cash',
+        note TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      )`,
+      `CREATE INDEX IF NOT EXISTS staff_payments_person ON staff_payments(person_id)`,
+      // Costs that repeat every BS month (rent, internet, software…) between two dates.
+      `CREATE TABLE IF NOT EXISTS studio_costs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        category TEXT NOT NULL DEFAULT 'other',
+        amount INTEGER NOT NULL CHECK (amount > 0),
+        start_date TEXT NOT NULL,
+        end_date TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      )`,
+      // Salary counts from this month (BS) onwards.
+      `ALTER TABLE people ADD COLUMN salary_since TEXT`,
+    ],
+  },
 ];

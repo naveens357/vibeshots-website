@@ -12,10 +12,16 @@ export function ensureSchema(db: D1Database): Promise<void> {
     const done = new Set((await db.prepare('SELECT id FROM _migrations').all<{ id: number }>()).results.map((r) => r.id));
     for (const m of migrations) {
       if (done.has(m.id)) continue;
-      await db.batch([
-        ...m.sql.map((s) => db.prepare(s)),
-        db.prepare('INSERT OR IGNORE INTO _migrations (id, name) VALUES (?, ?)').bind(m.id, m.name),
-      ]);
+      try {
+        await db.batch([
+          ...m.sql.map((s) => db.prepare(s)),
+          db.prepare('INSERT OR IGNORE INTO _migrations (id, name) VALUES (?, ?)').bind(m.id, m.name),
+        ]);
+      } catch (err) {
+        // Another Worker instance may have applied it at the same moment (the batch rolls back here).
+        const applied = await db.prepare('SELECT 1 FROM _migrations WHERE id = ?').bind(m.id).first();
+        if (!applied) throw err;
+      }
     }
   })().catch((err) => {
     ready = null; // retry on the next request
