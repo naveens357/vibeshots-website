@@ -3,6 +3,7 @@
 import { waUrl } from '../../lib/whatsapp';
 import { fullLabel, timeLabel } from './bs';
 import { crewByPerson, type CrewMember } from './crew';
+import { npr } from './money';
 import { ROLE_LABEL, type Role, type StudioEvent } from './types';
 
 /** Nepali mobile "98XXXXXXXX" -> "97798XXXXXXXX"; other numbers keep their digits. */
@@ -45,6 +46,17 @@ export function crewBrief(e: StudioEvent, ctx: BriefContext, person: { name: str
     '',
     'Please reply to confirm. Thank you!',
   ].join('\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
+/** Friendly payment reminder to the client, with what is paid and what is due. */
+export function paymentReminder(b: { title: string; package?: string | null; client: { name: string } }, money: { price: number; paid: number; due: number }, howToPay: string) {
+  return [
+    `Namaste ${b.client.name} 🙏`,
+    `A gentle reminder from Vibeshots Nepal about ${b.title}${b.package ? ` (${b.package} package)` : ''}:`,
+    `Total: ${npr(money.price)}\nPaid so far: ${npr(money.paid)}\nDue now: ${npr(money.due)}`,
+    `${howToPay} Please share a screenshot once paid.`,
+    'Thank you!\n— Team Vibeshots',
+  ].join('\n\n');
 }
 
 /** Booking confirmation to the client, listing every event. */

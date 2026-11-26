@@ -2,6 +2,7 @@
 import { useState } from 'preact/hooks';
 import { api, useApi } from '../lib/api';
 import { bsLabel } from '../lib/bs';
+import { bookingBalance } from '../lib/finance';
 import { npr } from '../lib/money';
 import type { Booking, BookingSummary, Client } from '../lib/types';
 import { BookingFields, KIND_LABEL, STATUS_LABEL, bookingDefaults } from '../ui/BookingFields';
@@ -34,7 +35,7 @@ export function Bookings() {
       {loading && <Loading />}
       {data && (
         <table class="tbl">
-          <thead><tr><th>Booking</th><th>Client</th><th>Type</th><th>Dates (BS)</th><th>Events</th><th>Status</th><th class="num">Price</th></tr></thead>
+          <thead><tr><th>Booking</th><th>Client</th><th>Type</th><th>Dates (BS)</th><th>Events</th><th>Status</th><th class="num">Price</th><th class="num">Due</th></tr></thead>
           <tbody>
             {rows.map((b) => (
               <tr onClick={() => (location.hash = `#/bookings/${b.id}`)}>
@@ -45,9 +46,10 @@ export function Bookings() {
                 <td>{b.event_count}</td>
                 <td><span class={`tag s-${b.status}`}>{STATUS_LABEL[b.status]}</span></td>
                 <td class="num">{npr((b.total_price ?? 0) - (b.discount ?? 0))}</td>
+                <td class="num">{b.status === 'cancelled' ? '—' : npr(bookingBalance(b, [{ amount: b.paid, kind: 'payment' }]).due)}</td>
               </tr>
             ))}
-            {rows.length === 0 && <tr><td colSpan={7} class="muted">No bookings match.</td></tr>}
+            {rows.length === 0 && <tr><td colSpan={8} class="muted">No bookings match.</td></tr>}
           </tbody>
         </table>
       )}

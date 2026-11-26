@@ -3,6 +3,7 @@ import { useState } from 'preact/hooks';
 import { api, useApi } from '../lib/api';
 import { npr } from '../lib/money';
 import { ROLES, ROLE_LABEL, type Person, type Role } from '../lib/types';
+import { BsDateInput } from '../ui/BsDateInput';
 import { ErrorNote, Field, Loading, useForm, useSave } from '../ui/forms';
 
 const ACCESS_LABEL = { owner: 'Owner (everything)', staff: 'Staff (own shoots)', none: 'No login (freelancer)' };
@@ -46,7 +47,7 @@ function PersonForm({ person, myId, onDone, onCancel }: { person: Person | null;
   const form = useForm({
     name: person?.name ?? '', phone: person?.phone ?? '', email: person?.email ?? '', access: person?.access ?? 'none',
     roles: person?.roles ?? ([] as Role[]), pay_type: person?.pay_type ?? 'per_event',
-    monthly_salary: person?.monthly_salary ?? null, event_rate: person?.event_rate ?? null,
+    monthly_salary: person?.monthly_salary ?? null, event_rate: person?.event_rate ?? null, salary_since: person?.salary_since ?? null,
     active: person?.active ?? true, notes: person?.notes ?? '',
   });
   const save = useSave();
@@ -75,6 +76,7 @@ function PersonForm({ person, myId, onDone, onCancel }: { person: Person | null;
           <select value={v.pay_type} onChange={form.on('pay_type')}>{Object.entries(PAY_LABEL).map(([k, l]) => <option value={k}>{l}</option>)}</select>
         </Field>
         {v.pay_type !== 'per_event' && <Field label="Monthly salary (NPR)"><input type="number" min="0" step="500" value={v.monthly_salary ?? ''} onInput={form.on('monthly_salary')} /></Field>}
+        {v.pay_type !== 'per_event' && <Field label="Salary counts from (BS month)" hint="Pay page counts one salary for every BS month from this date"><BsDateInput value={v.salary_since} onChange={(d) => form.set('salary_since', d)} /></Field>}
         {v.pay_type !== 'salary' && <Field label="Rate per event (NPR)"><input type="number" min="0" step="500" value={v.event_rate ?? ''} onInput={form.on('event_rate')} /></Field>}
         <Field label="Notes" wide><textarea rows={2} value={v.notes} onInput={form.on('notes')} /></Field>
         {person && !isMe && <label class="checks"><input type="checkbox" checked={v.active} onChange={(e) => form.set('active', e.currentTarget.checked)} /> Active (untick when someone leaves; their past shoots stay)</label>}

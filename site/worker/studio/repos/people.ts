@@ -8,7 +8,7 @@ export type Role = (typeof ROLES)[number];
 
 type Row = {
   id: number; name: string; phone: string | null; email: string | null; access: string; roles: string;
-  pay_type: string; monthly_salary: number | null; event_rate: number | null; active: number; notes: string | null;
+  pay_type: string; monthly_salary: number | null; event_rate: number | null; salary_since: string | null; active: number; notes: string | null;
 };
 
 const toPerson = (r: Row) => ({ ...r, roles: JSON.parse(r.roles) as Role[], active: !!r.active });
@@ -34,6 +34,7 @@ function parse(body: Record<string, unknown>) {
     pay_type: v.oneOf(body, 'pay_type', ['salary', 'per_event', 'both'] as const, 'per_event'),
     monthly_salary: v.int(body, 'monthly_salary'),
     event_rate: v.int(body, 'event_rate'),
+    salary_since: v.date(body, 'salary_since'),
     active: body.active === false ? 0 : 1,
     notes: v.str(body, 'notes', { max: 2000 }),
   };
@@ -48,9 +49,9 @@ export async function createPerson(db: D1Database, body: Record<string, unknown>
   const p = parse(body);
   if (p.access !== 'none' && !p.email) throw new HttpError(400, 'email: needed so this person can log in');
   const res = await run(db,
-    `INSERT INTO people (name, phone, email, access, roles, pay_type, monthly_salary, event_rate, active, notes)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    p.name, p.phone, p.email, p.access, p.roles, p.pay_type, p.monthly_salary, p.event_rate, p.active, p.notes,
+    `INSERT INTO people (name, phone, email, access, roles, pay_type, monthly_salary, event_rate, salary_since, active, notes)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    p.name, p.phone, p.email, p.access, p.roles, p.pay_type, p.monthly_salary, p.event_rate, p.salary_since, p.active, p.notes,
   ).catch(uniqueEmail);
   return getPerson(db, Number(res.meta.last_row_id));
 }
@@ -62,8 +63,8 @@ export async function updatePerson(db: D1Database, id: number, body: Record<stri
   if (id === actingPersonId && (p.access !== 'owner' || !p.active)) throw new HttpError(400, 'You cannot remove your own owner access.');
   await run(db,
     `UPDATE people SET name = ?, phone = ?, email = ?, access = ?, roles = ?, pay_type = ?, monthly_salary = ?,
-     event_rate = ?, active = ?, notes = ? WHERE id = ?`,
-    p.name, p.phone, p.email, p.access, p.roles, p.pay_type, p.monthly_salary, p.event_rate, p.active, p.notes, id,
+     event_rate = ?, salary_since = ?, active = ?, notes = ? WHERE id = ?`,
+    p.name, p.phone, p.email, p.access, p.roles, p.pay_type, p.monthly_salary, p.event_rate, p.salary_since, p.active, p.notes, id,
   ).catch(uniqueEmail);
   return getPerson(db, id);
 }
