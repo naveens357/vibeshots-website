@@ -22,6 +22,6 @@
   },
   // Studio data (bookings, clients, crew). Create it in Cloudflare → Storage & Databases → D1.
   "d1_databases": [
-    { "binding": "DB", "database_name": "vibeshots-studio", "database_id": "REPLACE_WITH_D1_DATABASE_ID" }
+    { "binding": "DB", "database_name": "vibeshots-studio", "database_id": "4d393ab9-da1e-4a22-afcc-75717bb6411f" }
   ]
 }
