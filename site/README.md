@@ -80,15 +80,17 @@ Open `/admin/` on the live site, sign in with GitHub, edit, and click **Publish*
 assignments, a Bikram Sambat calendar and one-click WhatsApp briefs. Code:
 `src/studio/` (Preact pages) and `worker/studio/` (API, login check, database).
 
-- **Login:** Cloudflare Access (email code) protects `/studio`. The Worker also
-  verifies the Access token on every request, so nothing is served without it.
+- **Login:** "Sign in with Google" (`worker/studio/google.ts`). The Worker then
+  keeps a signed session cookie (`session.ts`) and checks on every request that
+  the email belongs to an active owner or staff member on the People page.
 - **Who sees what:** owners see everything; staff see only the events they are
   crew on, with partners' names and phones, and no money.
 - **Data:** Cloudflare D1 database `vibeshots-studio` (binding `DB` in
   `wrangler.jsonc`). Tables are created and upgraded automatically on the first
   request after a deploy (`worker/studio/migrations.ts`). Nothing is in GitHub.
 - **Worker settings** (Cloudflare → Worker → Settings → Variables and Secrets):
-  `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD`, `OWNER_EMAILS`.
+  variables `GOOGLE_CLIENT_ID`, `OWNER_EMAILS`; secrets `GOOGLE_CLIENT_SECRET`,
+  `SESSION_SECRET` (a random string of 32+ characters).
 
 Run it locally with a throwaway database:
 

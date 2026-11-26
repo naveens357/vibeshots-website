@@ -1,8 +1,9 @@
 // Studio JSON API. Each route says who may call it; owners can do everything,
 // staff only see their own shoots and colleagues' names and phones (no money).
-import { currentUser, requireOwner, type AuthEnv, type User } from './auth';
+import { currentUser, requireOwner, userFor, type AuthEnv, type User } from './auth';
+import { finishLogin, logout, signedIn, startLogin } from './google';
 import { ensureSchema } from './db';
-import { HttpError, errorResponse, json, readBody, text } from './http';
+import { HttpError, errorResponse, json, readBody } from './http';
 import * as v from './validate';
 import * as people from './repos/people';
 import * as clients from './repos/clients';
@@ -64,12 +65,33 @@ function checkWrite(request: Request) {
   }
 }
 
-/** Everything under /studio: the API, and the dashboard pages (only for signed-in users). */
+/** Sign-in pages: Google login, its callback and logout. */
+const signIn: Record<string, (request: Request, url: URL, env: StudioEnv) => Promise<Response> | Response> = {
+  '/studio/login': (_, url, env) => startLogin(url, env),
+  '/studio/logout': () => logout(),
+  '/studio/oauth/callback': async (request, url, env) => {
+    const email = await finishLogin(request, url, env);
+    await userFor(email, env); // only team members get a session
+    return signedIn(email, env);
+  },
+};
+
+/** Plain page for sign-in problems, with a way to try another Google account. */
+const problemPage = (message: string, status: number) => new Response(
+  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Vibeshots Studio</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;background:#F3EEE6;color:#1B1714;display:grid;place-items:center;min-height:100vh;margin:0}main{max-width:440px;padding:24px;text-align:center}a{display:inline-block;margin-top:12px;background:#8E1B1B;color:#fff;padding:10px 18px;border-radius:999px;text-decoration:none}</style></head>
+<body><main><h1>Vibeshots Studio</h1><p>${message.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`)}</p><a href="/studio/logout">Sign in with another Google account</a></main></body></html>`,
+  { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' } },
+);
+
+/** Everything under /studio: sign-in, the API, and the dashboard pages (only for signed-in users). */
 export async function handleStudio(request: Request, url: URL, env: StudioEnv): Promise<Response> {
   const isApi = url.pathname.startsWith('/studio/api/');
+  const signInPage = signIn[url.pathname.replace(/\/$/, '')];
   try {
     if (!env.DB) throw new HttpError(503, 'Studio database is not connected yet.');
     await ensureSchema(env.DB);
+    if (signInPage) return await signInPage(request, url, env);
     const user = await currentUser(request, url, env);
     if (!isApi) {
       const res = await env.ASSETS.fetch(request);
@@ -89,6 +111,8 @@ export async function handleStudio(request: Request, url: URL, env: StudioEnv): 
   } catch (err) {
     if (isApi) return errorResponse(err);
     const status = err instanceof HttpError ? err.status : 500;
-    return text(err instanceof HttpError ? err.message : 'Something went wrong.', status);
+    if (status === 401 && !signInPage) return Response.redirect(`${url.origin}/studio/login`, 302);
+    if (status === 500) console.error(err);
+    return problemPage(err instanceof HttpError ? err.message : 'Something went wrong. Try again.', status);
   }
 }

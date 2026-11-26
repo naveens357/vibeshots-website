@@ -1,12 +1,12 @@
 // Cloudflare Worker for vibeshotsnepal.com: the built Astro site (static assets)
 // plus /auth and /callback for the content manager's GitHub sign-in
 // (worker/cms-auth.js) and the private studio dashboard at /studio
-// (worker/studio/, behind Cloudflare Access).
+// (worker/studio/, Google sign-in).
 // Cloudflare build settings: root directory "site", build command "npm run build",
 // deploy command "npx wrangler deploy", build variable SITE_URL=https://vibeshotsnepal.com.
 // Runtime settings (set in the dashboard, never in this file):
-//   secrets GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
-//   variables ACCESS_TEAM_DOMAIN, ACCESS_AUD, OWNER_EMAILS
+//   secrets GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GOOGLE_CLIENT_SECRET, SESSION_SECRET
+//   variables GOOGLE_CLIENT_ID, OWNER_EMAILS
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "vibeshotsnepal",

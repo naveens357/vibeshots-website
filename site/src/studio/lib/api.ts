@@ -22,19 +22,20 @@ export async function api<T>(path: string, method: 'GET' | 'POST' | 'PUT' | 'DEL
   return data as T;
 }
 
-/** Loads `path` (null to skip) and gives { data, error, loading, reload, setData }. */
+/** Loads `path` (null to skip) and gives { data, error, status, loading, reload, setData }. */
 export function useApi<T>(path: string | null) {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<number | null>(null);
   const [loading, setLoading] = useState(!!path);
   const reload = useCallback(() => {
     if (!path) return;
     setLoading(true);
     api<T>(path)
-      .then((d) => { setData(d); setError(null); })
-      .catch((e: Error) => setError(e.message))
+      .then((d) => { setData(d); setError(null); setStatus(200); })
+      .catch((e: Error) => { setError(e.message); setStatus(e instanceof ApiError ? e.status : null); })
       .finally(() => setLoading(false));
   }, [path]);
   useEffect(reload, [reload]);
-  return { data, error, loading, reload, setData };
+  return { data, error, status, loading, reload, setData };
 }

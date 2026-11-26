@@ -11,9 +11,6 @@ const NO_STORE = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' };
 export const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', ...NO_STORE } });
 
-export const text = (body: string, status: number) =>
-  new Response(body, { status, headers: { 'Content-Type': 'text/plain; charset=utf-8', ...NO_STORE } });
-
 export const errorResponse = (err: unknown) => {
   if (err instanceof HttpError) return json({ error: err.message }, err.status);
   console.error(err);

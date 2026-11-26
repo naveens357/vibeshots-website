@@ -31,16 +31,17 @@ const pages: Page[] = [
 ];
 
 export default function App() {
-  const { data: me, error, loading } = useApi<Me>('/me');
+  const { data: me, error, loading, status } = useApi<Me>('/me');
   const path = useHash();
 
+  if (status === 401) { location.href = '/studio/login'; return null; }
   if (loading) return <main class="center-box"><Loading /></main>;
   if (error || !me) {
     return (
       <main class="center-box">
         <h1>Vibeshots Studio</h1>
         <ErrorNote error={error || 'Could not sign you in.'} />
-        <p><a class="btn" href="/studio/">Try again</a> <a class="btn ghost" href="/cdn-cgi/access/logout">Sign in as someone else</a></p>
+        <p><a class="btn" href="/studio/">Try again</a> <a class="btn ghost" href="/studio/logout">Sign in with another Google account</a></p>
       </main>
     );
   }
@@ -62,7 +63,7 @@ export default function App() {
         <div class="who">
           <b>{me.name}</b>
           <small>{me.email} · {me.access === 'owner' ? 'Owner' : 'Staff'}</small>
-          <a href="/cdn-cgi/access/logout">Log out</a>
+          <a href="/studio/logout">Log out</a>
         </div>
       </aside>
       <main class="main">
